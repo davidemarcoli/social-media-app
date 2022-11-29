@@ -1,0 +1,21 @@
+<div style="text-align: center" class="centered">
+  <form [formGroup]="form">
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input name="username" formControlName="username" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input name="password" formControlName="password" matInput [type]="passwordVisible ? 'text' : 'password'">
+      <button mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="!passwordVisible">
+        <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <br>
+    <button (click)="login()" mat-raised-button>Login</button>
+    <button (click)="navigateToRegister()" mat-raised-button color="primary" style="margin-left: 10px">Register</button>
+  </form>
+</div>

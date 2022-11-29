@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)" class="center">
+  <h1>Edit Post</h1>
+
+  <mat-form-field appearance="fill" *ngIf="userIsAuthor()">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categories</mat-label>
+    <mat-select formControlName="categories" multiple [compareWith]="compareCategory">
+      <mat-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container *ngIf="userIsAuthor()">
+    <ckeditor [editor]="Editor" formControlName="content" style="min-height: 50vh; min-width: 80vw"></ckeditor>
+  </ng-container>
+
+  <ng-container *ngIf="!userIsAuthor()">
+<!--    message that the user may not see all options-->
+    <div class="center alert alert-warning" role="alert">
+      <p>Some options may be hidden because you are not the author of this post.</p>
+    </div>
+  </ng-container>
+
+  <!--  submit-->
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+</form>

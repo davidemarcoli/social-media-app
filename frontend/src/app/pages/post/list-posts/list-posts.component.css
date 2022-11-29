@@ -1,0 +1,40 @@
+.search {
+  margin-top: 20px;
+  flex: 1;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.post-container {
+  margin: 2vh 5vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 5vh;
+}
+
+.items {
+  padding: 10px;
+  width: 30vw;
+  min-width: 250px;
+}
+
+.category-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  gap: 10px;
+}
+
+/*app-category-pill {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: wrap;*/
+/*}*/

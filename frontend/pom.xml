@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>project-template</artifactId>
+    <version>0.1</version>
+  </parent>
+
+  <artifactId>frontend</artifactId>
+  <version>0.1</version>
+
+  <build>
+    <plugins>
+      <plugin>
+        <!--All steps to build the front end -->
+        <!-- External plugin in artifactory to build all steps-->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <!-- Install all dependencies-->
+            <id>npm install (clean)</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>initialize</phase>
+            <configuration>
+              <executable>npm</executable>
+              <arguments>
+                <argument>install</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- Command to run the frontend (-prod is optional but recommended)-->
+          <executable>npm</executable>
+          <arguments>
+            <argument>run-script</argument>
+            <argument>build</argument>
+          </arguments>
+          <workingDirectory>./</workingDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- Copy the front end from the target/classes folder into the dist/frontend-ng-->
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/classes/</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}/dist/frontend</directory>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
