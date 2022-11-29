@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+form {
+  margin-top: 30px;
+}
+
+mat-form-field {
+  margin: 1em;
+  width: 80vw;
+}
+
+.success-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+}
+
+.warning-snackbar {
+  background-color: #ff9800;
+  color: white;
+}
+
+.info-snackbar {
+  background-color: #2196f3;
+  color: white;
+}
+
+.mat-simple-snackbar-action {
+  color: white;
+}
+
+form.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+

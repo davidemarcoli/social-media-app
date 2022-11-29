@@ -1,0 +1,30 @@
+<div style="text-align: center" class="centered">
+  <div (click)="backToLogin()" style="z-index: 1; cursor: pointer">
+    <mat-icon aria-hidden="false" aria-label="Back to Login" style="position: absolute; top: 10px; left: 10px; font-size: 2em">arrow_back</mat-icon>
+  </div>
+<form [formGroup]="form">
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input name="email" formControlName="email" type="email" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input name="username" formControlName="username" matInput>
+      <mat-hint>Minimum <strong>3</strong> characters</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input name="password" formControlName="password" matInput [type]="passwordVisible ? 'text' : 'password'">
+      <button mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="!passwordVisible">
+        <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </button>
+      <mat-hint>Minimum <strong>8</strong> characters</mat-hint>
+    </mat-form-field>
+    <br>
+    <button (click)="signup()" mat-raised-button>Signup</button>
+  </form>
+</div>

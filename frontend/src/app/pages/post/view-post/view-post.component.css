@@ -1,0 +1,66 @@
+#container {
+  /*margin: 0 auto;*/
+  width: 100%;
+  padding: 0 20px;
+  flex-direction: row;
+  display: flex;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  gap: 10%;
+  position: absolute;
+}
+
+#content {
+  /*margin: 5vh 5vw;*/
+  /*width: 80%;*/
+  /*centered with flexbox*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  /*margin: 5vh auto auto;*/
+  margin-top: 5vh;
+}
+
+#title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.metadata {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.metadata td {
+  padding: 0.5em;
+}
+
+.metadata th {
+  padding: 0.5em;
+  text-align: right;
+}
+
+.metadata tr td:first-child {
+  font-weight: bolder;
+}
+
+#details {
+  margin: 1em 1em;
+  /*margin-left: 1em;*/
+  /*margin-top: 1em;*/
+  /*background-color: #c7c7c7;*/
+  background-color: rgb(240 173 78 / 25%);
+  padding: 1em;
+  border-radius: 5px;
+  /*width: fit-content;*/
+  /*position: absolute;*/
+  width: 20%;
+  height: fit-content;
+
+}
+
+button[mat-raised-button] {
+  margin: 0.5em;
+}

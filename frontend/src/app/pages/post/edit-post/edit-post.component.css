@@ -1,0 +1,23 @@
+button[mat-raised-button] {
+  margin: 2em;
+}
+
+.alert {
+  margin: 2em;
+  border-radius: 5px;
+  padding: 1em;
+  background-color: #c7c7c7;
+}
+
+.alert > * {
+  margin: 0.5em;
+}
+
+.alert > p {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.alert-warning {
+  background-color: rgb(240 173 78 / 50%);
+}

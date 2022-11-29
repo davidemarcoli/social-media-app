@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="center">
+  <h1>Delete Category</h1>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category To Delete</mat-label>
+    <mat-select (change)="onCategoryChange($event)" formControlName="categoryId">
+      <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--  submit-->
+  <button mat-raised-button color="warn" type="submit" [disabled]="form.invalid">Submit</button>
+</form>
