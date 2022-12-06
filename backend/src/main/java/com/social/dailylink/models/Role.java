@@ -1,6 +1,6 @@
 package com.social.dailylink.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "roles")

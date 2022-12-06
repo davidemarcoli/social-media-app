@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
@@ -79,22 +80,26 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
+                // https://stackoverflow.com/questions/74447778/spring-security-in-spring-boot-3
+                .authorizeRequests().and().authorizeHttpRequests(requests -> {
 
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/index.html").permitAll()
-                .antMatchers("/favicon.ico").permitAll()
-                .antMatchers("/main.js").permitAll()
-                .antMatchers("/polyfills.js").permitAll()
-                .antMatchers("/runtime.js").permitAll()
-                .antMatchers("/styles.css").permitAll()
-                .antMatchers("/vendor.css").permitAll()
-                .antMatchers("/assets/**").permitAll()
-                .antMatchers("/error").permitAll()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated().and()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                    requests.requestMatchers("/api/auth/**").permitAll()
+                            .requestMatchers("/api/test/**").permitAll()
+                            .requestMatchers("/").permitAll()
+                            .requestMatchers("/index.html").permitAll()
+                            .requestMatchers("/favicon.ico").permitAll()
+                            .requestMatchers("/main.js").permitAll()
+                            .requestMatchers("/polyfills.js").permitAll()
+                            .requestMatchers("/runtime.js").permitAll()
+                            .requestMatchers("/styles.css").permitAll()
+                            .requestMatchers("/vendor.css").permitAll()
+                            .requestMatchers("/assets/**").permitAll()
+                            .requestMatchers("/error").permitAll()
+                            .requestMatchers("/**").permitAll()
+                            .anyRequest().authenticated();
+                });
+
+        http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authenticationProvider(authenticationProvider());

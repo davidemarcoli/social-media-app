@@ -1,6 +1,6 @@
 package com.social.dailylink.payload.request;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import java.util.Set;
 
 public class SignupRequest {
