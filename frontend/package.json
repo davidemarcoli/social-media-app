@@ -22,6 +22,7 @@
     "@angular/router": "^15.0.1",
     "@ckeditor/ckeditor5-angular": "^4.0.0",
     "@leo1305/ckeditor5-build-custom": "^1.0.0",
+    "bootstrap": "^5.2.3",
     "fuzzy-search": "^3.2.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
