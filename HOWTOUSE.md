@@ -49,7 +49,7 @@ If you want to use a local database, you need to install MySQL on your machine.
 With docker, you can easily start a MySQL database in seconds. Just run the following command:
 
 ```bash
-docker run --name dailylink-mysql -e MYSQL_ROOT_PASSWORD=my-password -e MYSQL_DATABASE=my-database -p 3308:3306 -d mysql:latest
+docker run --name dailylink-mysql -e MYSQL_ROOT_PASSWORD=my-password -e MYSQL_DATABASE=dailylink -p 3308:3306 -d mysql:latest
 ```
 
 If you don't have docker installed, you can download it [here](https://www.docker.com/products/docker-desktop).
