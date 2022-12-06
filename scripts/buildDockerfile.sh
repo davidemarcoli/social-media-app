@@ -12,4 +12,4 @@ cd "$dirname/.." || exit 1
 
 # build the docker image
 mvn clean package -DskipTests
-sudo docker build -t project-template .
+sudo docker build -t dailylink .
