@@ -17,23 +17,23 @@ The Template includes the following features:
 
 There are a few things you need to do before you can start developing your project.
 
-- [ ] Change the groupId and artifactId in the `pom.xml` files
-  - [ ] `frontend/pom.xml`
-  - [ ] `backend/pom.xml`
-  - [ ] `pom.xml`
-  - [ ] Reload the maven project by right-clicking on the `pom.xml` file and selecting `Reload Maven Project`
-- [ ] Change the project name in the `package.json` file
-- [ ] Change the project name in the `angular.json` file
-  - [ ] `frontend/angular.json` (line 6)
-  - [ ] `frontend/angular.json` (line 16)
-  - [ ] `frontend/angular.json` (line 68)
-  - [ ] `frontend/angular.json` (line 71)
-  - [ ] `frontend/angular.json` (line 79)
-- [ ] Change the project name in the navbar in the `app.component.html` file
-  - [ ] `frontend/src/app/app.component.html` (line 2)
-- [ ] Change the configuration in the `application.properties` file located at `backend/src/main/resources`
-- [ ] Change the docker image name in the `buildDockerfile.sh` file located at `scripts`
-- [ ] Run `mvn clean install` in the root directory of the project to verify that everything works
+- [X] Change the groupId and artifactId in the `pom.xml` files
+  - [X] `frontend/pom.xml`
+  - [X] `backend/pom.xml`
+  - [X] `pom.xml`
+  - [X] Reload the maven project by right-clicking on the `pom.xml` file and selecting `Reload Maven Project`
+- [X] Change the project name in the `package.json` file
+- [X] Change the project name in the `angular.json` file
+  - [X] `frontend/angular.json` (line 6)
+  - [X] `frontend/angular.json` (line 16)
+  - [X] `frontend/angular.json` (line 68)
+  - [X] `frontend/angular.json` (line 71)
+  - [X] `frontend/angular.json` (line 79)
+- [X] Change the project name in the navbar in the `app.component.html` file
+  - [X] `frontend/src/app/app.component.html` (line 2)
+- [X] Change the configuration in the `application.properties` file located at `backend/src/main/resources`
+- [X] Change the docker image name in the `buildDockerfile.sh` file located at `scripts`
+- [X] Run `mvn clean install` in the root directory of the project to verify that everything works
 
 **Now you're Ready!**
 
@@ -49,7 +49,7 @@ If you want to use a local database, you need to install MySQL on your machine.
 With docker, you can easily start a MySQL database in seconds. Just run the following command:
 
 ```bash
-docker run --name project-template-mysql -e MYSQL_ROOT_PASSWORD=my-password -e MYSQL_DATABASE=my-database -p 3308:3306 -d mysql:latest
+docker run --name dailylink-mysql -e MYSQL_ROOT_PASSWORD=my-password -e MYSQL_DATABASE=my-database -p 3308:3306 -d mysql:latest
 ```
 
 If you don't have docker installed, you can download it [here](https://www.docker.com/products/docker-desktop).

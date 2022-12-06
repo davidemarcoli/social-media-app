@@ -6,8 +6,8 @@
   <packaging>jar</packaging>
 
   <parent>
-    <groupId>com.example</groupId>
-    <artifactId>project-template</artifactId>
+    <groupId>com.social.dialylink</groupId>
+    <artifactId>dailylink</artifactId>
     <version>0.1</version>
   </parent>
 
