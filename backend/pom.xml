@@ -16,7 +16,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <frontend-bundle-dir>../frontend/dist/dailylink/</frontend-bundle-dir>
-        <start-class>com.social.dialylink.BackendApplication</start-class>
+        <start-class>com.social.dailylink.BackendApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
@@ -120,7 +120,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.social.dialylink.BackendApplication</mainClass>
+                    <mainClass>com.social.dailylink.BackendApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
