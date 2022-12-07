@@ -3,7 +3,7 @@ package com.social.dailylink.security;
 import com.social.dailylink.security.jwt.AuthEntryPointJwt;
 import com.social.dailylink.security.jwt.AuthTokenFilter;
 import com.social.dailylink.security.services.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,12 +22,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-public class WebSecurityConfig {
-    @Autowired
-    UserDetailsServiceImpl userDetailsService;
+@RequiredArgsConstructor
+public class CustomWebSecurityConfig extends WebSecurityConfiguration {
+    final UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
+    private final AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
