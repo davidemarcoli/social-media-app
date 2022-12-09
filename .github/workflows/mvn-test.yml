@@ -3,7 +3,7 @@ name: Maven Verify
 on: [push]
 
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
 
     steps:
