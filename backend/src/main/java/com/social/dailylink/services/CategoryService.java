@@ -2,14 +2,14 @@ package com.social.dailylink.services;
 
 import com.social.dailylink.exception.EntityAlreadyExistsException;
 import com.social.dailylink.exception.EntityInUseException;
-import com.social.dailylink.repository.CategoryRepository;
 import com.social.dailylink.generic.CrudService;
 import com.social.dailylink.models.Category;
+import com.social.dailylink.repository.CategoryRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +33,10 @@ public class CategoryService implements CrudService<Category, Integer> {
     @Override
     public Category update(Integer id, Category category) {
         category.setId(id);
-       if (categoryRepository.findById(category.getId()).isPresent()) {
-           return categoryRepository.save(category);
-       }
-         return null;
+        if (categoryRepository.findById(category.getId()).isPresent()) {
+            return categoryRepository.save(category);
+        }
+        return null;
     }
 
     @Override

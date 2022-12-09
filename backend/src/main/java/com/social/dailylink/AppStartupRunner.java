@@ -26,7 +26,10 @@ public class AppStartupRunner implements ApplicationRunner {
         if (roleRepository.count() == 0) {
             System.out.println("No roles found, creating default roles");
             roleRepository.saveAll(Arrays.stream(ERole.values()).map(role -> {
-                Role newRole = new Role(); newRole.setName(role); return newRole;}).toList());
+                Role newRole = new Role();
+                newRole.setName(role);
+                return newRole;
+            }).toList());
         }
         if (userDetailsService.getUserCount() == 0) {
             System.out.println("No users found, creating default users");

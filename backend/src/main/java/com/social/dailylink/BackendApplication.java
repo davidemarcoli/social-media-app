@@ -15,23 +15,6 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
 
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        // allow CORS for all controllers
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**");
-//            }
-//        };
-////        return new WebMvcConfigurer() {
-////            @Override
-////            public void addCorsMappings(CorsRegistry registry) {
-////                registry.addMapping("/**").allowedOrigins("http://localhost:4200");
-////            }
-////        };
-//    }
-
     @GetMapping("/_PATH_SPA")
     public ModelAndView getIndex(ModelMap model) {
         return new ModelAndView("forward:/static/index.html", model);
