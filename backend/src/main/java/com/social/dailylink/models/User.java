@@ -1,34 +1,41 @@
 package com.social.dailylink.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
+@NoArgsConstructor
 @Entity
-@Table(name = "users", 
+@Table(name = "users", schema = "dailyink",
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),
-      @UniqueConstraint(columnNames = "email") 
+      @UniqueConstraint(columnNames = "email"),
     })
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private UUID id;
 
   @NotBlank
   @Size(max = 20)
+  @Column(name = "username")
   private String username;
 
   @NotBlank
   @Size(max = 50)
   @Email
+  @Column(name = "username", unique = true, nullable = false)
   private String email;
 
   @NotBlank
   @Size(max = 120)
+  @Column(name = "password", nullable = false)
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
@@ -37,21 +44,10 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
-  public User() {
-  }
-
   public User(String username, String email, String password) {
     this.username = username;
     this.email = email;
     this.password = password;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
   public String getUsername() {
