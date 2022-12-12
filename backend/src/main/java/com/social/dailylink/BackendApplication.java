@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @SpringBootApplication
-@EnableJpaAuditing
 public class BackendApplication {
 
     public static void main(String[] args) {
