@@ -1,7 +1,5 @@
 package com.social.dailylink;
 
-import com.social.dailylink.global.Global;
-import com.social.dailylink.global.GlobalStrings;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

@@ -1,6 +1,7 @@
 package com.social.dailylink.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.social.dailylink.global.GlobalStrings;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Table(name = "category", schema = "dailylink")
+@Table(name = "category", schema = GlobalStrings.SCHEMA_NAME)
 public class Category {
 
     @Id

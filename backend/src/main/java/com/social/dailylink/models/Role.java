@@ -1,9 +1,11 @@
 package com.social.dailylink.models;
 
+import com.social.dailylink.global.GlobalStrings;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles", schema = "dailylink")
+@Table(name = "roles", schema = GlobalStrings.SCHEMA_NAME)
 public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

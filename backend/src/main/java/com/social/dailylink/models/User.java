@@ -1,5 +1,6 @@
 package com.social.dailylink.models;
 
+import com.social.dailylink.global.GlobalStrings;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "users", schema = "dailylink",
+@Table(name = "users", schema = GlobalStrings.SCHEMA_NAME,
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),
       @UniqueConstraint(columnNames = "email"),
@@ -41,7 +42,7 @@ public class User {
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles",
-          schema = "dailylink",
+          schema = GlobalStrings.SCHEMA_NAME,
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();

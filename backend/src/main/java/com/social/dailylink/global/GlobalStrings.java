@@ -5,28 +5,11 @@ public class GlobalStrings {
     private static GlobalStrings INSTANCE;
 
     // DB relevant strings
-    private final String SCHEMA_NAME = "dailylink";
+    public static final String SCHEMA_NAME = "dailylink";
 
     // Error Messages
-    private final String ERROR_ROLE_NOT_FOUND = "Error: Role is not found.";
-
-
+    public static final String ERROR_ROLE_NOT_FOUND = "Error: Role is not found.";
 
     private GlobalStrings() {
-    }
-
-    public static GlobalStrings getInstance() {
-        if(INSTANCE == null) {
-            INSTANCE = new GlobalStrings();
-        }
-        return INSTANCE;
-    }
-
-    public String getSchemaName() {
-        return SCHEMA_NAME;
-    }
-
-    public String getERROR_ROLE_NOT_FOUND() {
-        return ERROR_ROLE_NOT_FOUND;
     }
 }

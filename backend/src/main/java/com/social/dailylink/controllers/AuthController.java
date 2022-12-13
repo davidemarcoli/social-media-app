@@ -1,6 +1,6 @@
 package com.social.dailylink.controllers;
 
-import com.social.dailylink.global.Global;
+import com.social.dailylink.global.GlobalStrings;
 import com.social.dailylink.models.ERole;
 import com.social.dailylink.models.Role;
 import com.social.dailylink.models.User;
@@ -97,24 +97,24 @@ public class AuthController {
 
     if (strRoles == null) {
       Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-          .orElseThrow(() -> new RuntimeException(Global.GLOBAL_STRINGS.getERROR_ROLE_NOT_FOUND()));
+          .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
       roles.add(userRole);
     } else {
       strRoles.forEach(role -> {
         switch (role) {
           case "admin" -> {
             Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                    .orElseThrow(() -> new RuntimeException(Global.GLOBAL_STRINGS.getERROR_ROLE_NOT_FOUND()));
+                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
             roles.add(adminRole);
           }
           case "mod" -> {
             Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                    .orElseThrow(() -> new RuntimeException(Global.GLOBAL_STRINGS.getERROR_ROLE_NOT_FOUND()));
+                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
             roles.add(modRole);
           }
           default -> {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException(Global.GLOBAL_STRINGS.getERROR_ROLE_NOT_FOUND()));
+                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
             roles.add(userRole);
           }
         }

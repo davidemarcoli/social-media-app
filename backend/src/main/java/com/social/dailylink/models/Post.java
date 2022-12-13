@@ -1,5 +1,6 @@
 package com.social.dailylink.models;
 
+import com.social.dailylink.global.GlobalStrings;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "post", schema = "dailylink")
+@Table(name = "post", schema = GlobalStrings.SCHEMA_NAME)
 public class Post {
 
     @Id
@@ -38,7 +39,7 @@ public class Post {
     @ManyToMany
     @JoinTable(
             name = "post_category",
-            schema = "dailylink",
+            schema = GlobalStrings.SCHEMA_NAME,
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
