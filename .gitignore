@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,maven,intellij+all,node,angular
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,maven,intellij+all,node,angular
 
+# MacOS
+.DS_Store
+
 ### Angular ###
 ## Angular ##
 # compiled output
