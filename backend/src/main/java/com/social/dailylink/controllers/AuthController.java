@@ -49,7 +49,7 @@ public class AuthController {
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-    //Must be replaced with Logger
+    // TODO: Replace simple System out print commands with a Logger.
     System.out.println("New Login Request from " + loginRequest.getUsername());
 
     Authentication authentication = authenticationManager.authenticate(
