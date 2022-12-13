@@ -2,6 +2,7 @@ package com.social.dailylink;
 
 import com.social.dailylink.BackendApplication;
 import com.social.dailylink.controllers.TestController;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,50 +20,55 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(TestController.class)
 @ContextConfiguration(classes = BackendApplication.class)
-public class AuthTest {
+class AuthTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
+    @DisplayName("Give no token and forbid")
     @WithAnonymousUser
-    public void givenNoToken_whenGetSecureRequest_thenUnauthorized() throws Exception {
+    void givenNoToken_whenGetSecureRequest_thenUnauthorized() throws Exception {
         mockMvc.perform(get("/api/test/user"))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
+    @DisplayName("Give user token and accept access")
     @WithMockUser(roles = "USER")
-    public void givenUserToken_whenGetSecureRequest_thenOk() throws Exception {
+    void givenUserToken_whenGetSecureRequest_thenOk() throws Exception {
         mockMvc.perform(get("/api/test/user"))
                 .andExpect(status().isOk());
     }
 
     @Test
+    @DisplayName("Give moderator token and accept access")
     @WithMockUser(roles = "MODERATOR")
-    public void givenModeratorToken_whenGetSecureRequest_thenOk() throws Exception {
+    void givenModeratorToken_whenGetSecureRequest_thenOk() throws Exception {
         mockMvc.perform(get("/api/test/mod"))
                 .andExpect(status().isOk());
     }
 
     @Test
+    @DisplayName("Give admin token and accept access")
     @WithMockUser(roles = "ADMIN")
-    public void givenAdminToken_whenGetSecureRequest_thenOk() throws Exception {
+    void givenAdminToken_whenGetSecureRequest_thenOk() throws Exception {
         mockMvc.perform(get("/api/test/admin"))
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    @WithMockUser(roles = "USER")
-//    public void givenUserToken_whenGetSecureRequest_thenForbidden() throws Exception {
-//        mockMvc.perform(get("/api/test/mod"))
-//                .andExpect(status().isForbidden());
-//    }
-//
-//    @Test
-//    @WithMockUser(roles = "USER")
-//    public void givenUserToken_whenGetSecureRequest_thenForbidden2() throws Exception {
-//        mockMvc.perform(get("/api/test/admin"))
-//                .andExpect(status().isForbidden());
-//    }
+    @Test
+    @DisplayName("Give user no token and forbid access")
+    @WithMockUser(roles = "USER")
+    void givenUserToken_whenGetSecureRequest_thenForbidden() throws Exception {
+        mockMvc.perform(get("/api/test/mod"))
+                .andExpect(status().isForbidden());
+    }
 
+    @Test
+    @DisplayName("Give user no token and forbid access v.2")
+    @WithMockUser(roles = "USER")
+    void givenUserToken_whenGetSecureRequest_thenForbidden2() throws Exception {
+        mockMvc.perform(get("/api/test/admin"))
+                .andExpect(status().isForbidden());
+    }
 }
