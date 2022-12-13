@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@services/auth/auth.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from '@services/alert/alert.service';
 import { z, ZodError } from 'zod';
-import * as Errors from '../../../../errors'
+import * as Errors from '../../../../errors';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +19,6 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar,
     private alertService: AlertService
   ) {
     this.form = this.fb.group({
@@ -39,7 +37,10 @@ export class SignupComponent implements OnInit {
 
   readonly signupUser = z.object({
     email: z.string().email(Errors.EMAIL_VALIDATION),
-    username: z.string().min(3, Errors.USERNAME_MIN_VALIDATION).max(20, Errors.USERNAME_MAX_VALIDATION),
+    username: z
+      .string()
+      .min(3, Errors.USERNAME_MIN_VALIDATION)
+      .max(20, Errors.USERNAME_MAX_VALIDATION),
     password: z.string().min(8, Errors.PASSWORD_MAX_VALIDATION),
   });
 
@@ -59,7 +60,7 @@ export class SignupComponent implements OnInit {
           this.alertService.error(reason.error.message);
         });
     } catch (e) {
-      console.log((e as ZodError).issues[0].message)
+      console.log((e as ZodError).issues[0].message);
       this.alertService.error((e as ZodError).issues[0].message);
     }
   }
