@@ -1,17 +1,17 @@
 package com.social.dailylink.services;
 
 import com.social.dailylink.exception.EntityAlreadyExistsException;
-import com.social.dailylink.repository.PostRepository;
-import com.social.dailylink.repository.UserRepository;
 import com.social.dailylink.generic.CrudService;
 import com.social.dailylink.models.Post;
 import com.social.dailylink.models.User;
+import com.social.dailylink.repository.PostRepository;
+import com.social.dailylink.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -23,6 +23,7 @@ public class PostService implements CrudService<Post, Integer> {
 
     @Autowired
     private UserRepository userRepository;
+
     @Override
     public Post save(Post post) {
         if (postRepository.findByTitle(post.getTitle()).isPresent()) {
