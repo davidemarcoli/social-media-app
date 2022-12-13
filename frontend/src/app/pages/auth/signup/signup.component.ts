@@ -4,6 +4,8 @@ import { AuthService } from '@services/auth/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlertService } from '@services/alert/alert.service';
+import { z, ZodError } from 'zod';
+import * as Errors from '../../../../errors'
 
 @Component({
   selector: 'app-signup',
@@ -35,20 +37,30 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  readonly signupUser = z.object({
+    email: z.string().email(Errors.EMAIL_VALIDATION),
+    username: z.string().min(3, Errors.USERNAME_MIN_VALIDATION).max(20, Errors.USERNAME_MAX_VALIDATION),
+    password: z.string().min(8, Errors.PASSWORD_MAX_VALIDATION),
+  });
+
   async signup() {
     const val = this.form.value;
 
-    if (val.username && val.password) {
+    try {
+      this.signupUser.parse(val);
       this.authService
         .signup(val.email, val.username, val.password)
         .then((data) => {
           console.log('Data', data);
-          this.router.navigateByUrl("home")
+          this.router.navigateByUrl('home');
         })
         .catch((reason) => {
           console.error('Error', reason);
           this.alertService.error(reason.error.message);
         });
+    } catch (e) {
+      console.log((e as ZodError).issues[0].message)
+      this.alertService.error((e as ZodError).issues[0].message);
     }
   }
 
