@@ -18,6 +18,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "post", schema = "dailylink")
 public class Post {
 
     @Id
@@ -37,6 +38,7 @@ public class Post {
     @ManyToMany
     @JoinTable(
             name = "post_category",
+            schema = "dailyink",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )

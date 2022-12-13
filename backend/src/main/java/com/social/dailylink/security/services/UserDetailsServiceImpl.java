@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -25,8 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder encoder;
-
-
 
     @Override
     @Transactional
@@ -47,6 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         final Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
 
         User user = new User();
+        user.setId(UUID.fromString("8db5d997-5659-4237-b8b1-2b6593c044d5"));
         user.setUsername("user");
         user.setPassword(encoder.encode("user"));
         user.setEmail("user@user.ch");
@@ -54,6 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userRepository.save(user);
 
         User moderator = new User();
+        user.setId(UUID.fromString("ae99ef2b-39ff-4589-8f73-2e604a146a1d"));
         moderator.setUsername("moderator");
         moderator.setPassword(encoder.encode("moderator"));
         moderator.setEmail("moderator@moderator.ch");
@@ -61,6 +62,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userRepository.save(moderator);
 
         User admin = new User();
+        user.setId(UUID.fromString("dc5a75e8-1a09-4aa0-bf16-6be8e6a1db07"));
         admin.setUsername("admin");
         admin.setPassword(encoder.encode("admin"));
         admin.setEmail("admin@admin.ch");

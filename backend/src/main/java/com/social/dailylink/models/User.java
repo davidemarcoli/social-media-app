@@ -1,6 +1,8 @@
 package com.social.dailylink.models;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,9 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@Getter @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "users", schema = "dailyink",
+@Table(name = "users", schema = "dailylink",
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),
       @UniqueConstraint(columnNames = "email"),
@@ -23,14 +26,13 @@ public class User {
   private UUID id;
 
   @NotBlank
-  @Size(max = 20)
-  @Column(name = "username")
+  @Size(max = 25)
+  @Column(name = "username", nullable = false)
   private String username;
 
   @NotBlank
-  @Size(max = 50)
   @Email
-  @Column(name = "username", unique = true, nullable = false)
+  @Column(name = "email", unique = true, nullable = false)
   private String email;
 
   @NotBlank
@@ -39,9 +41,10 @@ public class User {
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(  name = "user_roles", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
+  @JoinTable(  name = "user_roles",
+          schema = "dailylink",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
   public User(String username, String email, String password) {

@@ -3,7 +3,7 @@ package com.social.dailylink.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", schema = "dailylink")
 public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
