@@ -1,3 +1,5 @@
+package com.social.dailylink;
+
 import com.social.dailylink.BackendApplication;
 import com.social.dailylink.controllers.TestController;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(TestController.class)
-@WithMockUser
 @ContextConfiguration(classes = BackendApplication.class)
 public class AuthTest {
     @Autowired
@@ -25,7 +26,6 @@ public class AuthTest {
     @Test
     @WithAnonymousUser
     public void givenNoToken_whenGetSecureRequest_thenUnauthorized() throws Exception {
-        // cant find get method in MockMvc, why?
         mockMvc.perform(get("/api/test/user"))
                 .andExpect(status().isUnauthorized());
     }
