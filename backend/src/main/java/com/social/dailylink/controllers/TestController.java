@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/test")
-@EnableMethodSecurity(
-        securedEnabled = true,
-        prePostEnabled = true
-)
+@EnableMethodSecurity
 public class TestController {
     @GetMapping("/all")
     public String allAccess() {
