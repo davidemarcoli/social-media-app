@@ -93,7 +93,7 @@ public class AuthController {
                 signUpRequest.email(),
                 encoder.encode(signUpRequest.password()));
 
-        Set<String> strRoles = signUpRequest.role();
+        Set<String> strRoles = signUpRequest.roles();
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
