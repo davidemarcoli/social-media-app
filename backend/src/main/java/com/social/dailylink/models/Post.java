@@ -38,7 +38,7 @@ public class Post {
     @ManyToMany
     @JoinTable(
             name = "post_category",
-            schema = "dailyink",
+            schema = "dailylink",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
