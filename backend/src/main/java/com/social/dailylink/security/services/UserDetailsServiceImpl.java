@@ -1,10 +1,10 @@
 package com.social.dailylink.security.services;
 
-import com.social.dailylink.repository.RoleRepository;
-import com.social.dailylink.repository.UserRepository;
 import com.social.dailylink.models.ERole;
 import com.social.dailylink.models.Role;
 import com.social.dailylink.models.User;
+import com.social.dailylink.repository.RoleRepository;
+import com.social.dailylink.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

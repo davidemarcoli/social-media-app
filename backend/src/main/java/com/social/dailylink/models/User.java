@@ -1,13 +1,12 @@
 package com.social.dailylink.models;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 import com.social.dailylink.global.GlobalStrings;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -15,6 +14,7 @@ import java.util.UUID;
 @Getter @Setter
 @NoArgsConstructor
 @Entity
+
 @Table(name = "users", schema = GlobalStrings.SCHEMA_NAME,
     uniqueConstraints = { 
       @UniqueConstraint(columnNames = "username"),

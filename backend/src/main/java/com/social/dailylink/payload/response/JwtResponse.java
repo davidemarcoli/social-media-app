@@ -1,8 +1,13 @@
 package com.social.dailylink.payload.response;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 import java.util.UUID;
 
+@Getter @Setter
 public class JwtResponse {
   private String token;
   private String type = "Bearer";

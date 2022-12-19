@@ -3,8 +3,8 @@ package com.social.dailylink.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.social.dailylink.global.GlobalStrings;
 import lombok.*;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Entity
