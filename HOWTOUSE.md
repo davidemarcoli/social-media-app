@@ -41,7 +41,7 @@ There are a few things you need to do before you can start developing your proje
 
 ### Database
 
-The backend uses a MySQL database. You can either use a local database or a remote database.
+The backend uses a Postgres database. You can either use a local database or a remote database.
 
 #### Local Database
 If you want to use a local database, you need to install MySQL on your machine.

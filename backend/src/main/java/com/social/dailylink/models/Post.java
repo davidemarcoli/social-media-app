@@ -1,10 +1,8 @@
 package com.social.dailylink.models;
 
+import com.social.dailylink.global.GlobalStrings;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "post", schema = GlobalStrings.SCHEMA_NAME)
 public class Post {
 
     @Id
@@ -37,6 +36,7 @@ public class Post {
     @ManyToMany
     @JoinTable(
             name = "post_category",
+            schema = GlobalStrings.SCHEMA_NAME,
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
