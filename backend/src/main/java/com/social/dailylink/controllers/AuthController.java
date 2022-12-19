@@ -53,7 +53,7 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
     // TODO: Replace simple System out print commands with a Logger.
-    System.out.println("New Login Request from " + loginRequest.getUsername());
+    System.out.println("New Login Request from " + loginRequest.username());
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
@@ -85,11 +85,11 @@ public class AuthController {
         }
 
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(), 
-               signUpRequest.getEmail(),
-               encoder.encode(signUpRequest.getPassword()));
+    User user = new User(signUpRequest.username(),
+               signUpRequest.email(),
+               encoder.encode(signUpRequest.password()));
 
-    Set<String> strRoles = signUpRequest.getRole();
+    Set<String> strRoles = signUpRequest.roles();
     Set<Role> roles = new HashSet<>();
 
     if (strRoles == null) {
@@ -98,41 +98,24 @@ public class AuthController {
       roles.add(userRole);
     } else {
       strRoles.forEach(role -> {
-        switch (role) {
-          case "admin" -> {
-            Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-            roles.add(adminRole);
-          }
-          case "mod" -> {
-            Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-            roles.add(modRole);
-          }
-          default -> {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin" -> {
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-                    }
-                    case "mod" -> {
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-                    }
-                    default -> {
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                    }
-                }
-            });
+                  switch (role) {
+                      case "admin" -> {
+                          Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                  .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+                          roles.add(adminRole);
+                      }
+                      case "mod" -> {
+                          Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                                  .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+                          roles.add(modRole);
+                      }
+                      default -> {
+                          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                                  .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+                          roles.add(userRole);
+                      }
+                  }
+              });
         }
 
         user.setRoles(roles);
