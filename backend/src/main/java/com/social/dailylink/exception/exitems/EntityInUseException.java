@@ -1,4 +1,4 @@
-package com.social.dailylink.exception;
+package com.social.dailylink.exception.exitems;
 
 public class EntityInUseException extends RuntimeException {
     public EntityInUseException(String message) {

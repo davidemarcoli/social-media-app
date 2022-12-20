@@ -1,6 +1,6 @@
 package com.social.dailylink.services;
 
-import com.social.dailylink.exception.EntityAlreadyExistsException;
+import com.social.dailylink.exception.exitems.EntityAlreadyExistsException;
 import com.social.dailylink.generic.CrudService;
 import com.social.dailylink.models.Post;
 import com.social.dailylink.models.User;
