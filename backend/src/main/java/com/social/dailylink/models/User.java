@@ -7,10 +7,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import com.social.dailylink.global.GlobalStrings;
+import lombok.experimental.FieldDefaults;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
@@ -20,32 +20,33 @@ import java.util.UUID;
       @UniqueConstraint(columnNames = "username"),
       @UniqueConstraint(columnNames = "email"),
     })
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User extends AbstractEntity {
   @NotBlank
   @Size(max = 25)
   @Column(name = "username", nullable = false)
-  private String username;
+  String username;
 
   @NotBlank
   @Email
   @Column(name = "email", unique = true, nullable = false)
-  private String email;
+  String email;
 
   @NotBlank
   @Size(max = 120)
   @Column(name = "password", nullable = false)
-  private String password;
+  String password;
 
   @NotBlank
   @Column(name = "profile_picture_url", nullable = false)
-  private String profilePictureURL;
+  String profilePictureURL;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles",
           schema = GlobalStrings.SCHEMA_NAME,
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<Role> roles = new HashSet<>();
+  Set<Role> roles = new HashSet<>();
 
   public User(String username, String email, String password, String profilePictureURL) {
     this.username = username;

@@ -1,6 +1,5 @@
 package com.social.dailylink.controllers;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -33,6 +32,12 @@ public class TestController {
     @PreAuthorize("hasRole('ADMIN')")
     public String adminAccess() {
         return "Admin Board.";
+    }
+
+    @GetMapping("/authoritytest")
+    @PreAuthorize("hasAuthority('TEST_AUTORITY')")
+    public String testExceptionHandler2() {
+        return "Authority Test.";
     }
 
     @GetMapping("/exceptionAccess")

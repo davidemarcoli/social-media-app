@@ -54,28 +54,28 @@
           <workingDirectory>./</workingDirectory>
         </configuration>
       </plugin>
-      <plugin>
-        <!-- Copy the front end from the target/classes folder into the dist/frontend-ng-->
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-resources</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>target/classes/</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${basedir}/dist/frontend</directory>
-                  <filtering>false</filtering>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+<!--      <plugin>-->
+<!--        &lt;!&ndash; Copy the front end from the target/classes folder into the dist/frontend-ng&ndash;&gt;-->
+<!--        <artifactId>maven-resources-plugin</artifactId>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>copy-resources</id>-->
+<!--            <phase>generate-resources</phase>-->
+<!--            <goals>-->
+<!--              <goal>copy-resources</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <outputDirectory>target/classes/</outputDirectory>-->
+<!--              <resources>-->
+<!--                <resource>-->
+<!--                  <directory>${basedir}/dist/frontend</directory>-->
+<!--                  <filtering>false</filtering>-->
+<!--                </resource>-->
+<!--              </resources>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
     </plugins>
   </build>
 </project>

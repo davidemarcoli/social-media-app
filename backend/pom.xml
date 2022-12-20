@@ -67,8 +67,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -124,7 +124,7 @@
                                 <resource>
                                     <!--Thats the path where i get the compiled files from the frontend-->
                                     <!--Attention you have to copy the files directly where the index.html etc. is and without an folder in between-->
-                                    <directory>../frontend/dist/frontend</directory>
+                                    <directory>../frontend/dist/dailylink</directory>
                                 </resource>
                             </resources>
                         </configuration>
