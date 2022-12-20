@@ -1,52 +1,30 @@
 package com.social.dailylink.controllers;
 
-import com.social.dailylink.generic.CrudController;
+import com.social.dailylink.generic.AbstractEntityController;
+import com.social.dailylink.generic.AbstractEntityService;
+import com.social.dailylink.generic.DTOMapper;
 import com.social.dailylink.models.Post;
-import com.social.dailylink.services.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.social.dailylink.models.dto.PostDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/posts")
-public class PostController implements CrudController<Post, Integer> {
+public class PostController extends AbstractEntityController<Post, PostDTO> {
 
-    @Autowired
-    private PostService postService;
-
-    @Override
-    @PostMapping("/")
-    public ResponseEntity<Post> create(@RequestBody Post post) {
-        return ResponseEntity.ok(postService.save(post));
-    }
-
-    @Override
-    @PutMapping("/{id}")
-    public ResponseEntity<Post> update(@PathVariable Integer id, @RequestBody Post post) {
-        return ResponseEntity.ok(postService.update(id, post));
+    public PostController(AbstractEntityService<Post> service, DTOMapper<Post, PostDTO> mapper) {
+        super(service, mapper);
     }
 
     @Override
     @DeleteMapping("/{id}")
     // preAuthorize: only admin or owner can delete a post
     @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().user.username == authentication.name")
-    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
-        postService.deleteById(id);
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
+        service.deleteById(id.toString());
         return ResponseEntity.ok().build();
-    }
-
-    @Override
-    @GetMapping("/{id}")
-    public ResponseEntity<Post> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(postService.findById(id));
-    }
-
-    @Override
-    @GetMapping("/")
-    public ResponseEntity<List<Post>> findAll() {
-        return ResponseEntity.ok(postService.findAll());
     }
 }

@@ -1,5 +1,6 @@
 package com.social.dailylink.models;
 
+import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.global.GlobalStrings;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,12 +18,7 @@ import java.util.Set;
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "post", schema = GlobalStrings.SCHEMA_NAME)
-public class Post {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+public class Post extends AbstractEntity {
     private String title;
 
     @Column(columnDefinition = "TEXT")

@@ -1,6 +1,6 @@
 package com.social.dailylink.repository;
 
-import com.social.dailylink.generic.CrudRepository;
+import com.social.dailylink.generic.AbstractEntityRepository;
 import com.social.dailylink.models.Category;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CategoryRepository extends CrudRepository<Category, Integer> {
+public interface CategoryRepository extends AbstractEntityRepository<Category> {
 
     Optional<Category> findByName(String name);
 
