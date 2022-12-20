@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import * as Errors from '../../../../errors';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   form: FormGroup;
   passwordVisible = false;
 
@@ -68,6 +68,4 @@ export class SignupComponent implements OnInit {
   backToLogin() {
     this.router.navigateByUrl('login');
   }
-
-  ngOnInit(): void {}
 }
