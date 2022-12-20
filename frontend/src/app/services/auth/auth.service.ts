@@ -27,7 +27,9 @@ export class AuthService {
       email: email,
       username: username,
       password: password
-    }).toPromise();
+    }).toPromise().then(async () => {
+      return await this.login(username, password);
+    }); 
   }
 
   public setSession(authResult: any) {
