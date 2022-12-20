@@ -40,6 +40,10 @@ public class User {
   @Column(name = "password", nullable = false)
   private String password;
 
+  @NotBlank
+  @Column(name = "profile_picture_url", nullable = false)
+  private String profilePictureURL;
+
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles",
           schema = GlobalStrings.SCHEMA_NAME,
@@ -47,10 +51,11 @@ public class User {
           inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password, String profilePictureURL) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.profilePictureURL = profilePictureURL;
   }
 
   public String getUsername() {
@@ -75,6 +80,14 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getProfilePictureURL() {
+    return profilePictureURL;
+  }
+
+  public void setProfilePictureURL(String profilePictureURL) {
+    this.profilePictureURL = profilePictureURL;
   }
 
   public Set<Role> getRoles() {
