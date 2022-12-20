@@ -1,4 +1,4 @@
-package com.social.dailylink.exception;
+package com.social.dailylink.exception.exitems;
 
 public class EntityAlreadyExistsException extends RuntimeException {
     public EntityAlreadyExistsException(String message) {
