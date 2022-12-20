@@ -13,18 +13,19 @@
       <mat-label>Username</mat-label>
       <input name="username" formControlName="username" matInput>
       <mat-hint>Minimum <strong>3</strong> characters</mat-hint>
+      <mat-hint>Maximum <strong>20</strong> characters</mat-hint>
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
       <input name="password" formControlName="password" matInput [type]="passwordVisible ? 'text' : 'password'">
-      <button mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="'Hide password'"
+      <button type="button" mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="!passwordVisible">
         <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
       </button>
       <mat-hint>Minimum <strong>8</strong> characters</mat-hint>
     </mat-form-field>
     <br>
-    <button (click)="signup()" mat-raised-button>Signup</button>
+    <button type="submit" (click)="signup()" mat-raised-button>Signup</button>
   </form>
 </div>
