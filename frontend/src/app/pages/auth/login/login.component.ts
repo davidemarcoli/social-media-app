@@ -34,27 +34,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  readonly loginUser = z.object({
-    username: z
-      .string()
-      .min(3, Errors.USERNAME_MIN_VALIDATION)
-      .max(20, Errors.USERNAME_MAX_VALIDATION),
-    password: z.string(),
-  });
-
   async login() {
     const val = this.form.value;
-
-    try {
-      this.loginUser.parse(val);
-      this.authService.login(val.username, val.password).then((data) => {
+    this.authService
+      .login(val.username, val.password)
+      .then((data) => {
         console.log('Data', data);
         this.router.navigateByUrl('home');
-      });
-    } catch (e) {
-      console.log((e as ZodError).issues[0].message);
-      this.alertService.error((e as ZodError).issues[0].message);
-    }
+      })
+      .catch(() => this.alertService.error('Invalid login attempt'));
   }
 
   navigateToRegister() {
