@@ -124,7 +124,7 @@
                                 <resource>
                                     <!--Thats the path where i get the compiled files from the frontend-->
                                     <!--Attention you have to copy the files directly where the index.html etc. is and without an folder in between-->
-                                    <directory>../frontend/dist/dailylink</directory>
+                                    <directory>${frontend-bundle-dir}</directory>
                                 </resource>
                             </resources>
                         </configuration>
