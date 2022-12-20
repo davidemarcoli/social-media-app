@@ -1,5 +1,6 @@
 package com.social.dailylink.security.services;
 
+import com.social.dailylink.global.GlobalStrings;
 import com.social.dailylink.models.ERole;
 import com.social.dailylink.models.Role;
 import com.social.dailylink.models.User;
@@ -50,6 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setUsername("user");
         user.setPassword(encoder.encode("user"));
         user.setEmail("user@user.ch");
+        user.setProfilePictureURL(GlobalStrings.DEFAULT_PROFILE_PICTURE_URL);
         user.setRoles(Set.of(userRole));
         userRepository.save(user);
 
@@ -58,6 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         moderator.setUsername("moderator");
         moderator.setPassword(encoder.encode("moderator"));
         moderator.setEmail("moderator@moderator.ch");
+        moderator.setProfilePictureURL(GlobalStrings.DEFAULT_PROFILE_PICTURE_URL);
         moderator.setRoles(Set.of(userRole, moderatorRole));
         userRepository.save(moderator);
 
@@ -66,6 +69,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         admin.setUsername("admin");
         admin.setPassword(encoder.encode("admin"));
         admin.setEmail("admin@admin.ch");
+        admin.setProfilePictureURL(GlobalStrings.DEFAULT_PROFILE_PICTURE_URL);
         admin.setRoles(Set.of(userRole, moderatorRole, adminRole));
         userRepository.save(admin);
     }
