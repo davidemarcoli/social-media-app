@@ -1,55 +1,42 @@
 package com.social.dailylink.controllers;
 
-import com.social.dailylink.generic.CrudController;
+import com.social.dailylink.generic.AbstractEntityController;
+import com.social.dailylink.generic.AbstractEntityService;
+import com.social.dailylink.generic.DTOMapper;
 import com.social.dailylink.models.Category;
-import com.social.dailylink.services.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.social.dailylink.models.dto.CategoryDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/categories")
-public class CategoryController implements CrudController<Category, Integer> {
+public class CategoryController extends AbstractEntityController<Category, CategoryDTO> {
 
-    @Autowired
-    private CategoryService categoryService;
+    public CategoryController(AbstractEntityService<Category> service, DTOMapper<Category, CategoryDTO> mapper) {
+        super(service, mapper);
+    }
 
 
-    @Override
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Category> create(@RequestBody Category category) {
-//        return ResponseEntity.ok(categoryService.save(category));
-        return ResponseEntity.ok(categoryService.save(category));
+    public ResponseEntity<CategoryDTO> create(@RequestBody Category category) {
+        return new ResponseEntity<>(mapper.toDTO(service.save(category)), HttpStatus.CREATED);
     }
 
     @Override
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Category> update(@PathVariable Integer id, @RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.update(id, category));
+    public ResponseEntity<CategoryDTO> updateById(@PathVariable String id, @RequestBody CategoryDTO categoryDTO) {
+        return ResponseEntity.ok(mapper.toDTO(service.updateById(id, mapper.fromDTO(categoryDTO))));
     }
 
     @Override
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
-        categoryService.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @Override
-    @GetMapping("/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Integer id) {
-        return ResponseEntity.ok(categoryService.findById(id));
-    }
-
-    @Override
-    @GetMapping("/")
-    public ResponseEntity<List<Category>> findAll() {
-        return ResponseEntity.ok(categoryService.findAll());
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
+        service.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

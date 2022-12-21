@@ -1,6 +1,7 @@
 package com.social.dailylink.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.global.GlobalStrings;
 import lombok.*;
 import jakarta.persistence.*;
@@ -12,11 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter @Setter
 @Table(name = "category", schema = GlobalStrings.SCHEMA_NAME)
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Category extends AbstractEntity {
 
     @Column(unique = true, nullable = false)
     private String name;

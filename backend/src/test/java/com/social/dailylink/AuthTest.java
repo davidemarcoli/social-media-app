@@ -1,18 +1,13 @@
 package com.social.dailylink;
 
-import com.social.dailylink.BackendApplication;
 import com.social.dailylink.controllers.TestController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -69,6 +64,22 @@ class AuthTest {
     @WithMockUser(roles = "USER")
     void givenUserToken_whenGetSecureRequest_thenForbidden2() throws Exception {
         mockMvc.perform(get("/api/test/admin"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @DisplayName("Give user test authority and accept access")
+    @WithMockUser(authorities = "TEST_AUTORITY")
+    void givenTestAuthority_whenGetTestRequest_thenOk() throws Exception {
+        mockMvc.perform(get("/api/test/authoritytest"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Give user fake test authority and forbid access")
+    @WithMockUser(authorities = "FAKE_TEST_AUTORITY")
+    void givenTestAuthority_whenGetTestRequest_thenForbidden() throws Exception {
+        mockMvc.perform(get("/api/test/authoritytest"))
                 .andExpect(status().isForbidden());
     }
 }
