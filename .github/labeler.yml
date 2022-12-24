@@ -1,0 +1,20 @@
+# Add 'repo' label to any root file changes
+repo:
+  - '*'
+
+# Add 'test' label to any change to *.spec.js files within the source dir
+test:
+  - any: [ 'backend/src/test/**/*' ]
+
+# Add 'frontend` label to any change to *.js files as long as the `main.js` hasn't changed
+frontend:
+  - any: [ 'frontend/**/*' ]
+
+backend:
+  - any: [ 'backend/**/*' ]
+
+github-config:
+  - any: [ '.github/**/*' ]
+
+maven-config:
+  - any: [ '**/pom.xml' ]
