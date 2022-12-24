@@ -4,7 +4,7 @@ repo:
 
 # Add 'test' label to any change to *.spec.js files within the source dir
 test:
-  - any: [ 'backend/src/test/**/*' ]
+  - any: [ 'backend/src/test/**/*', "frontend/src/**/*.spec.ts" ]
 
 # Add 'frontend` label to any change to *.js files as long as the `main.js` hasn't changed
 frontend:
