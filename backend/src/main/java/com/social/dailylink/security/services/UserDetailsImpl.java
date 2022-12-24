@@ -1,7 +1,7 @@
 package com.social.dailylink.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.social.dailylink.models.User;
+import com.social.dailylink.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

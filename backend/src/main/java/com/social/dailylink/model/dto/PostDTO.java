@@ -1,16 +1,11 @@
-package com.social.dailylink.models.dto;
+package com.social.dailylink.model.dto;
 
-import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.generic.AbstractEntityDTO;
-import com.social.dailylink.global.GlobalStrings;
-import com.social.dailylink.models.Category;
-import com.social.dailylink.models.User;
+import com.social.dailylink.model.Category;
+import com.social.dailylink.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Set;

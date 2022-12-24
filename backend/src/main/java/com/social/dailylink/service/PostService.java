@@ -1,7 +1,7 @@
-package com.social.dailylink.services;
+package com.social.dailylink.service;
 
 import com.social.dailylink.generic.AbstractEntityService;
-import com.social.dailylink.models.Post;
+import com.social.dailylink.model.Post;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

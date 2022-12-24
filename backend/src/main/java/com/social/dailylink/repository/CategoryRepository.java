@@ -1,7 +1,7 @@
 package com.social.dailylink.repository;
 
 import com.social.dailylink.generic.AbstractEntityRepository;
-import com.social.dailylink.models.Category;
+import com.social.dailylink.model.Category;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 

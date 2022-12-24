@@ -1,10 +1,8 @@
-package com.social.dailylink.models.dto;
+package com.social.dailylink.model.dto;
 
-import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.generic.AbstractEntityDTO;
-import com.social.dailylink.global.GlobalStrings;
-import com.social.dailylink.models.Authority;
-import com.social.dailylink.models.ERole;
+import com.social.dailylink.model.Authority;
+import com.social.dailylink.model.ERole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

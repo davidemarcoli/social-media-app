@@ -1,4 +1,4 @@
-package com.social.dailylink.controllers;
+package com.social.dailylink.controller;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;

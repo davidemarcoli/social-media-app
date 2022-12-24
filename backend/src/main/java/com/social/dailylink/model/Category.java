@@ -1,4 +1,4 @@
-package com.social.dailylink.models;
+package com.social.dailylink.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.social.dailylink.generic.AbstractEntity;

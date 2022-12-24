@@ -1,9 +1,9 @@
-package com.social.dailylink.controllers;
+package com.social.dailylink.controller;
 
 import com.social.dailylink.global.GlobalStrings;
-import com.social.dailylink.models.ERole;
-import com.social.dailylink.models.Role;
-import com.social.dailylink.models.User;
+import com.social.dailylink.model.ERole;
+import com.social.dailylink.model.Role;
+import com.social.dailylink.model.User;
 import com.social.dailylink.payload.request.LoginRequest;
 import com.social.dailylink.payload.request.SignupRequest;
 import com.social.dailylink.payload.response.JwtResponse;

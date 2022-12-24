@@ -1,9 +1,8 @@
 package com.social.dailylink.repository;
 
 import com.social.dailylink.generic.AbstractEntityRepository;
-import com.social.dailylink.models.ERole;
-import com.social.dailylink.models.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.social.dailylink.model.ERole;
+import com.social.dailylink.model.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

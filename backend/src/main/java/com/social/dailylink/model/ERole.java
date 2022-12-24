@@ -1,4 +1,4 @@
-package com.social.dailylink.models;
+package com.social.dailylink.model;
 
 public enum ERole {
     ROLE_USER,

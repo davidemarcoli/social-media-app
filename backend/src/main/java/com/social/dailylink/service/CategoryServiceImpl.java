@@ -1,9 +1,8 @@
-package com.social.dailylink.services;
+package com.social.dailylink.service;
 
 import com.social.dailylink.generic.AbstractEntityRepository;
-import com.social.dailylink.generic.AbstractEntityService;
 import com.social.dailylink.generic.AbstractEntityServiceImpl;
-import com.social.dailylink.models.Category;
+import com.social.dailylink.model.Category;
 import org.springframework.stereotype.Service;
 
 @Service

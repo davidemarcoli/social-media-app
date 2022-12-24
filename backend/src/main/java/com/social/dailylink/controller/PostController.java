@@ -1,10 +1,10 @@
-package com.social.dailylink.controllers;
+package com.social.dailylink.controller;
 
 import com.social.dailylink.generic.AbstractEntityController;
 import com.social.dailylink.generic.AbstractEntityService;
 import com.social.dailylink.generic.DTOMapper;
-import com.social.dailylink.models.Post;
-import com.social.dailylink.models.dto.PostDTO;
+import com.social.dailylink.model.Post;
+import com.social.dailylink.model.dto.PostDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
