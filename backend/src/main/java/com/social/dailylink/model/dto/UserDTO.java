@@ -1,9 +1,7 @@
-package com.social.dailylink.models.dto;
+package com.social.dailylink.model.dto;
 
-import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.generic.AbstractEntityDTO;
-import com.social.dailylink.global.GlobalStrings;
-import com.social.dailylink.models.Role;
+import com.social.dailylink.model.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

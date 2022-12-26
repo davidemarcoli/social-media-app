@@ -1,9 +1,8 @@
-package com.social.dailylink.models.dto;
+package com.social.dailylink.model.dto;
 
 import com.social.dailylink.generic.DTOMapper;
 import com.social.dailylink.global.GlobalStrings;
-import com.social.dailylink.models.Role;
-import com.social.dailylink.models.User;
+import com.social.dailylink.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

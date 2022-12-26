@@ -1,9 +1,7 @@
-package com.social.dailylink.models.dto;
+package com.social.dailylink.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.social.dailylink.generic.AbstractEntityDTO;
-import com.social.dailylink.global.GlobalStrings;
-import com.social.dailylink.models.Post;
+import com.social.dailylink.model.Post;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

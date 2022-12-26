@@ -1,4 +1,4 @@
-package com.social.dailylink.models;
+package com.social.dailylink.model;
 
 import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.global.GlobalStrings;
