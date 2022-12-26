@@ -1,6 +1,6 @@
 package com.social.dailylink;
 
-import com.social.dailylink.controllers.TestController;
+import com.social.dailylink.controller.TestController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
