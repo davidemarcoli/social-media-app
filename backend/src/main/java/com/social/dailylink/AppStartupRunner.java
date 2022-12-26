@@ -1,7 +1,7 @@
 package com.social.dailylink;
 
-import com.social.dailylink.models.ERole;
-import com.social.dailylink.models.Role;
+import com.social.dailylink.model.ERole;
+import com.social.dailylink.model.Role;
 import com.social.dailylink.repository.RoleRepository;
 import com.social.dailylink.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

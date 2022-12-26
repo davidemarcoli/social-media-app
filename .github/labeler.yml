@@ -1,0 +1,18 @@
+# Add 'repo' label to any root file changes
+repo:
+  - '*'
+
+test:
+  - any: [ 'backend/src/test/**/*', "frontend/src/**/*.spec.ts" ]
+
+frontend:
+  - any: [ 'frontend/**/*' ]
+
+backend:
+  - any: [ 'backend/**/*' ]
+
+github-config:
+  - any: [ '.github/**/*' ]
+
+maven-config:
+  - any: [ '**/pom.xml' ]

@@ -1,6 +1,6 @@
 name: Maven Verify
 
-on: [push]
+on: [ push ]
 
 jobs:
   verify:
@@ -18,5 +18,5 @@ jobs:
       - run: mkdir staging && cp backend/target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
-         name: Package
-         path: staging
+          name: Package
+          path: staging
