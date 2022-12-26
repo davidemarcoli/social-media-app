@@ -2,7 +2,6 @@ package com.social.dailylink.security.jwt;
 
 import com.social.dailylink.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.impl.TextCodec;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;

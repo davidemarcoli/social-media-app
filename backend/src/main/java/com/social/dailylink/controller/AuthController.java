@@ -52,8 +52,8 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-    // TODO: Replace simple System out print commands with a Logger.
-    System.out.println("New Login Request from " + loginRequest.username());
+        // TODO: Replace simple System out print commands with a Logger.
+        System.out.println("New Login Request from " + loginRequest.username());
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
@@ -84,38 +84,38 @@ public class AuthController {
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
 
-    // Create new user's account
-    User user = new User(signUpRequest.username(),
-               signUpRequest.email(),
-               encoder.encode(signUpRequest.password()), GlobalStrings.DEFAULT_PROFILE_PICTURE_URL);
+        // Create new user's account
+        User user = new User(signUpRequest.username(),
+                signUpRequest.email(),
+                encoder.encode(signUpRequest.password()), GlobalStrings.DEFAULT_PROFILE_PICTURE_URL);
 
-    Set<String> strRoles = signUpRequest.roles();
-    Set<Role> roles = new HashSet<>();
+        Set<String> strRoles = signUpRequest.roles();
+        Set<Role> roles = new HashSet<>();
 
-    if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-          .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-      roles.add(userRole);
-    } else {
-      strRoles.forEach(role -> {
-                  switch (role) {
-                      case "admin" -> {
-                          Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                  .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-                          roles.add(adminRole);
-                      }
-                      case "mod" -> {
-                          Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                  .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-                          roles.add(modRole);
-                      }
-                      default -> {
-                          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                  .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
-                          roles.add(userRole);
-                      }
-                  }
-              });
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin" -> {
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+                        roles.add(adminRole);
+                    }
+                    case "mod" -> {
+                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                                .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+                        roles.add(modRole);
+                    }
+                    default -> {
+                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException(GlobalStrings.ERROR_ROLE_NOT_FOUND));
+                        roles.add(userRole);
+                    }
+                }
+            });
         }
 
         user.setRoles(roles);

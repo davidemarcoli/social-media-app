@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
-public interface AbstractEntityService<T extends AbstractEntity>{
+public interface AbstractEntityService<T extends AbstractEntity> {
     List<T> findAll();
 
     T findById(String id) throws EntityNotFoundException;

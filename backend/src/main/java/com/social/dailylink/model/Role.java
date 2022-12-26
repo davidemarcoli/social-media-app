@@ -10,8 +10,10 @@ import java.util.Collections;
 import java.util.Set;
 
 @Entity
-@Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "roles", schema = GlobalStrings.SCHEMA_NAME)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role extends AbstractEntity {
@@ -20,7 +22,7 @@ public class Role extends AbstractEntity {
     ERole name;
 
     @ManyToMany
-    @JoinTable(  name = "role_authorities",
+    @JoinTable(name = "role_authorities",
             schema = GlobalStrings.SCHEMA_NAME,
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "authorities_id"))
