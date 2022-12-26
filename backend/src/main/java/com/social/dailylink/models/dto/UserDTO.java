@@ -21,6 +21,6 @@ import java.util.Set;
 public class UserDTO extends AbstractEntityDTO {
   String username;
   String email;
-  String password;
+  String profilePictureURL;
   Set<Role> roles = new HashSet<>();
 }
