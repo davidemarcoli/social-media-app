@@ -13,6 +13,7 @@ import com.social.dailylink.repository.UserRepository;
 import com.social.dailylink.security.jwt.JwtUtils;
 import com.social.dailylink.security.services.UserDetailsImpl;
 import jakarta.validation.Valid;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,7 +34,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
+@Log4j2
 public class AuthController {
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -52,8 +55,7 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
-        // TODO: Replace simple System out print commands with a Logger.
-        System.out.println("New Login Request from " + loginRequest.username());
+        log.info("New Login Request from " + loginRequest.username());
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
