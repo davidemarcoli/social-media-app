@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes, UrlSegment} from "@angular/router";
 import {LoginComponent} from "@pages/auth/login/login.component";
 import {AuthGuardService} from "@services/auth-guard/auth-guard.service";
 import {SignupComponent} from "@pages/auth/signup/signup.component";
@@ -11,6 +11,7 @@ import {DeleteCategoryComponent} from "@pages/category/delete-category/delete-ca
 import {ViewPostComponent} from "@pages/post/view-post/view-post.component";
 import {EditPostComponent} from "@pages/post/edit-post/edit-post.component";
 import {AdminAuthGuardService} from "@services/admin-auth-guard/admin-auth-guard.service";
+import {UserProfileComponent} from "@pages/user/user-profile/user-profile.component";
 
 const routes: Routes = [
   { path: 'home', component: ListPostsComponent, canActivate: [AuthGuardService] },
@@ -27,8 +28,31 @@ const routes: Routes = [
       { path: 'edit', component: UpdateCategoryComponent },
       { path: 'delete', component: DeleteCategoryComponent },
     ]},
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: '' },
+  { path: "profile/:username", component: UserProfileComponent, canActivate: [AuthGuardService] },
+  {
+    matcher: (url) => {
+      console.log(url)
+      // You can have regex as per your requirement
+      if (url.length === 1 && url[0].path.match(/^@\w+$/gm)) {
+        return {
+          consumed: url,
+          posParams: {
+            username: new UrlSegment(url[0].path.substring(1), {}) // <--- creating UrlSegment by getting rid of @ from url path
+          }
+        };
+      }
+
+      return null;
+    },
+    component: UserProfileComponent,
+    // redirectTo: 'profile/:username',
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({
