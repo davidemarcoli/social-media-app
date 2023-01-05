@@ -9,13 +9,15 @@ import com.social.dailylink.repository.PostRepository;
 import com.social.dailylink.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Transactional
 public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements PostService {
-
 
     UserRepository userRepository;
 
@@ -26,10 +28,6 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
 
     @Override
     public Post create(Post entity) {
-        if (((PostRepository) repository).findByTitle(entity.getTitle()).isPresent()) {
-            throw new EntityAlreadyExistsException("Post " + entity.getTitle() + " already exists");
-        }
-
         // get current user
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         System.out.println("username: " + username);
@@ -40,11 +38,12 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
     }
 
     @Override
-    public Post save(Post entity) {
-        if (((PostRepository) repository).findByTitle(entity.getTitle()).isPresent()) {
-            throw new EntityAlreadyExistsException("Post " + entity.getTitle() + " already exists");
-        }
+    public List<Post> findAll() {
+        return super.findAll();
+    }
 
+    @Override
+    public Post save(Post entity) {
         return super.save(entity);
     }
 
