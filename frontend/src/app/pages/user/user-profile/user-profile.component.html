@@ -1,0 +1,17 @@
+<div class="profile-container" *ngIf="user; else loading">
+
+  <div class="image-container">
+    <img id="profile-picture" src="{{user.profilePictureURL}}" alt="profile image" />
+  </div>
+
+  <h1>
+    <span class="username">@{{user.username}}</span>
+  </h1>
+
+  <!--  User posts here... -->
+</div>
+<ng-template #loading>
+  <div class="loading">
+    <h1>Loading...</h1>
+  </div>
+</ng-template>

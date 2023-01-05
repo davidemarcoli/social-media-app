@@ -14,8 +14,8 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDTO extends AbstractEntityDTO {
-    String username;
-    String email;
-    String password;
-    Set<Role> roles = new HashSet<>();
+  String username;
+  String email;
+  String profilePictureURL;
+  Set<Role> roles = new HashSet<>();
 }

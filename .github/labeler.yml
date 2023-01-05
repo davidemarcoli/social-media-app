@@ -1,6 +1,8 @@
-# Add 'repo' label to any root file changes
 repo:
-  - '*'
+  - '*' # Any file in the rep
+  - '!pom.xml' # Except pom.xml
+  - '!*.iml' # Except .iml files
+  - 'scripts/**' # Any file in the scripts directory
 
 test:
   - any: [ 'backend/src/test/**/*', "frontend/src/**/*.spec.ts" ]
@@ -16,3 +18,6 @@ github-config:
 
 maven-config:
   - any: [ '**/pom.xml' ]
+
+docker-config:
+  - any: [ 'docker-compose.yml', 'Dockerfile', 'scripts/buildDockerfile.sh' ]

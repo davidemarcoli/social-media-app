@@ -38,20 +38,20 @@ public class JwtUtils {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .addClaims(Map.of("roles", userPrincipal.getAuthorities()))
-                .signWith(SignatureAlgorithm.HS512, getSigningKey())
+                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
                 .compact();
     }
 
     public String getUserNameFromJwtToken(String token) {
-        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
     }
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException e) {
-            logger.error("Invalid JWT signature: {}", e.getMessage());
+        } catch (SecurityException e) {
+            logger.error("JWT signature validation failed: {}", e.getMessage());
         } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token: {}", e.getMessage());
         } catch (ExpiredJwtException e) {

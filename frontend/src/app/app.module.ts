@@ -32,6 +32,7 @@ import { CategoryPillComponent } from '@components/category-pill/category-pill.c
 import { EditPostComponent } from '@pages/post/edit-post/edit-post.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {TruncatePipe} from "~/app/helper/truncate.pipe";
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {TruncatePipe} from "~/app/helper/truncate.pipe";
     ViewPostComponent,
     CategoryPillComponent,
     EditPostComponent,
-    TruncatePipe
+    TruncatePipe,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
