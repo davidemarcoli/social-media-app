@@ -27,6 +27,28 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
     }
 
     /**
+     * This method return a list of all the fields which are null
+     *
+     * @param source the object to be checked
+     * @return list of strings of the fields that are null
+     */
+    public static String[] getNullPropertyNames(Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<>();
+        for (PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) {
+                emptyNames.add(pd.getName());
+            }
+        }
+        emptyNames.add("id");
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
+    }
+
+    /**
      * This method gets the class from the class that extends this class
      */
     private void initClassName() {
@@ -132,28 +154,6 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
             logger.debug(className + " with ID '" + id + "' not found");
             throw new EntityNotFoundException(className + " with ID '" + id + "' not found");
         }
-    }
-
-    /**
-     * This method return a list of all the fields which are null
-     *
-     * @param source the object to be checked
-     * @return list of strings of the fields that are null
-     */
-    public static String[] getNullPropertyNames(Object source) {
-        final BeanWrapper src = new BeanWrapperImpl(source);
-        PropertyDescriptor[] pds = src.getPropertyDescriptors();
-
-        Set<String> emptyNames = new HashSet<>();
-        for (PropertyDescriptor pd : pds) {
-            Object srcValue = src.getPropertyValue(pd.getName());
-            if (srcValue == null) {
-                emptyNames.add(pd.getName());
-            }
-        }
-        emptyNames.add("id");
-        String[] result = new String[emptyNames.size()];
-        return emptyNames.toArray(result);
     }
 
     /**

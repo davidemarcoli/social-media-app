@@ -4,8 +4,6 @@ import com.social.dailylink.generic.AbstractEntityDTO;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Set;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
