@@ -1,12 +1,12 @@
 package com.social.dailylink.model;
 
 import com.social.dailylink.generic.AbstractEntity;
+import com.social.dailylink.global.GlobalStrings;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import com.social.dailylink.global.GlobalStrings;
 import lombok.experimental.FieldDefaults;
 
 import java.util.HashSet;
