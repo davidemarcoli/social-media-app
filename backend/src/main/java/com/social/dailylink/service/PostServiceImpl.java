@@ -28,12 +28,6 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
 
     @Override
     public Post create(Post entity) {
-        // get current user
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println("username: " + username);
-        User author = userRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User with username " + username + " not found"));
-        entity.setAuthor(author);
-
         return super.create(entity);
     }
 
@@ -43,13 +37,7 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
     }
 
     @Override
-    public Post save(Post entity) {
-        return super.save(entity);
-    }
-
-    @Override
     public Post updateById(String id, Post entity) throws EntityNotFoundException {
         return super.updateById(id, entity);
     }
-
 }
