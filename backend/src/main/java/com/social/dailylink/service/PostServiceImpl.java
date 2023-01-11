@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -39,5 +40,10 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
     @Override
     public Post updateById(String id, Post entity) throws EntityNotFoundException {
         return super.updateById(id, entity);
+    }
+
+    @Override
+    public Collection<Post> findAllByUsername(String username) {
+        return ((PostRepository) repository).findAllByAuthorUsername(username);
     }
 }

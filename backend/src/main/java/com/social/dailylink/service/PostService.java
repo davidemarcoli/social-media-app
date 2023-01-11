@@ -5,8 +5,8 @@ import com.social.dailylink.model.Post;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-@Service
-@Transactional
-public interface PostService extends AbstractEntityService<Post> {
+import java.util.Collection;
 
+public interface PostService extends AbstractEntityService<Post> {
+    Collection<Post> findAllByUsername(String username);
 }

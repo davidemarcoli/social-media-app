@@ -4,6 +4,7 @@ import {UserService} from "@services/user/user.service";
 import {lastValueFrom} from "rxjs";
 import {User} from "@models/user";
 import {AlertService} from "@services/alert/alert.service";
+import {Post} from "@models/post";
 
 @Component({
   selector: 'dl-user-profile',
@@ -13,6 +14,7 @@ import {AlertService} from "@services/alert/alert.service";
 export class UserProfileComponent implements OnInit {
 
   user: User | undefined;
+  posts: Post[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService) {
   }

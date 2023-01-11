@@ -60,4 +60,10 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
     public ResponseEntity<PostDTO> updateById(@PathVariable String id, @RequestBody PostDTO dto) {
         return super.updateById(id, dto);
     }
+
+    @GetMapping("/user/{username}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<Collection<PostDTO>> findAllByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(mapper.toDTOs(postService.findAllByUsername(username)));
+    }
 }
