@@ -12,8 +12,8 @@
     <button mat-menu-item routerLink="category/delete">Delete Category</button>
   </mat-menu>
   <span class="example-spacer"></span>
-  <p style="margin: 0">{{authService.getUsername()}}</p>
-  <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with lgout icon">
+  <p style="margin: 0; cursor: pointer" routerLink="@{{authService.getUsername()}}">{{authService.getUsername()}}</p>
+  <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with logout icon">
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
