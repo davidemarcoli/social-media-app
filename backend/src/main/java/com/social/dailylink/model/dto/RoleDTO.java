@@ -3,7 +3,6 @@ package com.social.dailylink.model.dto;
 import com.social.dailylink.generic.AbstractEntityDTO;
 import com.social.dailylink.model.Authority;
 import com.social.dailylink.model.ERole;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,7 +10,8 @@ import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoleDTO extends AbstractEntityDTO {
     ERole name;

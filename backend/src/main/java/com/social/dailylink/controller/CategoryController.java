@@ -18,7 +18,6 @@ public class CategoryController extends AbstractEntityController<Category, Categ
         super(service, mapper);
     }
 
-
     @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CategoryDTO> create(@RequestBody Category category) {

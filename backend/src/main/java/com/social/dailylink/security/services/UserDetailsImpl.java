@@ -14,104 +14,102 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
-  @Serial
-  private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-  private UUID id;
+    private final UUID id;
 
-  private String username;
+    private final String username;
 
-  private String email;
+    private final String email;
 
-  @JsonIgnore
-  private String password;
+    @JsonIgnore
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private String profilePictureURL;
 
-  private String profilePictureURL;
+    public UserDetailsImpl(UUID id, String username, String email, String password, String profilePictureURL,
+                           Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+        this.profilePictureURL = profilePictureURL;
+    }
 
-  private Collection<? extends GrantedAuthority> authorities;
+    public static UserDetailsImpl build(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> role.getAuthorities().stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                .collect(Collectors.toList())).flatMap(Collection::stream).collect(Collectors.toList());
 
-  public UserDetailsImpl(UUID id, String username, String email, String password, String profilePictureURL,
-                         Collection<? extends GrantedAuthority> authorities) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.authorities = authorities;
-    this.profilePictureURL = profilePictureURL;
-  }
+        return new UserDetailsImpl(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getProfilePictureURL(),
+                authorities);
+    }
 
-  public static UserDetailsImpl build(User user) {
-    List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> role.getAuthorities().stream()
-            .map(authority -> new SimpleGrantedAuthority(authority.getName()))
-            .collect(Collectors.toList())).flatMap(Collection::stream).collect(Collectors.toList());
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
 
-    return new UserDetailsImpl(
-        user.getId(), 
-        user.getUsername(), 
-        user.getEmail(),
-        user.getPassword(),
-        user.getProfilePictureURL(),
-        authorities);
-  }
+    public UUID getId() {
+        return id;
+    }
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
-  }
+    public String getEmail() {
+        return email;
+    }
 
-  public UUID getId() {
-    return id;
-  }
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
-  @Override
-  public String getPassword() {
-    return password;
-  }
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
 
-  @Override
-  public String getUsername() {
-    return username;
-  }
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
+    }
 
-  public String getProfilePictureURL() {
-    return profilePictureURL;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  public void setProfilePictureURL(String profilePictureURL) {
-    this.profilePictureURL = profilePictureURL;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-    UserDetailsImpl user = (UserDetailsImpl) o;
-    return Objects.equals(id, user.id);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        UserDetailsImpl user = (UserDetailsImpl) o;
+        return Objects.equals(id, user.id);
+    }
 }
