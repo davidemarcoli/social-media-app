@@ -28,7 +28,7 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
     // preAuthorize: only admin or owner can delete a post
     @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().user.username == authentication.name")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
-        service.deleteById(id.toString());
+        service.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

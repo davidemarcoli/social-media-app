@@ -1,9 +1,9 @@
 package com.social.dailylink.generic;
 
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity

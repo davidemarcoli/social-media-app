@@ -3,15 +3,22 @@ package com.social.dailylink.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.global.GlobalStrings;
-import lombok.*;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @Table(name = "category", schema = GlobalStrings.SCHEMA_NAME)
 public class Category extends AbstractEntity {
 

@@ -8,8 +8,10 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "authorities", schema = GlobalStrings.SCHEMA_NAME)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Authority extends AbstractEntity {
