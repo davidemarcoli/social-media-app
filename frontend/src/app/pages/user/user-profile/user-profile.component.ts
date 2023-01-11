@@ -21,17 +21,18 @@ export class UserProfileComponent implements OnInit {
     console.log(this.route)
 
     // get username from path variable
-    const username = this.route.snapshot.paramMap.get('username') || '';
-    // get user profile
-    const $user = this.userService.getUserByUsername(username);
-    lastValueFrom($user).then(user => {
-      this.user = user;
-      console.log(user)
-    })
-      .catch(error => {
-        console.error(error);
-        this.alertService.error('Error while getting user profile');
-      })
+    this.route.paramMap.subscribe(value => {
+      const username = value.get('username');
+      if (username) {
+        lastValueFrom(this.userService.getUserByUsername(username)).then(user => {
+          this.user = user;
+        }).catch(error => {
+          console.error(error);
+          this.alertService.error(error.error.message);
+          // this.alertService.error('Error while getting user profile');
+        });
+      }
+    });
   }
 
   isAdministrator() {
