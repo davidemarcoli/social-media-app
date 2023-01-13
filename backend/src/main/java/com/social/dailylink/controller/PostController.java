@@ -22,7 +22,7 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
 
     @Override
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().user.username == authentication.name")
+    @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().author.username == authentication.name")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         service.deleteById(id);
         return ResponseEntity.ok().build();
