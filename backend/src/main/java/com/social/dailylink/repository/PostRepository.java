@@ -8,5 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface PostRepository extends AbstractEntityRepository<Post> {
-    Optional<Post> findByTitle(String title);
 }

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,6 +26,7 @@ public class Post extends AbstractEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @CreatedBy
     @ManyToOne
     @JoinColumn(name = "author_id", updatable = false, nullable = false)
     private User author;
