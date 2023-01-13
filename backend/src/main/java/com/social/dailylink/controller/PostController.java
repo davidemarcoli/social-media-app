@@ -22,7 +22,6 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
 
     @Override
     @DeleteMapping("/{id}")
-    // preAuthorize: only admin or owner can delete a post
     @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().user.username == authentication.name")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         service.deleteById(id);
@@ -52,8 +51,7 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
 
     @Override
     @PutMapping("/{id}")
-    //preAuthorize : Leaving it currently just for ADMINS.
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or #dto.author.username == authentication.name")
     public ResponseEntity<PostDTO> updateById(@PathVariable String id, @RequestBody PostDTO dto) {
         return super.updateById(id, dto);
     }
