@@ -134,7 +134,7 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
      * @param id     the entry to be updated
      * @param entity the object with the new data
      * @return the updated object
-     * @throws EntityNotFoundException              will be thrown if the entry could not be found
+     * @throws EntityNotFoundException will be thrown if the entry could not be found
      */
     @Override
     @Transactional
@@ -202,13 +202,13 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
     @Override
     @Transactional
     public T createIfNotExist(T entity) {
-        if(entity == null) return null;
+        if (entity == null) return null;
 
         T newEntity = null;
-        if(entity.getId() != null) newEntity = findById(entity.getId().toString());
+        if (entity.getId() != null) newEntity = findById(entity.getId().toString());
         else newEntity = findByValue(entity);
 
-        if(newEntity == null) newEntity = create(entity);
+        if (newEntity == null) newEntity = create(entity);
 
         return newEntity;
     }
@@ -219,5 +219,6 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
         return null;
     }
 
-    public void preDelete(String id){}
+    public void preDelete(String id) {
+    }
 }
