@@ -14,9 +14,10 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PostDTO extends AbstractEntityDTO {
-    private String content;
-    private User author;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private byte[] media;
+    String content;
+    User author;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
+    byte[] media;
+    Set<User> likes;
 }
