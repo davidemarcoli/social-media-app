@@ -47,6 +47,7 @@ public class Post extends AbstractEntity {
     @ManyToMany
     @JoinTable(
             name = "post_likes",
+            schema = GlobalStrings.SCHEMA_NAME,
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )

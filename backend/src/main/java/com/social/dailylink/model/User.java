@@ -50,16 +50,16 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
-  @OneToMany(mappedBy = "author")
-  Set<Post> posts;
+    @OneToMany(mappedBy = "author")
+    Set<Post> posts;
 
-  @ManyToMany(mappedBy = "likes")
-  Set<Post> likedPosts;
+    @ManyToMany(mappedBy = "likes")
+    Set<Post> likedPosts;
 
-  public User(String username, String email, String password, String profilePictureURL) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.profilePictureURL = profilePictureURL;
-  }
+    public User(String username, String email, String password, String profilePictureURL) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.profilePictureURL = profilePictureURL;
+    }
 }
