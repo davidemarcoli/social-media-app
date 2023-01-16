@@ -9,9 +9,9 @@ export class Post {
   author: User;
   createdAt: Date;
   updatedAt: Date;
+  likes: User[];
 
-
-  constructor(id: number, title: string, content: string, categories: Category[], author: User, createdAt: Date, updatedAt: Date) {
+  constructor(id: number, title: string, content: string, categories: Category[], author: User, createdAt: Date, updatedAt: Date, likes: User[]) {
     this.id = id;
     this.title = title;
     this.content = content;
@@ -19,5 +19,6 @@ export class Post {
     this.author = author;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.likes = likes;
   }
 }
