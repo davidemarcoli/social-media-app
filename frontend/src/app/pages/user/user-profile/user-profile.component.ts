@@ -40,4 +40,8 @@ export class UserProfileComponent implements OnInit {
   isAdministrator() {
     return this.user?.roles.some(role => role.name === 'ROLE_ADMIN');
   }
+
+  bla() {
+    prompt("Please enter the new profile picture URL:", "Harry Potter");
+  }
 }
