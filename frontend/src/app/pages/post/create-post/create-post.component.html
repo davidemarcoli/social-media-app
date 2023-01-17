@@ -1,20 +1,28 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="center">
   <h1>Create New Post</h1>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Title</mat-label>
-    <input matInput formControlName="title">
-  </mat-form-field>
+  <div>
+    <label>Title</label>
+    <input formControlName="title" />
+  </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Categories</mat-label>
-      <mat-select formControlName="categories" multiple>
-        <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div>
+    <label>Categories</label>
+    <select formControlName="categories" multiple>
+      <option *ngFor="let category of categoryList" value="{{ category.id }}">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
 
-  <ckeditor [editor]="Editor" formControlName="content" style="min-height: 50vh; min-width: 80vw"></ckeditor>
+  <ckeditor
+    [editor]="Editor"
+    formControlName="content"
+    style="min-height: 50vh; min-width: 80vw"
+  ></ckeditor>
 
   <!--  submit-->
-  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+  <button color="primary" type="submit" [disabled]="form.invalid">
+    Submit
+  </button>
 </form>

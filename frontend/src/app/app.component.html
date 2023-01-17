@@ -1,20 +1,33 @@
-<mat-toolbar *ngIf="authService.isLoggedIn()">
+<div *ngIf="authService.isLoggedIn()">
   <span routerLink="/" style="cursor: pointer">Daily Link</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button routerLink="post/create" matTooltip="Create Post" style="background-color: lightblue">
-    <mat-icon>add</mat-icon>
+  <button
+    routerLink="post/create"
+    matTooltip="Create Post"
+    style="background-color: lightblue"
+  >
+    <span>add</span>
   </button>
   <div style="margin-left: 10px"></div>
-  <button mat-button [matMenuTriggerFor]="categoryMenu" *ngIf="authService.getRoles().includes('ROLE_ADMIN')">Categories</button>
-  <mat-menu #categoryMenu="matMenu">
-    <button mat-menu-item routerLink="category/create">Add Category</button>
-    <button mat-menu-item routerLink="category/edit">Edit Category</button>
-    <button mat-menu-item routerLink="category/delete">Delete Category</button>
-  </mat-menu>
-  <span class="example-spacer"></span>
-  <p style="margin: 0">{{authService.getUsername()}}</p>
-  <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with lgout icon">
-    <mat-icon>logout</mat-icon>
+  <button
+    for="categoryMenu"
+    *ngIf="authService.getRoles().includes('ROLE_ADMIN')"
+  >
+    Categories
   </button>
-</mat-toolbar>
+  <div #categoryMenu="matMenu">
+    <button routerLink="category/create">Add Category</button>
+    <button routerLink="category/edit">Edit Category</button>
+    <button routerLink="category/delete">Delete Category</button>
+  </div>
+  <span class="example-spacer"></span>
+  <p style="margin: 0">{{ authService.getUsername() }}</p>
+  <button
+    (click)="authService.logout()"
+    class="example-icon logout-icon"
+    aria-label="button with lgout icon"
+  >
+    <span>icon logout</span>
+  </button>
+</div>
 <router-outlet></router-outlet>

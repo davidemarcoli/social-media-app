@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AlertService } from '@services/alert/alert.service';
-import { AuthService } from '@services/auth/auth.service';
-import { z, ZodError } from 'zod';
-import * as Errors from '../../../../errors';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+// import { AlertService } from '@services/alert/alert.service';
+import { AuthService } from '@services/auth/auth.service'
+import { z, ZodError } from 'zod'
+import * as Errors from '../../../../errors'
 
 @Component({
   selector: 'app-login',
@@ -12,14 +12,14 @@ import * as Errors from '../../../../errors';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
-  passwordVisible = false;
+  form: FormGroup
+  passwordVisible = false
 
   constructor(
     private fb: FormBuilder,
-    private alertService: AlertService,
+    // private alertService: AlertService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.form = this.fb.group({
       username: [
@@ -31,22 +31,25 @@ export class LoginComponent implements OnInit {
         ],
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
-    });
+    })
   }
 
   async login() {
-    const val = this.form.value;
+    const val = this.form.value
     this.authService
       .login(val.username, val.password)
-      .then((data) => {
-        console.log('Data', data);
-        this.router.navigateByUrl('home');
+      .then(data => {
+        console.log('Data', data)
+        this.router.navigateByUrl('home')
       })
-      .catch(() => this.alertService.error('Invalid login attempt'));
+      .catch(
+        () => console.log('Invalid login attempt'),
+        // TODO: toast-error('Invalid login attempt')
+      )
   }
 
   navigateToRegister() {
-    this.router.navigateByUrl('signup');
+    this.router.navigateByUrl('signup')
   }
 
   ngOnInit(): void {
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit {
       document.location.protocol +
         '//' +
         document.location.hostname +
-        ':8081/api/'
-    );
+        ':8081/api/',
+    )
   }
 }

@@ -1,42 +1,49 @@
-<div style="text-align: center" class="centered">
-  <form [formGroup]="form">
-    <br />
-    <h1 class="underline">DailyLink Login</h1>
-    <mat-form-field appearance="fill">
-      <mat-label>Username</mat-label>
-      <input name="username" formControlName="username" matInput />
-    </mat-form-field>
-    <br />
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input
-        name="password"
-        formControlName="password"
-        matInput
-        [type]="passwordVisible ? 'text' : 'password'"
-      />
-      <button
-        type="button"
-        mat-icon-button
-        matSuffix
-        (click)="passwordVisible = !passwordVisible"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="!passwordVisible"
-      >
-        <mat-icon>{{
-          passwordVisible ? 'visibility' : 'visibility_off'
-        }}</mat-icon>
-      </button>
-    </mat-form-field>
-    <br />
-    <button type="submit" (click)="login()" mat-raised-button>Login</button>
-    <button
-      (click)="navigateToRegister()"
-      mat-raised-button
-      color="primary"
-      style="margin-left: 10px"
-    >
-      Register
-    </button>
-  </form>
+<!-- Centered login card with tailwind -->
+<div
+  class="h-100 align-items-center mx-auto flex w-full max-w-xs flex-col justify-center"
+>
+  <div>
+    <h1 class="mb-2 text-2xl font-bold">DailyLink</h1>
+  </div>
+  <div class="w-100 p-md-6 p-0">
+    <form [formGroup]="form">
+      <div class="mb-2">
+        <label for="username" class="mb-2 block text-sm font-bold"
+          >Username</label
+        >
+        <input
+          id="username"
+          class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+          name="username"
+          formControlName="username"
+          matInput
+        />
+      </div>
+      <div class="mb-2">
+        <label for="password" class="mb-2 block text-sm font-bold"
+          >Password</label
+        >
+        <input
+          name="password"
+          class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+          formControlName="password"
+          [type]="passwordVisible ? 'text' : 'password'"
+        />
+        <button
+          type="button"
+          (click)="passwordVisible = !passwordVisible"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="!passwordVisible"
+        ></button>
+      </div>
+      <div class="w-100 mt-5 mb-2">
+        <button class="btn" type="submit" (click)="login()">Login</button>
+      </div>
+      <div class="w-100">
+        <button class="btn btn-secondary" (click)="navigateToRegister()">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
