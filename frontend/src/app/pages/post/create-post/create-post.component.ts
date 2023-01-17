@@ -32,14 +32,6 @@ export class CreatePostComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      title: new FormControl('', Validators.required),
-      categories: new FormControl([], Validators.required),
-      content: new FormControl('', Validators.required)
-    });
-  }
-
   get title() {
     return this.form.get('title');
   }
@@ -52,13 +44,19 @@ export class CreatePostComponent implements OnInit {
     return this.form.get('categories');
   }
 
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      title: new FormControl('', Validators.required),
+      categories: new FormControl([], Validators.required),
+      content: new FormControl('', Validators.required)
+    });
+  }
+
   onSubmit() {
     console.log(this.form)
 
     let post = {
-      title: this.form.value.title,
       content: this.form.value.content,
-      categories: this.categoryList.filter(value => this.form.value.categories.includes(value.id.toString()))
     } as Post;
 
     const post$ = this.postService.createPost(post);

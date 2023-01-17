@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AlertService } from '@services/alert/alert.service';
-import { AuthService } from '@services/auth/auth.service';
-import { z, ZodError } from 'zod';
-import * as Errors from '../../../../errors';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AlertService} from '@services/alert/alert.service';
+import {AuthService} from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -52,9 +50,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log(
       document.location.protocol +
-        '//' +
-        document.location.hostname +
-        ':8081/api/'
+      '//' +
+      document.location.hostname +
+      ':8081/api/'
     );
   }
 }

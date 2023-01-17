@@ -7,7 +7,6 @@ import com.social.dailylink.model.User;
 import com.social.dailylink.payload.request.LoginRequest;
 import com.social.dailylink.payload.request.SignupRequest;
 import com.social.dailylink.payload.response.JwtResponse;
-import com.social.dailylink.payload.response.MessageResponse;
 import com.social.dailylink.repository.RoleRepository;
 import com.social.dailylink.repository.UserRepository;
 import com.social.dailylink.security.jwt.JwtUtils;
@@ -15,6 +14,7 @@ import com.social.dailylink.security.services.UserDetailsImpl;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -72,18 +72,17 @@ public class AuthController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
-    }
+                roles));    }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<String> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 
         System.out.println("New Login Request with username " + signUpRequest.username());
 
         if (userRepository.existsByUsername(signUpRequest.username())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+                    .body("Error: Username is already taken!");
         }
 
         // Create new user's account
@@ -123,6 +122,6 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.status(HttpStatus.OK).body("User registered successfully!");
     }
 }

@@ -5,7 +5,6 @@ import com.social.dailylink.generic.AbstractEntityService;
 import com.social.dailylink.generic.DTOMapper;
 import com.social.dailylink.model.Post;
 import com.social.dailylink.model.dto.PostDTO;
-import com.social.dailylink.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,17 +15,13 @@ import java.util.Collection;
 @RequestMapping("/api/posts")
 public class PostController extends AbstractEntityController<Post, PostDTO> {
 
-    PostService postService;
-
-    public PostController(AbstractEntityService<Post> postService, DTOMapper<Post, PostDTO> mapper) {
-        super(postService, mapper);
-        this.postService = (PostService) postService;
+    public PostController(AbstractEntityService<Post> service, DTOMapper<Post, PostDTO> mapper) {
+        super(service, mapper);
     }
 
     @Override
     @DeleteMapping("/{id}")
-    // preAuthorize: only admin or owner can delete a post
-    @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().user.username == authentication.name")
+    @PreAuthorize("hasRole('ADMIN') or @postRepository.findById(#id).get().author.username == authentication.name")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         service.deleteById(id);
         return ResponseEntity.ok().build();
@@ -55,8 +50,7 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
 
     @Override
     @PutMapping("/{id}")
-    //preAuthorize : Leaving it currently just for ADMINS.
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or #dto.author.username == authentication.name")
     public ResponseEntity<PostDTO> updateById(@PathVariable String id, @RequestBody PostDTO dto) {
         return super.updateById(id, dto);
     }

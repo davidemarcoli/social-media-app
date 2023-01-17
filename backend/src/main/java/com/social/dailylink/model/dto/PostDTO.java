@@ -1,7 +1,6 @@
 package com.social.dailylink.model.dto;
 
 import com.social.dailylink.generic.AbstractEntityDTO;
-import com.social.dailylink.model.Category;
 import com.social.dailylink.model.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,10 +14,10 @@ import java.util.Set;
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PostDTO extends AbstractEntityDTO {
-    private String title;
-    private String content;
-    private User author;
-    private Set<Category> categories;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    String content;
+    User author;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
+    byte[] media;
+    Set<User> likes;
 }

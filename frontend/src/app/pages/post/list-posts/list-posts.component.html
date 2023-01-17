@@ -1,17 +1,14 @@
 <div class="search">
   <mat-form-field appearance="fill" style="width: 50vw">
     <mat-label>Search</mat-label>
-      <input matInput (input)="searchPosts($event)">
+    <input (input)="searchPosts($event)" matInput>
   </mat-form-field>
 </div>
 
 <div class="post-container">
-  <mat-card class="items" (click)="navigateToPost(record.post.id)" *ngFor="let record of searchedPosts.slice()">
-    <h2>{{record.post.title | truncate:20}} </h2>
+  <mat-card (click)="navigateToPost(record.post.id)" *ngFor="let record of searchedPosts.slice()" class="items">
+    <h2>{{record.post.content | truncate:20}} </h2>
     <div [innerHTML]="record.post.content | truncate:100"></div>
     <p>{{getRelativeDate(record.post.createdAt)}} </p>
-    <div class="category-container">
-      <app-category-pill *ngFor="let category of record.post.categories" [category]="category"></app-category-pill>
-    </div>
   </mat-card>
 </div>
