@@ -1,13 +1,14 @@
 <mat-toolbar *ngIf="authService.isLoggedIn()">
   <span routerLink="/" style="cursor: pointer">Daily Link</span>
   <span class="example-spacer"></span>
-  <button mat-icon-button routerLink="post/create" matTooltip="Create Post" style="background-color: lightblue">
+  <button mat-icon-button matTooltip="Create Post" routerLink="post/create" style="background-color: lightblue">
     <mat-icon>add</mat-icon>
   </button>
   <div style="margin-left: 10px"></div>
   <span class="example-spacer"></span>
   <p style="margin: 0">{{authService.getUsername()}}</p>
-  <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with lgout icon">
+  <button (click)="authService.logout()" aria-label="button with lgout icon" class="example-icon logout-icon"
+          mat-icon-button>
     <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

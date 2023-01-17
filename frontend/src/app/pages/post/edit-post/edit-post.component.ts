@@ -25,7 +25,7 @@ export class EditPostComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
 
-  oldPost: Post = new Post(0, "", new User("", "", "", "", "", [], [], []),  new Date(), new Date(), "", []);
+  oldPost: Post = new Post(0, "", new User("", "", "", "", "", [], [], []), new Date(), new Date(), "", []);
   categoryList: Category[] = [];
 
   constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
@@ -35,6 +35,18 @@ export class EditPostComponent implements OnInit {
     });
 
     console.log(this.authService.getRoles())
+  }
+
+  get title() {
+    return this.form.get('title');
+  }
+
+  get content() {
+    return this.form.get('content');
+  }
+
+  get categories() {
+    return this.form.get('categories');
   }
 
   ngOnInit(): void {
@@ -70,18 +82,6 @@ export class EditPostComponent implements OnInit {
       .catch(reason => {
         this.alertService.error(reason.error.message);
       });
-  }
-
-  get title() {
-    return this.form.get('title');
-  }
-
-  get content() {
-    return this.form.get('content');
-  }
-
-  get categories() {
-    return this.form.get('categories');
   }
 
   onSubmit(event: any) {

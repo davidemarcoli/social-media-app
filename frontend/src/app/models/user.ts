@@ -6,7 +6,7 @@ export class User {
   username: string;
   password: string;
   profilePictureURL: string;
-  roles: {id: number, name: string}[];
+  roles: { id: number, name: string }[];
   posts: Post[];
   likedPosts: Post[];
 

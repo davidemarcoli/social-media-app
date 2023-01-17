@@ -1,5 +1,4 @@
 import {User} from "./user";
-import {Category} from "./category";
 
 export class Post {
   id: number;

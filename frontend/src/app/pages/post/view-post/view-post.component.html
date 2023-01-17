@@ -15,20 +15,13 @@
         <td>Updated At</td>
         <td>{{getFormattedDate(post.updatedAt)}} ({{getRelativeDate(post.updatedAt)}})</td>
       </tr>
-      <tr>
-        <td>Categories</td>
-        <td id="categories">
-          {{getCategoryNames()}}
-        </td>
-      </tr>
     </table>
 
-    <button mat-raised-button color="primary" (click)="editPost()" *ngIf="canModify()">Edit</button>
-    <button mat-raised-button color="warn" (click)="deletePost()" *ngIf="canModify()">Delete</button>
+    <button (click)="editPost()" *ngIf="canModify()" color="primary" mat-raised-button>Edit</button>
+    <button (click)="deletePost()" *ngIf="canModify()" color="warn" mat-raised-button>Delete</button>
 
   </div>
   <div id="content">
-    <h1 id="title">{{post.title}}</h1>
     <div [innerHTML]="getPostContent()"></div>
   </div>
 </div>
