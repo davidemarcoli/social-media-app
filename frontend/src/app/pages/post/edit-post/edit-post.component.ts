@@ -25,7 +25,7 @@ export class EditPostComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
 
-  oldPost: Post = new Post(0, "", "", [], new User("", "", "", "", "", []), new Date(), new Date());
+  oldPost: Post = new Post(0, "", new User("", "", "", "", "", [], [], []),  new Date(), new Date(), "", []);
   categoryList: Category[] = [];
 
   constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
@@ -58,9 +58,7 @@ export class EditPostComponent implements OnInit {
       this.oldPost = value;
 
       this.form.patchValue({
-        title: value.title,
         content: value.content,
-        categories: value.categories
       })
       this.form.updateValueAndValidity();
 
@@ -90,9 +88,7 @@ export class EditPostComponent implements OnInit {
     console.log(event)
     console.log(this.form)
 
-    this.oldPost.title = this.form.value.title;
     this.oldPost.content = this.form.value.content;
-    this.oldPost.categories = this.form.value.categories;
 
     const post$ = this.postService.updatePost(this.oldPost);
     lastValueFrom(post$).then(value => {

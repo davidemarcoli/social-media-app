@@ -56,9 +56,7 @@ export class CreatePostComponent implements OnInit {
     console.log(this.form)
 
     let post = {
-      title: this.form.value.title,
       content: this.form.value.content,
-      categories: this.categoryList.filter(value => this.form.value.categories.includes(value.id.toString()))
     } as Post;
 
     const post$ = this.postService.createPost(post);
