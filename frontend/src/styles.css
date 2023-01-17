@@ -8,9 +8,9 @@ body {
   height: 100%;
 }
 body {
-  background-color: #1b2d2a;
+  /* background-color: #1b2d2a; */
   color: #fff;
-  margin: 0;
+  /* margin: 0; */
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
@@ -31,6 +31,10 @@ body {
   background-color: transparent;
   color: #fff;
   border: none;
+}
+
+.bg-secondary {
+  /* background-color: rgba(0 0 0 / 0.2) !important; */
 }
 
 .btn.btn-secondary:hover {

@@ -1,33 +1,26 @@
-<div *ngIf="authService.isLoggedIn()">
-  <span routerLink="/" style="cursor: pointer">Daily Link</span>
-  <span class="example-spacer"></span>
-  <button
-    routerLink="post/create"
-    matTooltip="Create Post"
-    style="background-color: lightblue"
-  >
-    <span>add</span>
-  </button>
-  <div style="margin-left: 10px"></div>
-  <button
-    for="categoryMenu"
-    *ngIf="authService.getRoles().includes('ROLE_ADMIN')"
-  >
-    Categories
-  </button>
+<div class="h-100 flex flex-col justify-between bg-slate-800">
   <div>
-    <button routerLink="category/create">Add Category</button>
-    <button routerLink="category/edit">Edit Category</button>
-    <button routerLink="category/delete">Delete Category</button>
+    <span routerLink="/" class="cursor-pointer">Daily Link</span>
+    <router-outlet></router-outlet>
   </div>
-  <span class="example-spacer"></span>
-  <p style="margin: 0">{{ authService.getUsername() }}</p>
-  <button
-    (click)="authService.logout()"
-    class="example-icon logout-icon"
-    aria-label="button with lgout icon"
+  <div
+    *ngIf="authService.isLoggedIn()"
+    class="mt-auto flex flex-row justify-evenly"
   >
-    <span>icon logout</span>
-  </button>
+    <button routerLink="/home">home-icon</button>
+    <button routerLink="/post/create">
+      <span>add-icon</span>
+    </button>
+    <button routerLink="/@{{ authService.getUsername() }}">
+      <span>profile-icon</span>
+    </button>
+    <!-- <p>{{ authService.getUsername() }}</p> -->
+    <!-- <button
+      (click)="authService.logout()"
+      class="example-icon logout-icon"
+      aria-label="button with lgout icon"
+    >
+      <span>icon logout</span>
+    </button> -->
+  </div>
 </div>
-<router-outlet></router-outlet>
