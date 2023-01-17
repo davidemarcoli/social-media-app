@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EditPostComponent } from './edit-post.component';
+import {EditPostComponent} from './edit-post.component';
 
 describe('EditPostComponent', () => {
   let component: EditPostComponent;
@@ -8,9 +8,9 @@ describe('EditPostComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditPostComponent ]
+      declarations: [EditPostComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EditPostComponent);
     component = fixture.componentInstance;

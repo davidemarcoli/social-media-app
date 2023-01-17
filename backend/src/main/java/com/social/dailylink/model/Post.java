@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -42,4 +43,13 @@ public class Post extends AbstractEntity {
     @Lob
     @Column(name = "media")
     private byte[] media;
+
+    @ManyToMany
+    @JoinTable(
+            name = "post_likes",
+            schema = GlobalStrings.SCHEMA_NAME,
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> likes;
 }

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '@services/auth/auth.service';
-import { Router } from '@angular/router';
-import { AlertService } from '@services/alert/alert.service';
-import { z, ZodError } from 'zod';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '@services/auth/auth.service';
+import {Router} from '@angular/router';
+import {AlertService} from '@services/alert/alert.service';
+import {z, ZodError} from 'zod';
 import * as Errors from '../../../../errors';
 
 @Component({
@@ -14,6 +14,14 @@ import * as Errors from '../../../../errors';
 export class SignupComponent {
   form: FormGroup;
   passwordVisible = false;
+  readonly signupUser = z.object({
+    email: z.string().email(Errors.EMAIL_VALIDATION),
+    username: z
+      .string()
+      .min(3, Errors.USERNAME_MIN_VALIDATION)
+      .max(20, Errors.USERNAME_MAX_VALIDATION),
+    password: z.string().min(8, Errors.PASSWORD_MAX_VALIDATION),
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -34,15 +42,6 @@ export class SignupComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
-
-  readonly signupUser = z.object({
-    email: z.string().email(Errors.EMAIL_VALIDATION),
-    username: z
-      .string()
-      .min(3, Errors.USERNAME_MIN_VALIDATION)
-      .max(20, Errors.USERNAME_MAX_VALIDATION),
-    password: z.string().min(8, Errors.PASSWORD_MAX_VALIDATION),
-  });
 
   async signup() {
     const val = this.form.value;

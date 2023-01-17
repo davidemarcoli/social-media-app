@@ -1,7 +1,7 @@
-<div class="profile-container" *ngIf="user; else loading">
+<div *ngIf="user; else loading" class="profile-container">
 
   <div class="image-container">
-    <img id="profile-picture" src="{{user.profilePictureURL}}" alt="profile image" />
+    <img alt="profile image" id="profile-picture" src="{{user.profilePictureURL}}"/>
   </div>
 
   <h1>
