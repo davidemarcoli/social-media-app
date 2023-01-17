@@ -5,12 +5,6 @@
     <mat-icon>add</mat-icon>
   </button>
   <div style="margin-left: 10px"></div>
-  <button mat-button [matMenuTriggerFor]="categoryMenu" *ngIf="authService.getRoles().includes('ROLE_ADMIN')">Categories</button>
-  <mat-menu #categoryMenu="matMenu">
-    <button mat-menu-item routerLink="category/create">Add Category</button>
-    <button mat-menu-item routerLink="category/edit">Edit Category</button>
-    <button mat-menu-item routerLink="category/delete">Delete Category</button>
-  </mat-menu>
   <span class="example-spacer"></span>
   <p style="margin: 0">{{authService.getUsername()}}</p>
   <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with lgout icon">

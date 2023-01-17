@@ -29,7 +29,7 @@ export class AuthService {
       password: password
     }).toPromise().then(async () => {
       return await this.login(username, password);
-    }); 
+    });
   }
 
   public setSession(authResult: any) {
