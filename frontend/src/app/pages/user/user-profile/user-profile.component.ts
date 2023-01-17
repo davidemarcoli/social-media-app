@@ -5,6 +5,8 @@ import {lastValueFrom} from "rxjs";
 import {User} from "@models/user";
 import {AlertService} from "@services/alert/alert.service";
 import {Post} from "@models/post";
+import {PostService} from "@services/post/post.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'dl-user-profile',
@@ -16,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   user: User | undefined;
   posts: Post[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService) {
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService) {
   }
 
   ngOnInit() {
@@ -28,6 +30,12 @@ export class UserProfileComponent implements OnInit {
       if (username) {
         lastValueFrom(this.userService.getUserByUsername(username)).then(user => {
           this.user = user;
+          lastValueFrom(this.postService.getPostsByUser(user.username)).then(posts => {
+            this.posts = posts || [];
+          }).catch(error => {
+            console.error(error);
+            this.alertService.error(error.error.message);
+          })
         }).catch(error => {
           console.error(error);
           this.alertService.error(error.error.message);
@@ -35,6 +43,10 @@ export class UserProfileComponent implements OnInit {
         });
       }
     });
+  }
+
+  getRelativeDate(date: Date) {
+    return moment(date).fromNow();
   }
 
   isAdministrator() {
