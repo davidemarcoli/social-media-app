@@ -1,5 +1,6 @@
 package com.social.dailylink.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.global.GlobalStrings;
 import jakarta.persistence.*;
@@ -50,6 +51,7 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
+    @JsonIgnoreProperties("author")
     @OneToMany(mappedBy = "author")
     Set<Post> posts;
 

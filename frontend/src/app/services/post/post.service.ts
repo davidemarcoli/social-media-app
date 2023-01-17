@@ -31,4 +31,8 @@ export class PostService {
   public deletePost(id: number): Observable<void> {
     return this.http.delete<void>(environment.apiUrl + 'posts/' + id);
   }
+
+  public getPostsByUser(username: string): Observable<Post[]> {
+    return this.http.get<Post[]>(environment.apiUrl + 'posts/user/' + username);
+  }
 }
