@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   width: 100%;
   max-width: 600px;
   padding: 0 20px;
+  margin: 0 auto 20px;
 }
 
 .username {
@@ -28,4 +28,32 @@
   height: 200px;
   border-radius: 50%;
   margin-bottom: 20px;
+}
+
+.profile-feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.profile-feed .feed-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+  margin: 0 auto 20px;
+}
+
+.no-posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

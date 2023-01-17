@@ -4,6 +4,7 @@ import {UserService} from "@services/user/user.service";
 import {lastValueFrom} from "rxjs";
 import {User} from "@models/user";
 import {AlertService} from "@services/alert/alert.service";
+import {Post} from "@models/post";
 
 @Component({
   selector: 'dl-user-profile',
@@ -13,6 +14,7 @@ import {AlertService} from "@services/alert/alert.service";
 export class UserProfileComponent implements OnInit {
 
   user: User | undefined;
+  posts: Post[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService) {
   }
@@ -21,17 +23,18 @@ export class UserProfileComponent implements OnInit {
     console.log(this.route)
 
     // get username from path variable
-    const username = this.route.snapshot.paramMap.get('username') || '';
-    // get user profile
-    const $user = this.userService.getUserByUsername(username);
-    lastValueFrom($user).then(user => {
-      this.user = user;
-      console.log(user)
-    })
-      .catch(error => {
-        console.error(error);
-        this.alertService.error('Error while getting user profile');
-      })
+    this.route.paramMap.subscribe(value => {
+      const username = value.get('username');
+      if (username) {
+        lastValueFrom(this.userService.getUserByUsername(username)).then(user => {
+          this.user = user;
+        }).catch(error => {
+          console.error(error);
+          this.alertService.error(error.error.message);
+          // this.alertService.error('Error while getting user profile');
+        });
+      }
+    });
   }
 
   isAdministrator() {
