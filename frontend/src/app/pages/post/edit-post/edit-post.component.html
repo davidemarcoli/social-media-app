@@ -6,7 +6,7 @@
     <input formControlName="title" />
   </div>
 
-  <form-field appearance="fill">
+  <div appearance="fill">
     <label>Categories</label>
     <select
       formControlName="categories"
@@ -17,7 +17,7 @@
         {{ category.name }}
       </option>
     </select>
-  </form-field>
+  </div>
 
   <ng-container *ngIf="userIsAuthor()">
     <ckeditor

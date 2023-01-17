@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 // import {MatToolbarModule} from "@angular/material/toolbar";
 import { SignupComponent } from '@pages/auth/signup/signup.component'
 // import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { CreateCategoryComponent } from '@pages/category/create-category/create-category.component'
+// import { CreateCategoryComponent } from '@pages/category/create-category/create-category.component'
 // import {MatOptionModule} from "@angular/material/core";
 // import {MatSelectModule} from "@angular/material/select";
 // import {MatMenuModule} from "@angular/material/menu";
@@ -23,8 +23,8 @@ import { ErrorInterceptor } from './helper/error.interceptor'
 import { CreatePostComponent } from '@pages/post/create-post/create-post.component'
 import { ListPostsComponent } from '@pages/post/list-posts/list-posts.component'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'
-import { DeleteCategoryComponent } from '@pages/category/delete-category/delete-category.component'
-import { UpdateCategoryComponent } from '@pages/category/update-category/update-category.component'
+// import { DeleteCategoryComponent } from '@pages/category/delete-category/delete-category.component'
+// import { UpdateCategoryComponent } from '@pages/category/update-category/update-category.component'
 // import {MatCardModule} from "@angular/material/card";
 import { ViewPostComponent } from '@pages/post/view-post/view-post.component'
 import { ColorPickerModule } from 'ngx-color-picker'
@@ -39,11 +39,11 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
     AppComponent,
     LoginComponent,
     SignupComponent,
-    CreateCategoryComponent,
+    // CreateCategoryComponent,
     CreatePostComponent,
     ListPostsComponent,
-    DeleteCategoryComponent,
-    UpdateCategoryComponent,
+    // DeleteCategoryComponent,
+    // UpdateCategoryComponent,
     ViewPostComponent,
     CategoryPillComponent,
     EditPostComponent,
@@ -57,19 +57,19 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatMenuModule,
+    // MatFormFieldModule,
+    // MatIconModule,
+    // MatButtonModule,
+    // MatInputModule,
+    // MatToolbarModule,
+    // MatSnackBarModule,
+    // MatOptionModule,
+    // MatSelectModule,
+    // MatMenuModule,
     CKEditorModule,
-    MatCardModule,
+    // MatCardModule,
     ColorPickerModule,
-    MatTooltipModule,
+    // MatTooltipModule,
     FormsModule,
   ],
   providers: [
