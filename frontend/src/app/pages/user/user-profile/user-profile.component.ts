@@ -61,15 +61,19 @@ export class UserProfileComponent implements OnInit {
   changeProfilePicture(oldProfilePictureURL: string) {
     let newProfilePictureURL = prompt("Please enter the new profile picture URL:", oldProfilePictureURL);
     if (newProfilePictureURL) {
-      this.user.profilePictureURL = newProfilePictureURL;
-      const user$ = this.userService.updateProfilePicture(this.user);
-      lastValueFrom(user$).then(user => {
-        console.log(user);
-        this.alertService.success('Profile picture updated');
-        this.router.navigateByUrl('home');
-      }).catch(reason => {
-        console.error(reason);
-        this.alertService.error(reason.error.message);
+      userSchema.validate({url: newProfilePictureURL}).then(() => {
+        this.user.profilePictureURL = newProfilePictureURL!;
+        const user$ = this.userService.updateProfilePicture(this.user);
+        lastValueFrom(user$).then(user => {
+          this.user = user;
+          this.alertService.success('Profile picture updated successfully');
+        }).catch(error => {
+          console.error(error);
+          this.alertService.error(error.error.message);
+        });
+      }).catch(error => {
+        console.error(error);
+        this.alertService.error(error.errors[0]);
       });
     } else {
       this.alertService.error('Invalid profile picture URL');
