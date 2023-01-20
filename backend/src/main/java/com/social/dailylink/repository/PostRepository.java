@@ -5,7 +5,6 @@ import com.social.dailylink.model.Post;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Repository
 public interface PostRepository extends AbstractEntityRepository<Post> {

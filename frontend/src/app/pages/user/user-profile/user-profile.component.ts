@@ -5,8 +5,13 @@ import {lastValueFrom} from "rxjs";
 import {User} from "@models/user";
 import {AlertService} from "@services/alert/alert.service";
 import {Post} from "@models/post";
+import * as yup from 'yup';
 import {PostService} from "@services/post/post.service";
 import * as moment from "moment";
+
+export const userSchema = yup.object({
+  url: yup.string().url(),
+});
 
 @Component({
   selector: 'dl-user-profile',
@@ -15,7 +20,7 @@ import * as moment from "moment";
 })
 export class UserProfileComponent implements OnInit {
 
-  user: User | undefined;
+  user: User = new User("", "", "", "", "", [], [], []);
   posts: Post[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService) {
@@ -52,4 +57,27 @@ export class UserProfileComponent implements OnInit {
   isAdministrator() {
     return this.user?.roles.some(role => role.name === 'ROLE_ADMIN');
   }
+
+  changeProfilePicture(oldProfilePictureURL: string) {
+    let newProfilePictureURL = prompt("Please enter the new profile picture URL:", oldProfilePictureURL);
+    if (newProfilePictureURL) {
+      userSchema.validate({url: newProfilePictureURL}).then(() => {
+        this.user.profilePictureURL = newProfilePictureURL!;
+        const user$ = this.userService.updateProfilePicture(this.user);
+        lastValueFrom(user$).then(user => {
+          this.user = user;
+          this.alertService.success('Profile picture updated successfully');
+        }).catch(error => {
+          console.error(error);
+          this.alertService.error(error.error.message);
+        });
+      }).catch(error => {
+        console.error(error);
+        this.alertService.error(error.errors[0]);
+      });
+    } else {
+      this.alertService.error('Invalid profile picture URL');
+    }
+  }
+
 }

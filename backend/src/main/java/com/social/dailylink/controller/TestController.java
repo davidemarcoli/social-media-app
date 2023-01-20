@@ -35,7 +35,7 @@ public class TestController {
     }
 
     @GetMapping("/authoritytest")
-    @PreAuthorize("hasAuthority('TEST_AUTORITY')")
+    @PreAuthorize("hasAuthority('TEST_AUTHORITY')")
     public String testExceptionHandler2() {
         return "Authority Test.";
     }
