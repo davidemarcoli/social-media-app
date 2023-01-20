@@ -54,7 +54,7 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
 
     @Override
     @PutMapping("/{id}")
-    //@PreAuthorize("hasRole('ADMIN') or #dto.author.username == authentication.name")
+    @PreAuthorize("hasRole('ADMIN') or #dto.author.username == authentication.name")
     public ResponseEntity<PostDTO> updateById(@PathVariable String id, @RequestBody PostDTO dto) {
         return super.updateById(id, dto);
     }
