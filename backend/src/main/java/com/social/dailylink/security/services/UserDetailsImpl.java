@@ -2,6 +2,7 @@ package com.social.dailylink.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.social.dailylink.model.User;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Log4j2
 public class UserDetailsImpl implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -39,9 +41,12 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(User user) {
+        log.info(user.getRoles().toString());
+
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> role.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList())).flatMap(Collection::stream).collect(Collectors.toList());
+        authorities.addAll(user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).toList());
 
         return new UserDetailsImpl(
                 user.getId(),
