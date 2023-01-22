@@ -18,10 +18,14 @@
 
 <div class="profile-feed" *ngIf="posts.length > 0; else noPosts">
   <div class="profile-feed-item" *ngFor="let post of posts">
-    <div (dblclick)="onPostDoubleClick(post)">
+    <div>
       <h2>{{post.content | truncate:20}} </h2>
       <div [innerHTML]="post.content | truncate:100"></div>
       <p>{{getRelativeDate(post.createdAt)}} </p>
+<!--      like icon-->
+      <div class="like-icon" (click)="onLikeClick(post)">
+        <i class="fa fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>
+      </div>
     </div>
   </div>
 </div>

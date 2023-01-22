@@ -46,8 +46,16 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  onPostDoubleClick(post: Post) {
+  onLikeClick(post: Post) {
     console.log('double click', post);
+    lastValueFrom(this.postService.toggleLike(post.id)).then(post => {
+      console.log('post liked', post);
+      this.alertService.success('Post liked');
+    });
+  }
+
+  hasCurrentUserLikedPost(post: Post) {
+    return post.likes.some(like => like.username === this.user?.username);
   }
 
   getRelativeDate(date: Date) {
