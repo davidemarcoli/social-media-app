@@ -75,11 +75,11 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
     @PutMapping("/like")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<PostDTO> likePost(@RequestBody PostDTO post, Authentication authentication) {
-        System.out.println(post.getLikes());
+        System.out.println("Request Body: " + post.getLikes());
         Post postEntity = postService.like(post.getId().toString(), authentication.getName());
-        System.out.println(postEntity.getLikes());
+        System.out.println("Updated Entity: " + postEntity.getLikes());
         PostDTO postDTO = mapper.toDTO(postEntity);
-        System.out.println(postDTO.getLikes());
+        System.out.println("Updated DTO: " + postDTO.getLikes());
         return ResponseEntity.ok(postDTO);
     }
 }

@@ -5,6 +5,7 @@ import com.social.dailylink.generic.AbstractEntityServiceImpl;
 import com.social.dailylink.model.Post;
 import com.social.dailylink.model.User;
 import com.social.dailylink.repository.PostRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -34,14 +35,15 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
         Optional<Post> post = repository.findById(UUID.fromString(id));
         if (post.isPresent()) {
             Post p = post.get();
+            System.out.println("Found Entity: " + p.getLikes());
             if (p.getLikes().contains(user)) {
                 p.getLikes().remove(user);
             } else {
                 p.getLikes().add(user);
             }
-            return repository.save(p);
+            return save(p);
         } else {
-            throw new RuntimeException("Post not found");
+            throw new EntityNotFoundException("Post not found");
         }
     }
 }
