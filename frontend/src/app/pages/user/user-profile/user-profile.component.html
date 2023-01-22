@@ -18,7 +18,7 @@
 
 <div class="profile-feed" *ngIf="posts.length > 0; else noPosts">
   <div class="profile-feed-item" *ngFor="let post of posts">
-    <div>
+    <div (dblclick)="onPostDoubleClick(post)">
       <h2>{{post.content | truncate:20}} </h2>
       <div [innerHTML]="post.content | truncate:100"></div>
       <p>{{getRelativeDate(post.createdAt)}} </p>

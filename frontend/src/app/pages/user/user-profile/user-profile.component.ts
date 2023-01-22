@@ -7,6 +7,7 @@ import {AlertService} from "@services/alert/alert.service";
 import {Post} from "@models/post";
 import {PostService} from "@services/post/post.service";
 import * as moment from "moment";
+import {DateUtil} from "@utils/date.util";
 
 @Component({
   selector: 'dl-user-profile',
@@ -45,8 +46,12 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  onPostDoubleClick(post: Post) {
+    console.log('double click', post);
+  }
+
   getRelativeDate(date: Date) {
-    return moment(date).fromNow();
+    return DateUtil.getRelativeDate(date);
   }
 
   isAdministrator() {
