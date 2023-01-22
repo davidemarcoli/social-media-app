@@ -3,13 +3,14 @@ import * as moment from "moment";
 import {HttpClient} from "@angular/common/http";
 import jwt_decode from "jwt-decode";
 import {environment} from "~/environments/environment";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   async login(username: string, password: string): Promise<any> {
@@ -51,7 +52,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("currentUser");
-    location.href = "/login";
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn() {
