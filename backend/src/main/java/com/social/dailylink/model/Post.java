@@ -1,5 +1,6 @@
 package com.social.dailylink.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.social.dailylink.generic.AbstractEntity;
 import com.social.dailylink.global.GlobalStrings;
 import jakarta.persistence.*;
@@ -45,6 +46,7 @@ public class Post extends AbstractEntity {
     private byte[] media;
 
     @ManyToMany
+    @JsonIgnoreProperties("likedPosts")
     @JoinTable(
             name = "post_likes",
             schema = GlobalStrings.SCHEMA_NAME,

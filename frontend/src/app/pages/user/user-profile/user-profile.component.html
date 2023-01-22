@@ -1,9 +1,9 @@
 <div *ngIf="user; else loading" class="profile-container">
-
   <div class="image-container">
-    <img alt="profile image" id="profile-picture" src="{{user.profilePictureURL}}"/>
+    <img alt="profile image" id="profile-picture" src="{{user.profilePictureURL}}"
+         (click)="changeProfilePicture(user.profilePictureURL)"/>
+    <p class="img__description">Edit</p>
   </div>
-
   <h1>
     <span class="username">@{{user.username}}</span>
   </h1>
@@ -23,9 +23,10 @@
       <div [innerHTML]="post.content | truncate:100"></div>
       <p>{{getRelativeDate(post.createdAt)}} </p>
 <!--      like icon-->
-      <div class="like-icon" (click)="onLikeClick(post)">
-        <i class="fa fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>
-      </div>
+<!--      <div class="like-icon" (click)="onLikeClick(post)">-->
+<!--        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>-->
+<!--      </div>-->
+      <fa-icon [icon]="faHeart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}" (click)="onLikeClick(post)"></fa-icon>
     </div>
   </div>
 </div>
