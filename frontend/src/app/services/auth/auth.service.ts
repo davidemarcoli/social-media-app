@@ -51,7 +51,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("currentUser");
-    location.reload()
+    location.href = "/login";
   }
 
   public isLoggedIn() {
