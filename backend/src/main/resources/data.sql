@@ -11,15 +11,15 @@ values ('95274c56-91ec-47c2-b1f5-cb78ed8610c5', 'ROLE_USER');
 insert into "dailylink"."users" ("email", "id", "password", "profile_picture_url", "username")
 values ('moderator@moderator.ch', '04b11c30-ecbf-46ca-a855-9aeec60906f5',
         '$2a$10$m/OlYOX7VPTE9AGam5j9NuUtqWbC7Ehx.QYa1h6DHCExpfDz1yCgO',
-        'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg', 'moderator');
+        'https://robohash.org/04b11c30-ecbf-46ca-a855-9aeec60906f5?set=set1', 'moderator');
 insert into "dailylink"."users" ("email", "id", "password", "profile_picture_url", "username")
 values ('user@user.ch', 'a7fc1f5c-86eb-4693-b959-09266acbc6ca',
         '$2a$10$w6hjfF1.T3REiAOhLWtO3OUGNlAGoBVIwhtKuudYkRm9BoMLtNhhW',
-        'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg', 'user');
+        'https://robohash.org/a7fc1f5c-86eb-4693-b959-09266acbc6ca?set=set1', 'user');
 insert into "dailylink"."users" ("email", "id", "password", "profile_picture_url", "username")
 values ('admin@admin.ch', 'df3d54b5-51ed-47e2-80f6-df3567990392',
         '$2a$10$xmbL6/mJMJW/xxDW2f20quBsXO8EVZeP3gOY3.UknyyT18e7RI85S',
-        'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg', 'admin');
+        'https://robohash.org/df3d54b5-51ed-47e2-80f6-df3567990392?set=set1', 'admin');
 
 -- USERS ROLES
 insert into "dailylink"."user_roles" ("role_id", "user_id")

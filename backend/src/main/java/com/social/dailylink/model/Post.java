@@ -46,7 +46,7 @@ public class Post extends AbstractEntity {
     private byte[] media;
 
     @ManyToMany
-    @JsonIgnoreProperties("likedPosts")
+    @JsonIgnoreProperties(value = "likedPosts", allowSetters = true)
     @JoinTable(
             name = "post_likes",
             schema = GlobalStrings.SCHEMA_NAME,

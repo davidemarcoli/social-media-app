@@ -10,6 +10,7 @@ import {PostService} from "@services/post/post.service";
 import * as moment from "moment";
 import {DateUtil} from "@utils/date.util";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {AuthService} from "@services/auth/auth.service";
 
 export const userSchema = yup.object({
   url: yup.string().url(),
@@ -27,7 +28,7 @@ export class UserProfileComponent implements OnInit {
 
   readonly faHeart = faHeart;
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService) {
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -69,7 +70,7 @@ export class UserProfileComponent implements OnInit {
 
   hasCurrentUserLikedPost(post: Post) {
     if (post.likes)
-      return post.likes.some(like => like.username === this.user?.username);
+      return post.likes.some(like => like.username === this.authService.getUsername());
 
     return false;
   }

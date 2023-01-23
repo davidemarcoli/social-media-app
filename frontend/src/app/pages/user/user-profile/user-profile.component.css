@@ -76,8 +76,6 @@
   opacity: 1;
 }
 
-.liked svg.fa-behance path {
-  /*color: #ff0000;*/
+.liked {
   filter: invert(26%) sepia(85%) saturate(7365%) hue-rotate(358deg) brightness(95%) contrast(124%);
-  fill: red;
 }
