@@ -24,11 +24,11 @@ export class AuthService {
   }
 
   async signup(email: string, username: string, password: string): Promise<any> {
-    return this.http.post<any>(environment.apiUrl + 'auth/signup', {
+    return this.http.post(environment.apiUrl + 'auth/signup', {
       email: email,
       username: username,
       password: password
-    }).toPromise().then(async () => {
+    }, {responseType: "text"}).toPromise().then(async () => {
       return await this.login(username, password);
     });
   }
