@@ -122,10 +122,8 @@ public class AuthController {
                 }
             });
         }
-
         user.setRoles(roles);
         userRepository.save(user);
-
         return ResponseEntity.status(HttpStatus.OK).body("User registered successfully!");
     }
 }
