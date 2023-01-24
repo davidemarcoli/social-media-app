@@ -3,11 +3,14 @@ package com.social.dailylink.controller;
 import com.social.dailylink.generic.AbstractEntityController;
 import com.social.dailylink.generic.AbstractEntityService;
 import com.social.dailylink.generic.DTOMapper;
+import com.social.dailylink.model.Post;
 import com.social.dailylink.model.User;
+import com.social.dailylink.model.dto.PostDTO;
 import com.social.dailylink.model.dto.UserDTO;
 import com.social.dailylink.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,5 +40,13 @@ public class UserController extends AbstractEntityController<User, UserDTO> {
     @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     public ResponseEntity<Void> deleteById(@PathVariable String id) {
         return super.deleteById(id);
+    }
+
+    @PutMapping("/follow")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<UserDTO> likePost(@RequestBody UserDTO user, Authentication authentication) {
+        User userEntity = userService.follow(user.getId().toString(), authentication.getName());
+        UserDTO userDTO = mapper.toDTO(userEntity);
+        return ResponseEntity.ok(userDTO);
     }
 }

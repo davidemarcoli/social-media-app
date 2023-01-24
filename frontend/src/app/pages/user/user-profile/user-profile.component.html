@@ -6,6 +6,12 @@
   </div>
   <h1>
     <span class="username">@{{user.username}}</span>
+    <div *ngIf="!isOnOwnProfile()">
+      <button class="follow-button" (click)="onFollowClick()">
+        <span *ngIf="!isFollowingUser()">Follow</span>
+        <span *ngIf="isFollowingUser()">Unfollow</span>
+      </button>
+    </div>
   </h1>
 
   <!--  User posts here... -->
