@@ -7,7 +7,6 @@ import {AlertService} from "@services/alert/alert.service";
 import {Post} from "@models/post";
 import * as yup from 'yup';
 import {PostService} from "@services/post/post.service";
-import * as moment from "moment";
 import {DateUtil} from "@utils/date.util";
 import {faHeart as OutlinedHeart} from "@fortawesome/free-regular-svg-icons";
 import {faHeart as SolidHeart} from "@fortawesome/free-solid-svg-icons";
@@ -68,16 +67,6 @@ export class UserProfileComponent implements OnInit {
       const index = this.posts.findIndex(p => p.id === updatedPost.id);
       this.posts[index] = updatedPost;
 
-      // this.posts = this.posts.map(listedPost => listedPost.id === updatedPost.id ? updatedPost : listedPost);
-
-      // this.posts = this.posts.map(listedPost => {
-      //   if (listedPost.id === updatedPost.id)  {
-      //     return updatedPost
-      //   } else {
-      //     return  listedPost
-      //   }
-      // });
-
       this.alertService.success('Post liked');
     }).catch(error => {
       console.error(error);
@@ -94,10 +83,6 @@ export class UserProfileComponent implements OnInit {
 
   getRelativeDate(date: Date) {
     return DateUtil.getRelativeDate(date);
-  }
-
-  isAdministrator() {
-    return this.user?.roles.some(role => role.name === 'ROLE_ADMIN');
   }
 
   changeProfilePicture(oldProfilePictureURL: string) {
