@@ -22,6 +22,12 @@
       <h2>{{post.content | truncate:20}} </h2>
       <div [innerHTML]="post.content | truncate:100"></div>
       <p>{{getRelativeDate(post.createdAt)}} </p>
+<!--      like icon-->
+<!--      <div class="like-icon" (click)="onLikeClick(post)">-->
+<!--        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>-->
+<!--      </div>-->
+      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}" (click)="onLikeClick(post)"></fa-icon>
+<!--      Is liked: {{hasCurrentUserLikedPost(post)}}-->
     </div>
   </div>
 </div>

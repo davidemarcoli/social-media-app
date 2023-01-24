@@ -7,7 +7,10 @@ import {AlertService} from "@services/alert/alert.service";
 import {Post} from "@models/post";
 import * as yup from 'yup';
 import {PostService} from "@services/post/post.service";
-import * as moment from "moment";
+import {DateUtil} from "@utils/date.util";
+import {faHeart as OutlinedHeart} from "@fortawesome/free-regular-svg-icons";
+import {faHeart as SolidHeart} from "@fortawesome/free-solid-svg-icons";
+import {AuthService} from "@services/auth/auth.service";
 
 export const userSchema = yup.object({
   url: yup.string().url(),
@@ -23,7 +26,10 @@ export class UserProfileComponent implements OnInit {
   user: User = new User("", "", "", "", "", [], [], []);
   posts: Post[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService) {
+  readonly outlinedHeart = OutlinedHeart;
+  readonly solidHeart = SolidHeart;
+
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -50,12 +56,33 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  getRelativeDate(date: Date) {
-    return moment(date).fromNow();
+  getHeartIcon(post: Post) {
+    return this.hasCurrentUserLikedPost(post) ? this.solidHeart : this.outlinedHeart;
   }
 
-  isAdministrator() {
-    return this.user?.roles.some(role => role.name === 'ROLE_ADMIN');
+  onLikeClick(post: Post) {
+    lastValueFrom(this.postService.toggleLike(post)).then(updatedPost => {
+
+      // replace post in posts array
+      const index = this.posts.findIndex(p => p.id === updatedPost.id);
+      this.posts[index] = updatedPost;
+
+      this.alertService.success('Post liked');
+    }).catch(error => {
+      console.error(error);
+      this.alertService.error(error.error.message);
+    });
+  }
+
+  hasCurrentUserLikedPost(post: Post) {
+    if (post.likes)
+      return post.likes.some(like => like.username === this.authService.getUsername());
+
+    return false;
+  }
+
+  getRelativeDate(date: Date) {
+    return DateUtil.getRelativeDate(date);
   }
 
   changeProfilePicture(oldProfilePictureURL: string) {

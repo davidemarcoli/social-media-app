@@ -75,3 +75,7 @@
   visibility: visible;
   opacity: 1;
 }
+
+.liked {
+  filter: invert(26%) sepia(85%) saturate(7365%) hue-rotate(358deg) brightness(95%) contrast(124%);
+}

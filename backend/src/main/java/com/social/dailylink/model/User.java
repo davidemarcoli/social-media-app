@@ -51,10 +51,11 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
-    @JsonIgnoreProperties("author")
+    @JsonIgnoreProperties(value = "author", allowSetters = true)
     @OneToMany(mappedBy = "author")
     Set<Post> posts;
 
+    @JsonIgnoreProperties(value = "likedPosts", allowSetters = true)
     @ManyToMany(mappedBy = "likes")
     Set<Post> likedPosts;
 

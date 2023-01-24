@@ -8,6 +8,7 @@ import com.social.dailylink.model.dto.PostDTO;
 import com.social.dailylink.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -63,5 +64,22 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Collection<PostDTO>> findAllByUsername(@PathVariable String username) {
         return ResponseEntity.ok(mapper.toDTOs(postService.findAllByUsername(username)));
+    }
+
+//    @PutMapping("/like/{postId}")
+//    @PreAuthorize("hasRole('USER')")
+//    public ResponseEntity<PostDTO> likePost(@PathVariable String postId, Authentication authentication) {
+//        return ResponseEntity.ok(mapper.toDTO(postService.like(postId, authentication.getName())));
+//    }
+
+    @PutMapping("/like")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<PostDTO> likePost(@RequestBody PostDTO post, Authentication authentication) {
+        System.out.println("Request Body: " + post.getLikes());
+        Post postEntity = postService.like(post.getId().toString(), authentication.getName());
+        System.out.println("Updated Entity: " + postEntity.getLikes());
+        PostDTO postDTO = mapper.toDTO(postEntity);
+        System.out.println("Updated DTO: " + postDTO.getLikes());
+        return ResponseEntity.ok(postDTO);
     }
 }
