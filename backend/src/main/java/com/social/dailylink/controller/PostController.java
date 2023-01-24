@@ -4,6 +4,7 @@ import com.social.dailylink.generic.AbstractEntityController;
 import com.social.dailylink.generic.AbstractEntityService;
 import com.social.dailylink.generic.DTOMapper;
 import com.social.dailylink.model.Post;
+import com.social.dailylink.model.dto.CreatePostDTO;
 import com.social.dailylink.model.dto.PostDTO;
 import com.social.dailylink.service.PostService;
 import org.springframework.http.ResponseEntity;
@@ -45,11 +46,14 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
         return super.findById(id);
     }
 
-    @Override
-    @PostMapping("/{id}")
+    @PostMapping("/")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<PostDTO> create(@RequestBody PostDTO dto) {
-        return super.create(dto);
+    public ResponseEntity<PostDTO> create(@RequestBody CreatePostDTO dto)  {
+        PostDTO result = new PostDTO();
+        result.setContent(dto.getContent());
+        result.setMedia(dto.getMedia());
+
+        return super.create(new PostDTO());
     }
 
     @Override

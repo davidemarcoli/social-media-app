@@ -1,19 +1,11 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" class="center">
   <h1>Create New Post</h1>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Title</mat-label>
-    <input formControlName="title" matInput>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Categories</mat-label>
-    <mat-select formControlName="categories" multiple>
-      <mat-option *ngFor="let category of categoryList" value="{{category.id}}">{{category.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <ckeditor [editor]="Editor" formControlName="content" style="min-height: 50vh; min-width: 80vw"></ckeditor>
+  <div class="container">
+    <ckeditor [editor]="Editor" formControlName="content" style="min-height: 50vh; min-width: 80vw" [config]="{ toolbar: [ 'heading', 'bold', 'italic', 'underline', 'NumberedList', 'BulletedList', 'SpecialChar' ]}"></ckeditor>
+    <br>
+    <input class="form-control" type="file" id="formFile" formControlName="media" (change)="onFileSelected($event)">
+  </div>
 
   <!--  submit-->
   <button [disabled]="form.invalid" color="primary" mat-raised-button type="submit">Submit</button>

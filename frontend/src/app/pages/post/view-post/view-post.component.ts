@@ -28,14 +28,6 @@ export class ViewPostComponent implements OnInit {
 
   }
 
-  editPost() {
-    if (!this.canModify()) {
-      alert("You do not have permission to edit this post");
-      return;
-    }
-    this.router.navigate(['/post/edit'], {queryParams: {id: this.post.id}});
-  }
-
   deletePost() {
     if (!this.canModify()) {
       alert("You do not have permission to delete this post");

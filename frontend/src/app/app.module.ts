@@ -25,7 +25,6 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {MatCardModule} from "@angular/material/card";
 import {ViewPostComponent} from '@pages/post/view-post/view-post.component';
 import {ColorPickerModule} from "ngx-color-picker";
-import {EditPostComponent} from '@pages/post/edit-post/edit-post.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {TruncatePipe} from "~/app/helper/truncate.pipe";
 import {UserProfileComponent} from '@pages/user/user-profile/user-profile.component';
@@ -38,7 +37,6 @@ import {UserProfileComponent} from '@pages/user/user-profile/user-profile.compon
     CreatePostComponent,
     ListPostsComponent,
     ViewPostComponent,
-    EditPostComponent,
     TruncatePipe,
     UserProfileComponent
   ],

@@ -6,7 +6,6 @@ import {SignupComponent} from "@pages/auth/signup/signup.component";
 import {CreatePostComponent} from "@pages/post/create-post/create-post.component";
 import {ListPostsComponent} from "@pages/post/list-posts/list-posts.component";
 import {ViewPostComponent} from "@pages/post/view-post/view-post.component";
-import {EditPostComponent} from "@pages/post/edit-post/edit-post.component";
 import {UserProfileComponent} from "@pages/user/user-profile/user-profile.component";
 
 const routes: Routes = [
@@ -16,7 +15,6 @@ const routes: Routes = [
   {
     path: 'post', children: [
       {path: 'create', component: CreatePostComponent, canActivate: [AuthGuardService]},
-      {path: 'edit', component: EditPostComponent, canActivate: [AuthGuardService]},
       {path: 'list', component: ListPostsComponent, canActivate: [AuthGuardService]},
       {path: 'view', component: ViewPostComponent, canActivate: [AuthGuardService]}
     ]
