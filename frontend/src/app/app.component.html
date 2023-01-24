@@ -5,14 +5,18 @@
   </div>
   <div
     *ngIf="authService.isLoggedIn()"
-    class="mt-auto flex flex-row justify-evenly"
+    class="mt-auto mb-4 flex flex-row justify-evenly"
   >
     <button routerLink="/home">home-icon</button>
     <button routerLink="/post/create">
       <span>add-icon</span>
     </button>
     <button routerLink="/@{{ authService.getUsername() }}">
-      <span>profile-icon</span>
+      <img
+        *ngIf="user"
+        class="rounded-circle h-12"
+        src="{{ user.profilePictureURL }}"
+      />
     </button>
     <!-- <p>{{ authService.getUsername() }}</p> -->
     <!-- <button

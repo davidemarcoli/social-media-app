@@ -33,6 +33,7 @@ import { EditPostComponent } from '@pages/post/edit-post/edit-post.component'
 // import {MatTooltipModule} from "@angular/material/tooltip";
 import { TruncatePipe } from '~/app/helper/truncate.pipe'
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { UserProfileComponent } from './pages/user/user-profile/user-profile.com
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserModule,
