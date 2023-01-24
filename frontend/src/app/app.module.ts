@@ -29,6 +29,7 @@ import {EditPostComponent} from '@pages/post/edit-post/edit-post.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {TruncatePipe} from "~/app/helper/truncate.pipe";
 import {UserProfileComponent} from '@pages/user/user-profile/user-profile.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {UserProfileComponent} from '@pages/user/user-profile/user-profile.compon
     ViewPostComponent,
     EditPostComponent,
     TruncatePipe,
-    UserProfileComponent
+    UserProfileComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
