@@ -26,7 +26,7 @@
 <!--      <div class="like-icon" (click)="onLikeClick(post)">-->
 <!--        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>-->
 <!--      </div>-->
-      <fa-icon [icon]="faHeart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}" (click)="onLikeClick(post)"></fa-icon>
+      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}" (click)="onLikeClick(post)"></fa-icon>
 <!--      Is liked: {{hasCurrentUserLikedPost(post)}}-->
     </div>
   </div>

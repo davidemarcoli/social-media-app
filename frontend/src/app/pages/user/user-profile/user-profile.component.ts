@@ -9,7 +9,8 @@ import * as yup from 'yup';
 import {PostService} from "@services/post/post.service";
 import * as moment from "moment";
 import {DateUtil} from "@utils/date.util";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {faHeart as OutlinedHeart} from "@fortawesome/free-regular-svg-icons";
+import {faHeart as SolidHeart} from "@fortawesome/free-solid-svg-icons";
 import {AuthService} from "@services/auth/auth.service";
 
 export const userSchema = yup.object({
@@ -26,7 +27,8 @@ export class UserProfileComponent implements OnInit {
   user: User = new User("", "", "", "", "", [], [], []);
   posts: Post[] = [];
 
-  readonly faHeart = faHeart;
+  readonly outlinedHeart = OutlinedHeart;
+  readonly solidHeart = SolidHeart;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService, private authService: AuthService) {
   }
@@ -55,12 +57,27 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  getHeartIcon(post: Post) {
+    return this.hasCurrentUserLikedPost(post) ? this.solidHeart : this.outlinedHeart;
+  }
+
   onLikeClick(post: Post) {
-    console.log('double click', post);
-    lastValueFrom(this.postService.toggleLike(post)).then(post => {
-      this.posts = this.posts.map(p => p.id === post.id ? post : p);
-      console.log('post liked', post);
-      console.log(post.likes)
+    lastValueFrom(this.postService.toggleLike(post)).then(updatedPost => {
+
+      // replace post in posts array
+      const index = this.posts.findIndex(p => p.id === updatedPost.id);
+      this.posts[index] = updatedPost;
+
+      // this.posts = this.posts.map(listedPost => listedPost.id === updatedPost.id ? updatedPost : listedPost);
+
+      // this.posts = this.posts.map(listedPost => {
+      //   if (listedPost.id === updatedPost.id)  {
+      //     return updatedPost
+      //   } else {
+      //     return  listedPost
+      //   }
+      // });
+
       this.alertService.success('Post liked');
     }).catch(error => {
       console.error(error);
