@@ -31,4 +31,16 @@ export class PostService {
   public deletePost(id: number): Observable<void> {
     return this.http.delete<void>(environment.apiUrl + 'posts/' + id);
   }
+
+  public getPostsByUser(username: string): Observable<Post[]> {
+    return this.http.get<Post[]>(environment.apiUrl + 'posts/user/' + username);
+  }
+
+  // public toggleLike(id: number): Observable<Post> {
+  //   return this.http.put<Post>(environment.apiUrl + 'posts/like/' + id, {});
+  // }
+
+  public toggleLike(post: Post): Observable<Post> {
+    return this.http.put<Post>(environment.apiUrl + 'posts/like', post);
+  }
 }

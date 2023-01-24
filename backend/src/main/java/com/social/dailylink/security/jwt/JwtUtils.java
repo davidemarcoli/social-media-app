@@ -25,7 +25,7 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(this.jwtSecret);
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -43,12 +43,12 @@ public class JwtUtils {
     }
 
     public String getUserNameFromJwtToken(String token) {
-        return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token).getBody().getSubject();
     }
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(authToken);
+            Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(authToken);
             return true;
         } catch (SecurityException e) {
             logger.error("JWT signature validation failed: {}", e.getMessage());

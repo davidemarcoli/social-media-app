@@ -28,6 +28,7 @@ import {ColorPickerModule} from "ngx-color-picker";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {TruncatePipe} from "~/app/helper/truncate.pipe";
 import {UserProfileComponent} from '@pages/user/user-profile/user-profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {UserProfileComponent} from '@pages/user/user-profile/user-profile.compon
     MatCardModule,
     ColorPickerModule,
     MatTooltipModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

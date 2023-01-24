@@ -15,4 +15,8 @@ export class UserService {
   public getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(environment.apiUrl + 'users/username/' + username);
   }
+
+  public updateProfilePicture(user: User): Observable<User> {
+    return this.http.put<User>(environment.apiUrl + 'users/' + user.id, user);
+  }
 }

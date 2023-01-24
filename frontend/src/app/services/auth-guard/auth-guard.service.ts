@@ -12,11 +12,6 @@ export class AuthGuardService {
 
   canActivate(): boolean {
     const user = localStorage.getItem('currentUser');
-    // if path is login or signup, then allow
-    if (this.router.url === '/login' || this.router.url === '/signup') {
-      return true;
-    }
-    console.log(user)
     if (!user) {
       this.router.navigate(['/login']);
       return false;

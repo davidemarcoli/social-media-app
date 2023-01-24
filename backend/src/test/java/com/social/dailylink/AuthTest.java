@@ -69,7 +69,7 @@ class AuthTest {
 
     @Test
     @DisplayName("Give user test authority and accept access")
-    @WithMockUser(authorities = "TEST_AUTORITY")
+    @WithMockUser(authorities = "TEST_AUTHORITY")
     void givenTestAuthority_whenGetTestRequest_thenOk() throws Exception {
         mockMvc.perform(get("/api/test/authoritytest"))
                 .andExpect(status().isOk());
@@ -77,7 +77,7 @@ class AuthTest {
 
     @Test
     @DisplayName("Give user fake test authority and forbid access")
-    @WithMockUser(authorities = "FAKE_TEST_AUTORITY")
+    @WithMockUser(authorities = "FAKE_TEST_AUTHORITY")
     void givenTestAuthority_whenGetTestRequest_thenForbidden() throws Exception {
         mockMvc.perform(get("/api/test/authoritytest"))
                 .andExpect(status().isForbidden());
