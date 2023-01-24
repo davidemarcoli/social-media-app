@@ -5,7 +5,9 @@
   </mat-form-field>
 </div>
 
-<div class="post-container">
+<div class="feed-container">
+  <dl-post-list></dl-post-list>
+  <hr>
   <mat-card (click)="navigateToPost(record.post.id)" *ngFor="let record of searchedPosts.slice()" class="items">
     <h2>{{record.post.content | truncate:20}} </h2>
     <div [innerHTML]="record.post.content | truncate:100"></div>
