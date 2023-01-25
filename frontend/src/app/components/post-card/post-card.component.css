@@ -1,37 +1,35 @@
 .content-wrapper {
     background-color: lightslategrey;
     display: flex;
-    flex: 1;
     flex-direction: column;
     margin-right: .5em;
     margin-left: .5em;
     padding-right: 2em;
     padding-left: 2em;
-    padding-top: .5em;
-    padding-bottom: .5em;
+    padding-top: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 1.5em;
 }
 
 .author-avatar {
-    display: flex;
     border-radius: 8em;
     padding-right: 1em;
 }
 
 .avatar {
-    display: flex;
 }
 
 .author-information {
-    display: flex;
     background-color: plum;
     position: relative;
-    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
 }
 
 .post-header {
-
+    background-color: magenta;
+    flex-direction: row;
+    direction: row;
 }
 
 .media {
