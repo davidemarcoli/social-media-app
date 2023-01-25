@@ -1,6 +1,12 @@
-.follower-wrappers {
-    background-color: green;
+.content-wrapper {
+    background-color: lightgreen;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    
 }
+
+
 
 .feed-wrapper {
     background-color: lightcoral;

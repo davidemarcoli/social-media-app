@@ -30,6 +30,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {TruncatePipe} from "~/app/helper/truncate.pipe";
 import {UserProfileComponent} from '@pages/user/user-profile/user-profile.component';
 import { PostListComponent } from './components/post-list/post-list.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PostListComponent } from './components/post-list/post-list.component';
     EditPostComponent,
     TruncatePipe,
     UserProfileComponent,
-    PostListComponent
+    PostListComponent,
+    PostCardComponent
   ],
   imports: [
     BrowserModule,
