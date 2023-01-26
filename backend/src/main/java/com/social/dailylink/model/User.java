@@ -59,7 +59,7 @@ public class User extends AbstractEntity {
     @ManyToMany(mappedBy = "likes")
     Set<Post> likedPosts;
 
-    @JsonIgnoreProperties(value = "[following, posts, likedPosts, followers]", allowSetters = true)
+    @JsonIgnoreProperties(value = "followers", allowSetters = true)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_followers",
             schema = GlobalStrings.SCHEMA_NAME,
@@ -67,7 +67,7 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "follower_id"))
     Set<User> followers = new HashSet<>();
 
-    @JsonIgnoreProperties(value = "[following, posts, likedPosts, followers]", allowSetters = true)
+    @JsonIgnoreProperties(value = "followers", allowSetters = true)
     @ManyToMany(mappedBy = "followers")
     Set<User> following;
 
