@@ -4,25 +4,32 @@ import com.social.dailylink.generic.AbstractEntityController;
 import com.social.dailylink.generic.AbstractEntityService;
 import com.social.dailylink.generic.DTOMapper;
 import com.social.dailylink.model.Post;
+import com.social.dailylink.model.User;
 import com.social.dailylink.model.dto.CreatePostDTO;
 import com.social.dailylink.model.dto.PostDTO;
 import com.social.dailylink.service.PostService;
+import com.social.dailylink.service.UserService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/api/posts")
+@Log4j2
 public class PostController extends AbstractEntityController<Post, PostDTO> {
 
     PostService postService;
+    UserService userService;
 
-    public PostController(AbstractEntityService<Post> service, DTOMapper<Post, PostDTO> mapper) {
-        super(service, mapper);
-        this.postService = (PostService) service;
+    public PostController(AbstractEntityService<Post> postService, AbstractEntityService<User> userService, DTOMapper<Post, PostDTO> mapper) {
+        super(postService, mapper);
+        this.postService = (PostService) postService;
+        this.userService = (UserService) userService;
     }
 
     @Override
@@ -37,7 +44,8 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
     @GetMapping("/")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Collection<PostDTO>> findAll() {
-        return super.findAll();
+        var response = super.findAll();
+        return response;
     }
 
     @Override
@@ -53,8 +61,14 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
         PostDTO result = new PostDTO();
         result.setContent(dto.getContent());
         result.setMedia(dto.getMedia());
+        result.setAuthor(userService.findByUsername(dto.getUsername()));
+        result.setCreatedAt(LocalDateTime.now());
+        result.setUpdatedAt(LocalDateTime.now());
 
-        return super.create(new PostDTO());
+        var response = super.create(result);
+        log.info("New post with id \'" + response.getBody().getId() + "\' from user \'" + dto.getUsername() + "\'");
+
+        return response;
     }
 
     @Override

@@ -23,7 +23,7 @@ export class CreatePostComponent implements OnInit {
 
   // @ts-ignore
   form: FormGroup
-  mediaByteArray?: Uint8Array
+  mediaByteArray?: Array<number>
 
   constructor(
     private postService: PostService,
@@ -55,11 +55,13 @@ export class CreatePostComponent implements OnInit {
     const post$ = this.postService.createPost(post)
     lastValueFrom(post$)
       .then(() => {
+        console.log("success")
         this.alertService.success('Post created successfully')
         this.router.navigateByUrl('home')
       })
       .catch(reason => {
-        console.error(reason)
+        console.log("ERRÖR")
+        console.log(reason)
         this.alertService.error(reason.error.message)
       })
   }
@@ -86,6 +88,6 @@ export class CreatePostComponent implements OnInit {
     for(let i = 0; i < rawLength; i++) {
       array[i] = raw.charCodeAt(i);
     }
-    return array;
+    return Array.from(array);
   }
 }
