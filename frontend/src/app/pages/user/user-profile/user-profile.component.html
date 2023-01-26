@@ -4,12 +4,16 @@
          (click)="changeProfilePicture(user.profilePictureURL)"/>
     <p class="img__description">Edit</p>
   </div>
-  <h1>
-    <span class="username">@{{user.username}}</span>
-  </h1>
-
-  <!--  User posts here... -->
+  <h1 class="username">@{{user.username}}</h1>
+  <div *ngIf="!isOnOwnProfile()">
+    <button class="follow-button" (click)="onFollowClick()"
+            [ngClass]="{btn: true, 'btn-primary': !isFollowingUser(), 'btn-warning': isFollowingUser()}">
+      <span *ngIf="!isFollowingUser()">Follow</span>
+      <span *ngIf="isFollowingUser()">Unfollow</span>
+    </button>
+  </div>
 </div>
+<br>
 <ng-template #loading>
   <div class="loading">
     <h1>Loading...</h1>
@@ -22,12 +26,13 @@
       <h2>{{post.content | truncate:20}} </h2>
       <div [innerHTML]="post.content | truncate:100"></div>
       <p>{{getRelativeDate(post.createdAt)}} </p>
-<!--      like icon-->
-<!--      <div class="like-icon" (click)="onLikeClick(post)">-->
-<!--        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>-->
-<!--      </div>-->
-      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}" (click)="onLikeClick(post)"></fa-icon>
-<!--      Is liked: {{hasCurrentUserLikedPost(post)}}-->
+      <!--      like icon-->
+      <!--      <div class="like-icon" (click)="onLikeClick(post)">-->
+      <!--        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>-->
+      <!--      </div>-->
+      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"
+               (click)="onLikeClick(post)"></fa-icon>
+      <!--      Is liked: {{hasCurrentUserLikedPost(post)}}-->
     </div>
   </div>
 </div>

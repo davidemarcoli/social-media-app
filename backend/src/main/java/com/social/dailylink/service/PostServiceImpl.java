@@ -35,7 +35,6 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
         Optional<Post> post = repository.findById(UUID.fromString(id));
         if (post.isPresent()) {
             Post p = post.get();
-            System.out.println("Found Entity: " + p.getLikes());
             if (p.getLikes().contains(user)) {
                 p.getLikes().remove(user);
             } else {

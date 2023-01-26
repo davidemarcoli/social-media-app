@@ -9,9 +9,11 @@ export class User {
   roles: { id: number, name: string }[];
   posts: Post[];
   likedPosts: Post[];
+  followers: User[];
+  following: User[];
 
 
-  constructor(id: string, email: string, username: string, password: string, profilePictureURL: string, roles: { id: number; name: string }[], posts: Post[], likedPosts: Post[]) {
+  constructor(id: string, email: string, username: string, password: string, profilePictureURL: string, roles: { id: number, name: string }[], posts: Post[], likedPosts: Post[], followers: User[], following: User[]) {
     this.id = id;
     this.email = email;
     this.username = username;
@@ -20,5 +22,7 @@ export class User {
     this.roles = roles;
     this.posts = posts;
     this.likedPosts = likedPosts;
+    this.followers = followers;
+    this.following = following;
   }
 }
