@@ -66,7 +66,7 @@ import { PostCardComponent } from './components/post-card/post-card.component';
     MatCardModule,
     ColorPickerModule,
     MatTooltipModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

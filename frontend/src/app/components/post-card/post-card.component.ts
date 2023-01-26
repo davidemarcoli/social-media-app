@@ -1,4 +1,6 @@
+import { Input } from '@angular/core';
 import { Component } from '@angular/core';
+import { Post } from '~/app/models/post';
 
 @Component({
   selector: 'dl-post-card',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class PostCardComponent {
 
+  @Input() post: Post|undefined;
+
+  ngOnInit(): void {
+  }
 }

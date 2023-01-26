@@ -6,15 +6,15 @@
       <mat-label>Search Trending Topics ...</mat-label>
       <input matInput>
     </mat-form-field>
-  </div>
+</div>
 
 <!-- fetching posts -->
 <div class="feed-wrapper">
     <div class="feed-content">
+        <div class="test" *ngFor="let post of allPosts">
+            <dl-post-card [post]="post"></dl-post-card>
+        </div>
         <p>Posts here</p>
-        <dl-post-card></dl-post-card>
-        <dl-post-card></dl-post-card>
-        <dl-post-card></dl-post-card>
     </div>
 </div>
 
