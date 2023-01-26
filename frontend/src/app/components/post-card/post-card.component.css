@@ -1,42 +1,41 @@
 .content-wrapper {
-    background-color: lightslategrey;
-    display: flex;
-    flex-direction: column;
-    margin-right: .5em;
-    margin-left: .5em;
-    padding-right: 2em;
-    padding-left: 2em;
-    padding-top: 1em;
-    margin-bottom: 1em;
-    padding-bottom: 1.5em;
+  background-color: lightslategrey;
+  display: flex;
+  flex-direction: column;
+  margin-right: .5em;
+  margin-left: .5em;
+  padding-right: 2em;
+  padding-left: 2em;
+  padding-top: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 1.5em;
 }
 
 .author-avatar {
-    border-radius: 8em;
-    padding-right: 1em;
+  border-radius: 8em;
+  padding-right: 1em;
 }
 
 .avatar {
 }
 
 .author-information {
-    background-color: plum;
-    position: relative;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+  background-color: plum;
+  position: relative;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
 .post-header {
-    background-color: magenta;
-    flex-direction: row;
-    direction: row;
+  display: flex;
+  background-color: magenta;
 }
 
 .media {
-    background-color: lime;
-    justify-content: center;
+  background-color: lime;
+  justify-content: center;
 }
 
 .content {
-    background-color: lightyellow;
+  background-color: lightyellow;
 }
