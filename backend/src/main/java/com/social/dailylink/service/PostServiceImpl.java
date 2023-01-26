@@ -46,4 +46,9 @@ public class PostServiceImpl extends AbstractEntityServiceImpl<Post> implements 
             throw new EntityNotFoundException("Post not found");
         }
     }
+
+    @Override
+    public Collection<Post> findPostsBySearchTerm(String searchTerm) {
+        return ((PostRepository) repository).findPostsBySearchTerm(searchTerm);
+    }
 }

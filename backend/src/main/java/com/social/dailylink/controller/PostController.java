@@ -82,4 +82,10 @@ public class PostController extends AbstractEntityController<Post, PostDTO> {
         System.out.println("Updated DTO: " + postDTO.getLikes());
         return ResponseEntity.ok(postDTO);
     }
+
+    @GetMapping("/search/{searchTerm}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<Collection<PostDTO>> findPostsBySearchTerm(@PathVariable String searchTerm) {
+        return ResponseEntity.ok(mapper.toDTOs(postService.findPostsBySearchTerm(searchTerm)));
+    }
 }

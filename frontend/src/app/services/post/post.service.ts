@@ -43,4 +43,8 @@ export class PostService {
   public toggleLike(post: Post): Observable<Post> {
     return this.http.put<Post>(environment.apiUrl + 'posts/like', post);
   }
+
+  public searchPosts(searchTerm: string): Observable<Post[]> {
+    return this.http.get<Post[]>(environment.apiUrl + 'posts/search/' + searchTerm);
+  }
 }
