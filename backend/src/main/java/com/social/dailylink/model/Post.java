@@ -41,8 +41,7 @@ public class Post extends AbstractEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Lob
-    @Column(name = "media")
+    @Column(name = "media", columnDefinition = "BYTEA")
     private byte[] media;
 
     @ManyToMany
