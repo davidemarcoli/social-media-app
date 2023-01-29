@@ -51,12 +51,25 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
-    @JsonIgnoreProperties("author")
+    @JsonIgnoreProperties(value = "author", allowSetters = true)
     @OneToMany(mappedBy = "author")
     Set<Post> posts;
 
+    @JsonIgnoreProperties(value = "likedPosts", allowSetters = true)
     @ManyToMany(mappedBy = "likes")
     Set<Post> likedPosts;
+
+    @JsonIgnoreProperties(value = "followers", allowSetters = true)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_followers",
+            schema = GlobalStrings.SCHEMA_NAME,
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id"))
+    Set<User> followers = new HashSet<>();
+
+    @JsonIgnoreProperties(value = "followers", allowSetters = true)
+    @ManyToMany(mappedBy = "followers")
+    Set<User> following;
 
     public User(String username, String email, String password, String profilePictureURL) {
         this.username = username;

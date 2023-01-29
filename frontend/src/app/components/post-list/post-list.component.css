@@ -1,5 +1,5 @@
 .content-wrapper {
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -9,9 +9,9 @@
 
 
 .feed-wrapper {
-    background-color: lightcoral;
+    /*background-color: lightcoral;*/
 }
 
 .trending-list-wrapper {
-    background-color: lightseagreen;
+    /*background-color: lightseagreen;*/
 }

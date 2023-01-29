@@ -1,5 +1,5 @@
 .content-wrapper {
-  background-color: lightslategrey;
+  /*background-color: lightslategrey;*/
   display: flex;
   flex-direction: column;
   margin-right: .5em;
@@ -17,7 +17,7 @@
 }
 
 .author-information {
-  background-color: plum;
+  /*background-color: plum;*/
   position: relative;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -25,14 +25,18 @@
 
 .post-header {
   display: flex;
-  background-color: magenta;
+  /*background-color: magenta;*/
 }
 
 .media {
-  background-color: lime;
+  /*background-color: lime;*/
   justify-content: center;
 }
 
 .content {
-  background-color: lightyellow;
+  /*background-color: lightyellow;*/
+}
+
+.liked {
+  filter: invert(26%) sepia(85%) saturate(7365%) hue-rotate(358deg) brightness(95%) contrast(124%);
 }

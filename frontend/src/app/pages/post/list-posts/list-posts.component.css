@@ -4,14 +4,14 @@
 }
 
 .content {
-  background-color: lime;
+  /*background-color: lime;*/
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 
 .following-panel {
-  background-color: lightskyblue;
+  /*background-color: lightskyblue;*/
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 0;
@@ -25,7 +25,7 @@
 }
 
 .trending-panel {
-  background-color: yellow;
+  /*background-color: yellow;*/
   flex-direction: column;
   flex-grow: 3;
   flex-shrink: 0;

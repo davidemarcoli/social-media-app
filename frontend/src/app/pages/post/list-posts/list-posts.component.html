@@ -9,9 +9,11 @@
   <div class="content">
     <div class="following-panel">
       <ul>
-        <li>User 1</li>
-        <li>User 1</li>
-        <li>User 1</li>
+        <li *ngFor="let followedUser of user!.following || []">
+          <a style="color: black; text-decoration: none" routerLink="/@{{followedUser.username}}">
+            @{{followedUser.username}}
+          </a>
+        </li>
       </ul>
     </div>
 

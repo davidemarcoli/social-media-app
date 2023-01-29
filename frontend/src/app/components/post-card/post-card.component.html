@@ -1,19 +1,20 @@
 <div class="content-wrapper">
     <div class="post-header">
         <div class="avatar">
-            <img class="author-avatar" width="100" src="{{post?.author?.profilePictureURL}}" alt="Posts author profile picture">
+            <img class="author-avatar" width="100" src="{{post.author.profilePictureURL}}" alt="Posts author profile picture">
         </div>
         <div class="author-information">
-            <h3 class="author-name">{{post?.author?.username}} * {{post?.createdAt}} </h3>
+          <h3 class="author-name"><a style="color: black; text-decoration: none" routerLink="/@{{post.author.username}}">@{{post.author.username}}</a> * {{getRelativeDate(post.createdAt!)}} </h3>
         </div>
     </div>
     <div class="content">
-        <p>{{post?.content}}</p>
+        <p>{{post.content}}</p>
     </div>
     <div class="media">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDs26yq9fb7ovRn5L3mbHg2GEn-6FK1ZUVLA&usqp=CAU" alt="Attached media">
     </div>
     <div class="post-footer">
-        Likes: {{post?.likes}} | star icon, etc.
+      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"
+               (click)="onLikeClick(post)"></fa-icon> {{post.likes.length || 0}}
     </div>
 </div>

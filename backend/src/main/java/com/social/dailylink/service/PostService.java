@@ -7,4 +7,5 @@ import java.util.Collection;
 
 public interface PostService extends AbstractEntityService<Post> {
     Collection<Post> findAllByUsername(String username);
+    Post like(String id, String username);
 }

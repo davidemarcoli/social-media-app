@@ -1,6 +1,7 @@
 package com.social.dailylink.controller;
 
 import com.social.dailylink.global.GlobalStrings;
+import com.social.dailylink.global.ProfilePictureType;
 import com.social.dailylink.model.ERole;
 import com.social.dailylink.model.Role;
 import com.social.dailylink.model.User;
@@ -63,7 +64,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        log.info(((UserDetailsImpl) authentication.getPrincipal()).getAuthorities().size());
+//        log.info(((UserDetailsImpl) authentication.getPrincipal()).getAuthorities().size());
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
@@ -91,7 +92,7 @@ public class AuthController {
         // Create new user's account
         User user = new User(signUpRequest.username(),
                 signUpRequest.email(),
-                encoder.encode(signUpRequest.password()), GlobalStrings.DEFAULT_PROFILE_PICTURE_URL);
+                encoder.encode(signUpRequest.password()), GlobalStrings.getDefaultProfilePictureUrl(ProfilePictureType.CAT));
 
         Set<String> strRoles = signUpRequest.roles();
         Set<Role> roles = new HashSet<>();
@@ -121,10 +122,8 @@ public class AuthController {
                 }
             });
         }
-
         user.setRoles(roles);
         userRepository.save(user);
-
         return ResponseEntity.status(HttpStatus.OK).body("User registered successfully!");
     }
 }

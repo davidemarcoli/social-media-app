@@ -25,7 +25,7 @@ export class EditPostComponent implements OnInit {
   // @ts-ignore
   form: FormGroup;
 
-  oldPost: Post = new Post(0, "", new User("", "", "", "", "", [], [], []), new Date(), new Date(), "", []);
+  oldPost: Post = new Post(0, "", new User("", "", "", "", "", [], [], [], [], []), new Date(), new Date(), "", []);
   categoryList: Category[] = [];
 
   constructor(private categoryService: CategoryService, private postService: PostService, private alertService: AlertService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {

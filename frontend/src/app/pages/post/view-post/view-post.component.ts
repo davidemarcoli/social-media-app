@@ -4,8 +4,8 @@ import {PostService} from "@services/post/post.service";
 import {Post} from "@models/post";
 import {DomSanitizer} from "@angular/platform-browser";
 import {User} from "@models/user";
-import * as moment from "moment/moment";
 import {AuthService} from "@services/auth/auth.service";
+import {DateUtil} from "@utils/date.util";
 
 @Component({
   selector: 'app-view-post',
@@ -14,7 +14,7 @@ import {AuthService} from "@services/auth/auth.service";
 })
 export class ViewPostComponent implements OnInit {
 
-  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], []), new Date(), new Date(), "", []);
+  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], [], [], []), new Date(), new Date(), "", []);
 
   constructor(private route: ActivatedRoute, private router: Router, private postService: PostService, private sanitizer: DomSanitizer, private authService: AuthService) {
     this.route.queryParams.subscribe(params => {
@@ -50,11 +50,11 @@ export class ViewPostComponent implements OnInit {
   }
 
   getRelativeDate(date: Date) {
-    return moment(date).fromNow();
+    return DateUtil.getRelativeDate(date);
   }
 
   getFormattedDate(date: Date) {
-    return moment(date).format("MMM Do YYYY");
+    return DateUtil.getFormattedDate(date);
   }
 
   getPostContent() {

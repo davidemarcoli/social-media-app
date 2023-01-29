@@ -4,27 +4,42 @@
          (click)="changeProfilePicture(user.profilePictureURL)"/>
     <p class="img__description">Edit</p>
   </div>
-  <h1>
-    <span class="username">@{{user.username}}</span>
-  </h1>
-
-  <!--  User posts here... -->
+  <h1 class="username">@{{user.username}}</h1>
+  <div *ngIf="!isOnOwnProfile()">
+    <button class="follow-button" (click)="onFollowClick()"
+            [ngClass]="{btn: true, 'btn-primary': !isFollowingUser(), 'btn-warning': isFollowingUser()}">
+      <span *ngIf="!isFollowingUser()">Follow</span>
+      <span *ngIf="isFollowingUser()">Unfollow</span>
+    </button>
+  </div>
 </div>
+<br>
 <ng-template #loading>
   <div class="loading">
     <h1>Loading...</h1>
   </div>
 </ng-template>
 
-<div class="profile-feed" *ngIf="posts.length > 0; else noPosts">
-  <div class="profile-feed-item" *ngFor="let post of posts">
-    <div>
-      <h2>{{post.content | truncate:20}} </h2>
-      <div [innerHTML]="post.content | truncate:100"></div>
-      <p>{{getRelativeDate(post.createdAt)}} </p>
-    </div>
-  </div>
+<div class="profile-feed">
+  <dl-post-card *ngFor="let post of posts" [post]="post"></dl-post-card>
 </div>
+
+<!--<div class="profile-feed" *ngIf="posts.length > 0; else noPosts">-->
+<!--  <div class="profile-feed-item" *ngFor="let post of posts">-->
+<!--    <div>-->
+<!--      <h2>{{post.content | truncate:20}} </h2>-->
+<!--      <div [innerHTML]="post.content | truncate:100"></div>-->
+<!--      <p>{{getRelativeDate(post.createdAt)}} </p>-->
+<!--      &lt;!&ndash;      like icon&ndash;&gt;-->
+<!--      &lt;!&ndash;      <div class="like-icon" (click)="onLikeClick(post)">&ndash;&gt;-->
+<!--      &lt;!&ndash;        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>&ndash;&gt;-->
+<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"-->
+<!--               (click)="onLikeClick(post)"></fa-icon>-->
+<!--      &lt;!&ndash;      Is liked: {{hasCurrentUserLikedPost(post)}}&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 <ng-template #noPosts>
   <div class="no-posts">
