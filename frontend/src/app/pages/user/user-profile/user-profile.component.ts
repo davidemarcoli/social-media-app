@@ -26,9 +26,6 @@ export class UserProfileComponent implements OnInit {
   user: User | undefined;
   posts: Post[] = [];
 
-  readonly outlinedHeart = OutlinedHeart;
-  readonly solidHeart = SolidHeart;
-
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService, private authService: AuthService) {
   }
 
@@ -56,24 +53,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  getHeartIcon(post: Post) {
-    return this.hasCurrentUserLikedPost(post) ? this.solidHeart : this.outlinedHeart;
-  }
-
-  onLikeClick(post: Post) {
-    lastValueFrom(this.postService.toggleLike(post)).then(updatedPost => {
-
-      // replace post in posts array
-      const index = this.posts.findIndex(p => p.id === updatedPost.id);
-      this.posts[index] = updatedPost;
-
-      this.alertService.success('Post liked');
-    }).catch(error => {
-      console.error(error);
-      this.alertService.error(error.error.message);
-    });
-  }
-
   onFollowClick() {
     lastValueFrom(this.userService.toggleFollow(this.user!)).then(user => {
       this.user = user;
@@ -86,13 +65,6 @@ export class UserProfileComponent implements OnInit {
 
   isOnOwnProfile() {
     return this.user?.username === this.authService.getUsername();
-  }
-
-  hasCurrentUserLikedPost(post: Post) {
-    if (post.likes)
-      return post.likes.some(like => like.username === this.authService.getUsername());
-
-    return false;
   }
 
   isFollowingUser() {
