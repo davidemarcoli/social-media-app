@@ -23,26 +23,3 @@
 <div class="profile-feed">
   <dl-post-card *ngFor="let post of posts" [post]="post"></dl-post-card>
 </div>
-
-<!--<div class="profile-feed" *ngIf="posts.length > 0; else noPosts">-->
-<!--  <div class="profile-feed-item" *ngFor="let post of posts">-->
-<!--    <div>-->
-<!--      <h2>{{post.content | truncate:20}} </h2>-->
-<!--      <div [innerHTML]="post.content | truncate:100"></div>-->
-<!--      <p>{{getRelativeDate(post.createdAt)}} </p>-->
-<!--      &lt;!&ndash;      like icon&ndash;&gt;-->
-<!--      &lt;!&ndash;      <div class="like-icon" (click)="onLikeClick(post)">&ndash;&gt;-->
-<!--      &lt;!&ndash;        <i class="fa-solid fa-heart" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"></i>&ndash;&gt;-->
-<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
-<!--      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"-->
-<!--               (click)="onLikeClick(post)"></fa-icon>-->
-<!--      &lt;!&ndash;      Is liked: {{hasCurrentUserLikedPost(post)}}&ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<ng-template #noPosts>
-  <div class="no-posts">
-    <h1>No posts yet... 😿</h1>
-  </div>
-</ng-template>

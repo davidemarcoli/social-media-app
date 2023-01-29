@@ -1,24 +1,17 @@
-
 <div class="content-wrapper">
 
-<!-- fetching posts -->
-<div class="feed-wrapper">
+  <!-- fetching posts -->
+  <div class="feed-wrapper">
     <div class="feed-content">
-        <div class="test" *ngFor="let post of allPosts">
-            <dl-post-card [post]="post"></dl-post-card>
-        </div>
+      <div class="test" *ngFor="let post of allPosts">
+        <dl-post-card [post]="post"></dl-post-card>
+      </div>
     </div>
-</div>
+  </div>
 
-<!-- fetching posts -->
-<!--<div class="trending-list-wrapper">-->
-<!--    <div class="trending-list-content">-->
-<!--        <ul>-->
-<!--            <li>Cool cat pictures</li>-->
-<!--            <li>Cool cat pictures</li>-->
-<!--            <li>Cool cat pictures</li>-->
-<!--            <li>Cool cat pictures</li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</div>-->
+  <div *ngIf="allPosts.length == 0">
+    <div class="no-posts">
+      <h1>No posts yet... 😿</h1>
+    </div>
+  </div>
 </div>

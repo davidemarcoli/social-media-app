@@ -17,8 +17,4 @@ export class PostListComponent {
       this.allPosts = value || [];
     })
   }
-
-  ngOnInit(): void {
-  }
-
 }
