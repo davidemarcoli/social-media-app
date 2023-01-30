@@ -14,7 +14,7 @@ import {DateUtil} from "@utils/date.util";
 })
 export class ViewPostComponent implements OnInit {
 
-  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], []), new Date(), new Date(), "", []);
+  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], [], [], []), new Date(), new Date(), "", []);
 
   constructor(private route: ActivatedRoute, private router: Router, private postService: PostService, private sanitizer: DomSanitizer, private authService: AuthService) {
     this.route.queryParams.subscribe(params => {

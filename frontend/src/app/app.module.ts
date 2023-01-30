@@ -28,6 +28,8 @@ import {ColorPickerModule} from "ngx-color-picker";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {TruncatePipe} from "~/app/helper/truncate.pipe";
 import {UserProfileComponent} from '@pages/user/user-profile/user-profile.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { PostCardComponent } from './components/post-card/post-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -39,7 +41,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ListPostsComponent,
     ViewPostComponent,
     TruncatePipe,
-    UserProfileComponent
+    UserProfileComponent,
+    PostListComponent,
+    PostCardComponent
   ],
   imports: [
     BrowserModule,

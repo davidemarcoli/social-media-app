@@ -23,11 +23,8 @@ export const userSchema = yup.object({
 })
 export class UserProfileComponent implements OnInit {
 
-  user: User = new User("", "", "", "", "", [], [], []);
+  user: User | undefined;
   posts: Post[] = [];
-
-  readonly outlinedHeart = OutlinedHeart;
-  readonly solidHeart = SolidHeart;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private alertService: AlertService, private postService: PostService, private authService: AuthService) {
   }
@@ -56,29 +53,22 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  getHeartIcon(post: Post) {
-    return this.hasCurrentUserLikedPost(post) ? this.solidHeart : this.outlinedHeart;
-  }
-
-  onLikeClick(post: Post) {
-    lastValueFrom(this.postService.toggleLike(post)).then(updatedPost => {
-
-      // replace post in posts array
-      const index = this.posts.findIndex(p => p.id === updatedPost.id);
-      this.posts[index] = updatedPost;
-
-      this.alertService.success('Post liked');
+  onFollowClick() {
+    lastValueFrom(this.userService.toggleFollow(this.user!)).then(user => {
+      this.user = user;
+      this.alertService.success('Followed user');
     }).catch(error => {
       console.error(error);
       this.alertService.error(error.error.message);
     });
   }
 
-  hasCurrentUserLikedPost(post: Post) {
-    if (post.likes)
-      return post.likes.some(like => like.username === this.authService.getUsername());
+  isOnOwnProfile() {
+    return this.user?.username === this.authService.getUsername();
+  }
 
-    return false;
+  isFollowingUser() {
+    return this.user?.followers.some(follower => follower.username === this.authService.getUsername());
   }
 
   getRelativeDate(date: Date) {
@@ -89,8 +79,8 @@ export class UserProfileComponent implements OnInit {
     let newProfilePictureURL = prompt("Please enter the new profile picture URL:", oldProfilePictureURL);
     if (newProfilePictureURL) {
       userSchema.validate({url: newProfilePictureURL}).then(() => {
-        this.user.profilePictureURL = newProfilePictureURL!;
-        const user$ = this.userService.updateProfilePicture(this.user);
+        this.user!.profilePictureURL = newProfilePictureURL!;
+        const user$ = this.userService.updateProfilePicture(this.user!);
         lastValueFrom(user$).then(user => {
           this.user = user;
           this.alertService.success('Profile picture updated successfully');

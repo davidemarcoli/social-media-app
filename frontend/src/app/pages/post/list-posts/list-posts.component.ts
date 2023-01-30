@@ -5,6 +5,10 @@ import {Router} from "@angular/router";
 import * as moment from "moment";
 // @ts-ignore
 import FuzzySearch from 'fuzzy-search';
+import {AuthService} from "@services/auth/auth.service";
+import {lastValueFrom} from "rxjs";
+import {UserService} from "@services/user/user.service";
+import {User} from "@models/user";
 
 @Component({
   selector: 'app-list-posts',
@@ -14,9 +18,13 @@ import FuzzySearch from 'fuzzy-search';
 export class ListPostsComponent implements OnInit {
 
   allPosts: Post[] = [];
+  user: User | undefined;
   searchedPosts: { post: Post, importance: number }[] = [];
 
-  constructor(private postService: PostService, private router: Router) {
+  constructor(private postService: PostService, private router: Router, private authService: AuthService, private userService: UserService) {
+    lastValueFrom(this.userService.getUserByUsername(authService.getUsername())).then(user => {
+      this.user = user;
+    });
     this.postService.getPosts().toPromise().then(value => {
       this.allPosts = value || [];
       this.allPosts = this.allPosts.sort((a, b) => {

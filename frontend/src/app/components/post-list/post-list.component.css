@@ -1,0 +1,23 @@
+.content-wrapper {
+    /*background-color: lightgreen;*/
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+.feed-wrapper {
+    /*background-color: lightcoral;*/
+}
+
+.trending-list-wrapper {
+    /*background-color: lightseagreen;*/
+}
+
+.no-posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

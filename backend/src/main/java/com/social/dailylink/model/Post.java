@@ -30,6 +30,7 @@ public class Post extends AbstractEntity {
 
     @CreatedBy
     @ManyToOne
+    @JsonIgnoreProperties(value = "posts", allowSetters = true)
     @JoinColumn(name = "author_id", updatable = false, nullable = false)
     private User author;
 
