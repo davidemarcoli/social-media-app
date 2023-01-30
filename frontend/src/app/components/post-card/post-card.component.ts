@@ -30,6 +30,10 @@ export class PostCardComponent {
 
   ngOnInit(): void {}
 
+  getSanitizedString(str: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(str)
+  }
+
   getImage(post: Post) {
     let objectURL = 'data:image/png;base64,' + post.media;
     return this.sanitizer.bypassSecurityTrustUrl(objectURL);

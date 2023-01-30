@@ -33,6 +33,12 @@
   justify-content: center;
 }
 
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .content {
   /*background-color: lightyellow;*/
 }
