@@ -30,7 +30,7 @@ public class Post extends AbstractEntity {
 
     @CreatedBy
     @ManyToOne
-    @JsonIgnoreProperties(value = "posts", allowSetters = true)
+    @JsonIgnoreProperties(value = {"posts", "likedPosts"}, allowSetters = true)
     @JoinColumn(name = "author_id", updatable = false, nullable = false)
     private User author;
 
@@ -46,7 +46,7 @@ public class Post extends AbstractEntity {
     private byte[] media;
 
     @ManyToMany
-    @JsonIgnoreProperties(value = "likedPosts", allowSetters = true)
+    @JsonIgnoreProperties(value = {"posts", "likedPosts"}, allowSetters = true)
     @JoinTable(
             name = "post_likes",
             schema = GlobalStrings.SCHEMA_NAME,
