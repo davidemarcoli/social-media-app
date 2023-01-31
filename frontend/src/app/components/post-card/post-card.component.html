@@ -8,13 +8,13 @@
         </div>
     </div>
     <div class="content">
-        <p>{{post.content}}</p>
+        <p [innerHTML]="getSanitizedString(post.content)"></p>
     </div>
-    <div class="media">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDs26yq9fb7ovRn5L3mbHg2GEn-6FK1ZUVLA&usqp=CAU" alt="Attached media">
+    <div class="media" *ngIf="post.media">
+        <img [src]="getImage(post)" alt="Attached media">
     </div>
     <div class="post-footer">
       <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"
-               (click)="onLikeClick(post)"></fa-icon> {{post.likes.length || 0}}
+               (click)="onLikeClick(post)"></fa-icon> {{post.likes.length || 0}} <!-- Throws an exception? -->
     </div>
 </div>

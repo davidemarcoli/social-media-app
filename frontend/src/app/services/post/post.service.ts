@@ -20,7 +20,7 @@ export class PostService {
     return this.http.get<Post>(environment.apiUrl + 'posts/' + id);
   }
 
-  public createPost(post: Post): Observable<Post> {
+  public createPost(post: any): Observable<Post> {
     return this.http.post<Post>(environment.apiUrl + 'posts/', post);
   }
 

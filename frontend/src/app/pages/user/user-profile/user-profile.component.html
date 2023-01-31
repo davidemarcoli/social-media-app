@@ -23,3 +23,9 @@
 <div class="profile-feed">
   <dl-post-card *ngFor="let post of posts" [post]="post"></dl-post-card>
 </div>
+
+<div *ngIf="posts.length == 0">
+  <div class="no-posts">
+    <h1>No posts yet... 😿</h1>
+  </div>
+</div>

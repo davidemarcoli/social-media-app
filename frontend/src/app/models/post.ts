@@ -6,11 +6,11 @@ export class Post {
   author: User;
   createdAt: Date;
   updatedAt: Date;
-  media: string;
+  media: number[];
   likes: User[];
 
 
-  constructor(id: number, content: string, author: User, createdAt: Date, updatedAt: Date, media: string, likes: User[]) {
+  constructor(id: number, content: string, author: User, createdAt: Date, updatedAt: Date, media: number[], likes: User[]) {
     this.id = id;
     this.content = content;
     this.author = author;

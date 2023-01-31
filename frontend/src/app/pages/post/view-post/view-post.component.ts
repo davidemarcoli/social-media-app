@@ -14,7 +14,7 @@ import {DateUtil} from "@utils/date.util";
 })
 export class ViewPostComponent implements OnInit {
 
-  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], [], [], []), new Date(), new Date(), "", []);
+  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], [], [], []), new Date(), new Date(), [], []);
 
   constructor(private route: ActivatedRoute, private router: Router, private postService: PostService, private sanitizer: DomSanitizer, private authService: AuthService) {
     this.route.queryParams.subscribe(params => {
@@ -26,14 +26,6 @@ export class ViewPostComponent implements OnInit {
 
   ngOnInit(): void {
 
-  }
-
-  editPost() {
-    if (!this.canModify()) {
-      alert("You do not have permission to edit this post");
-      return;
-    }
-    this.router.navigate(['/post/edit'], {queryParams: {id: this.post.id}});
   }
 
   deletePost() {

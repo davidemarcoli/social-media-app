@@ -32,7 +32,9 @@ export class ListPostsComponent implements OnInit {
       });
       console.log("All Posts", this.allPosts)
       this.searchPosts()
-    })
+    }).catch(error => {
+      console.error(error)
+    });
   }
 
   navigateToPost(id: number) {

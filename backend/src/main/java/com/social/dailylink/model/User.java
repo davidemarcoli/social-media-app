@@ -55,7 +55,7 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "author")
     Set<Post> posts;
 
-    @JsonIgnoreProperties(value = "likedPosts", allowSetters = true)
+    @JsonIgnoreProperties(value = "likes", allowSetters = true)
     @ManyToMany(mappedBy = "likes")
     Set<Post> likedPosts;
 
