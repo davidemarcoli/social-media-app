@@ -1,11 +1,11 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form" class="center">
-  <h1>Create New Post</h1>
+  <h1 class="mb-4">Create New Post</h1>
 
   <div class="container">
     <ckeditor
       [editor]="Editor"
       formControlName="content"
-      style="min-height: 50vh; min-width: 80vw"
+      style="min-height: 50vh; min-width: 80vw; color: black"
       [config]="{
         toolbar: [
           'heading',
@@ -30,8 +30,7 @@
 
   <!--  submit-->
   <button
-    class="btn btn-primary"
-    color="primary"
+    class="btn btn-primary mt-lg-4"
     type="submit"
     [disabled]="form.invalid"
   >

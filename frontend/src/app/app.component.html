@@ -1,15 +1,19 @@
 <div class="h-100 flex flex-col justify-between bg-slate-800">
-  <div>
+  <div class="mt-lg-4">
     <span routerLink="/" class="cursor-pointer">Daily Link</span>
+  </div>
+  <div>
     <router-outlet></router-outlet>
   </div>
   <div
     *ngIf="authService.isLoggedIn()"
     class="mt-auto mb-4 flex flex-row justify-evenly"
   >
-    <button routerLink="/home">home-icon</button>
+    <button routerLink="/home">
+      <fa-icon size="2x" [icon]="faHome"></fa-icon>
+    </button>
     <button routerLink="/post/create">
-      <span>add-icon</span>
+      <fa-icon size="2x" [icon]="faAdd"></fa-icon>
     </button>
     <button routerLink="/@{{ authService.getUsername() }}">
       <img

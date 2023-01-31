@@ -4,7 +4,7 @@
             <img class="author-avatar" width="100" src="{{post.author.profilePictureURL}}" alt="Posts author profile picture">
         </div>
         <div class="author-information">
-          <h3 class="author-name"><a style="color: black; text-decoration: none" routerLink="/@{{post.author.username}}">@{{post.author.username}}</a> * {{getRelativeDate(post.createdAt!)}} </h3>
+          <h3 class="author-name"><a style="color: white; text-decoration: none" routerLink="/@{{post.author.username}}">@{{post.author.username}}</a> - {{getRelativeDate(post.createdAt!)}} </h3>
         </div>
     </div>
     <div class="content">

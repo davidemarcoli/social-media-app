@@ -3,6 +3,8 @@ import { AuthService } from '@services/auth/auth.service'
 import { UserService } from './services/user/user.service'
 import { lastValueFrom } from 'rxjs'
 import { User } from './models/user'
+import {faHomeAlt} from "@fortawesome/free-solid-svg-icons/faHomeAlt";
+import {faAdd} from "@fortawesome/free-solid-svg-icons/faAdd";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,8 @@ import { User } from './models/user'
 })
 export class AppComponent implements OnInit {
   user: User | undefined
+  faHome = faHomeAlt
+  faAdd = faAdd
 
   constructor(
     public authService: AuthService,
