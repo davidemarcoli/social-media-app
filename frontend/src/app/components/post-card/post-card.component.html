@@ -7,13 +7,13 @@
           <h3 class="author-name"><a style="color: white; text-decoration: none" routerLink="/@{{post.author.username}}">@{{post.author.username}}</a> - {{getRelativeDate(post.createdAt!)}} </h3>
         </div>
     </div>
-    <div class="content">
+    <div class="content mt-4">
         <p [innerHTML]="getSanitizedString(post.content)"></p>
     </div>
-    <div class="media" *ngIf="post.media">
+    <div class="media mt-4" *ngIf="post.media">
         <img [src]="getImage(post)" alt="Attached media">
     </div>
-    <div class="post-footer">
+    <div class="post-footer mt-2">
       <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"
                (click)="onLikeClick(post)"></fa-icon> {{post.likes.length || 0}} <!-- Throws an exception? -->
     </div>

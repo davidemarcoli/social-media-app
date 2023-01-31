@@ -1,32 +1,39 @@
-<div class="centered" style="text-align: center">
-  <div (click)="backToLogin()" style="z-index: 1; cursor: pointer">
-    <span
-      aria-hidden="false"
-      aria-label="Back to Login"
-      style="position: absolute; top: 10px; left: 10px; font-size: 2em"
-      >arrow_back</span
-    >
+<div
+  class="h-100 align-items-center mx-auto flex w-full max-w-xs flex-col justify-center"
+>
+  <div>
+    <h1 class="mb-5 text-5xl font-bold">DailyLink</h1>
   </div>
+<!--  <div (click)="backToLogin()" style="z-index: 1; cursor: pointer">-->
+<!--    <span-->
+<!--      aria-hidden="false"-->
+<!--      aria-label="Back to Login"-->
+<!--      style="position: absolute; top: 10px; left: 10px; font-size: 2em"-->
+<!--      >arrow_back</span-->
+<!--    >-->
+<!--  </div>-->
   <form [formGroup]="form">
     <br />
     <div>
       <label>Email</label>
-      <input name="email" formControlName="email" type="email" matInput />
+      <input name="email" formControlName="email" type="email"           class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+      />
     </div>
     <br />
     <div>
       <label>Username</label>
-      <input name="username" formControlName="username" matInput />
-      <span>Minimum <strong>3</strong> characters</span>
+      <input name="username" formControlName="username"           class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+      />
+      <span>Minimum <strong>3</strong> characters</span><br>
       <span>Maximum <strong>20</strong> characters</span>
     </div>
     <br />
-    <div appearance="fill">
+    <div>
       <label>Password</label>
       <input
         name="password"
         formControlName="password"
-        matInput
+        class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
         [type]="passwordVisible ? 'text' : 'password'"
       />
       <button
@@ -35,11 +42,17 @@
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="!passwordVisible"
       >
-        <span>{{ passwordVisible ? 'visibility' : 'visibility_off' }}</span>
       </button>
       <span>Minimum <strong>8</strong> characters</span>
     </div>
     <br />
-    <button type="submit" (click)="signup()">Signup</button>
+    <div class="w-100 mt-5 mb-2">
+      <button class="btn" type="submit" (click)="signup()">Signup</button>
+    </div>
+    <div class="w-100">
+      <button class="btn btn-secondary" (click)="backToLogin()">
+        Back to Login
+      </button>
+    </div>
   </form>
 </div>
