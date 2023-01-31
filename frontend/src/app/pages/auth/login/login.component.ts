@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 // import { AlertService } from '@services/alert/alert.service';
 import { AuthService } from '@services/auth/auth.service'
-import { z, ZodError } from 'zod'
 import * as Errors from '../../../../errors'
 
 @Component({

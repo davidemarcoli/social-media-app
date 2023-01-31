@@ -22,23 +22,13 @@
           }})
         </td>
       </tr>
-      <tr>
-        <td>Categories</td>
-        <td id="categories">
-          {{ getCategoryNames() }}
-        </td>
-      </tr>
     </table>
 
-    <button color="primary" (click)="editPost()" *ngIf="canModify()">
-      Edit
-    </button>
-    <button color="warn" (click)="deletePost()" *ngIf="canModify()">
+    <button (click)="deletePost()" *ngIf="canModify()" color="warn">
       Delete
     </button>
   </div>
   <div id="content">
-    <h1 id="title">{{ post.title }}</h1>
     <div [innerHTML]="getPostContent()"></div>
   </div>
 </div>

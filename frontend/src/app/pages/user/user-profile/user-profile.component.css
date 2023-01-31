@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   width: 100%;
   max-width: 600px;
   padding: 0 20px;
+  margin: 0 auto 20px;
 }
 
 .username {
@@ -28,4 +28,54 @@
   height: 200px;
   border-radius: 50%;
   margin-bottom: 20px;
+}
+
+.profile-feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+/*.profile-feed .feed-item {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  width: 100%;*/
+/*  max-width: 600px;*/
+/*  padding: 0 20px;*/
+/*  margin: 0 auto 20px;*/
+/*}*/
+
+.no-posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img__description {
+  position: relative;
+  text-align: center;
+  background: dimgrey;
+  color: #fff;
+  visibility: hidden;
+  border-radius: 5px;
+  padding: 5px;
+  opacity: 0;
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.image-container:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+}
+
+.liked {
+  filter: invert(26%) sepia(85%) saturate(7365%) hue-rotate(358deg) brightness(95%) contrast(124%);
 }

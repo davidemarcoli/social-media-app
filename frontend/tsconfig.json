@@ -37,7 +37,10 @@
       ],
       "@pages/*": [
         "src/app/pages/*"
-      ]
+      ],
+      "@utils/*": [
+        "src/app/utils/*"
+      ],
     },
     "useDefineForClassFields": false
   },

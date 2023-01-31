@@ -53,9 +53,9 @@ public class CustomWebSecurityConfig {
     /**
      * Sets up a chain of antmatchers specifying what permissions and roles have access to which resources.
      *
-     * @param http          Injected HttpSecurity object
-     * @return              Chain of Security filters
-     * @throws Exception    Currently throws general exception
+     * @param http Injected HttpSecurity object
+     * @return Chain of Security filters
+     * @throws Exception Currently throws general exception
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

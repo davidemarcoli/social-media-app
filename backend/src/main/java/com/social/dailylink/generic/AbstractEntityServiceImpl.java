@@ -27,6 +27,28 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
     }
 
     /**
+     * This method return a list of all the fields which are null
+     *
+     * @param source the object to be checked
+     * @return list of strings of the fields that are null
+     */
+    public static String[] getNullPropertyNames(Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<>();
+        for (PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) {
+                emptyNames.add(pd.getName());
+            }
+        }
+        emptyNames.add("id");
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
+    }
+
+    /**
      * This method gets the class from the class that extends this class
      */
     private void initClassName() {
@@ -112,7 +134,7 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
      * @param id     the entry to be updated
      * @param entity the object with the new data
      * @return the updated object
-     * @throws EntityNotFoundException              will be thrown if the entry could not be found
+     * @throws EntityNotFoundException will be thrown if the entry could not be found
      */
     @Override
     @Transactional
@@ -132,28 +154,6 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
             logger.debug(className + " with ID '" + id + "' not found");
             throw new EntityNotFoundException(className + " with ID '" + id + "' not found");
         }
-    }
-
-    /**
-     * This method return a list of all the fields which are null
-     *
-     * @param source the object to be checked
-     * @return list of strings of the fields that are null
-     */
-    public static String[] getNullPropertyNames(Object source) {
-        final BeanWrapper src = new BeanWrapperImpl(source);
-        PropertyDescriptor[] pds = src.getPropertyDescriptors();
-
-        Set<String> emptyNames = new HashSet<>();
-        for (PropertyDescriptor pd : pds) {
-            Object srcValue = src.getPropertyValue(pd.getName());
-            if (srcValue == null) {
-                emptyNames.add(pd.getName());
-            }
-        }
-        emptyNames.add("id");
-        String[] result = new String[emptyNames.size()];
-        return emptyNames.toArray(result);
     }
 
     /**
@@ -202,13 +202,13 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
     @Override
     @Transactional
     public T createIfNotExist(T entity) {
-        if(entity == null) return null;
+        if (entity == null) return null;
 
         T newEntity = null;
-        if(entity.getId() != null) newEntity = findById(entity.getId().toString());
+        if (entity.getId() != null) newEntity = findById(entity.getId().toString());
         else newEntity = findByValue(entity);
 
-        if(newEntity == null) newEntity = create(entity);
+        if (newEntity == null) newEntity = create(entity);
 
         return newEntity;
     }
@@ -219,5 +219,6 @@ public abstract class AbstractEntityServiceImpl<T extends AbstractEntity> implem
         return null;
     }
 
-    public void preDelete(String id){}
+    public void preDelete(String id) {
+    }
 }

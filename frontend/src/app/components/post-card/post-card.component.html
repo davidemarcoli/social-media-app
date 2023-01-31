@@ -1,0 +1,20 @@
+<div class="content-wrapper">
+    <div class="post-header">
+        <div class="avatar">
+            <img class="author-avatar" width="100" src="{{post.author.profilePictureURL}}" alt="Posts author profile picture">
+        </div>
+        <div class="author-information">
+          <h3 class="author-name"><a style="color: black; text-decoration: none" routerLink="/@{{post.author.username}}">@{{post.author.username}}</a> * {{getRelativeDate(post.createdAt!)}} </h3>
+        </div>
+    </div>
+    <div class="content">
+        <p [innerHTML]="getSanitizedString(post.content)"></p>
+    </div>
+    <div class="media" *ngIf="post.media">
+        <img [src]="getImage(post)" alt="Attached media">
+    </div>
+    <div class="post-footer">
+      <fa-icon [icon]="getHeartIcon(post)" [ngClass]="{'liked': hasCurrentUserLikedPost(post)}"
+               (click)="onLikeClick(post)"></fa-icon> {{post.likes.length || 0}} <!-- Throws an exception? -->
+    </div>
+</div>

@@ -22,6 +22,8 @@
     "@ckeditor/ckeditor5-angular": "^4.0.0",
     "@fortawesome/angular-fontawesome": "^0.12.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@leo1305/ckeditor5-build-custom": "^1.0.0",
     "bootstrap": "^5.2.3",
@@ -31,6 +33,7 @@
     "ngx-color-picker": "^13.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "yup": "^0.32.11",
     "zod": "^3.20.2",
     "zone.js": "~0.11.4"
   },

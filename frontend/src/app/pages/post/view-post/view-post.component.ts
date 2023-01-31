@@ -4,8 +4,8 @@ import {PostService} from "@services/post/post.service";
 import {Post} from "@models/post";
 import {DomSanitizer} from "@angular/platform-browser";
 import {User} from "@models/user";
-import * as moment from "moment/moment";
 import {AuthService} from "@services/auth/auth.service";
+import {DateUtil} from "@utils/date.util";
 
 @Component({
   selector: 'app-view-post',
@@ -14,25 +14,18 @@ import {AuthService} from "@services/auth/auth.service";
 })
 export class ViewPostComponent implements OnInit {
 
-  post: Post = new Post(0, "", "", [], new User("", "", "", "", "", []), new Date(), new Date());
+  post: Post = new Post(0, "", new User("", "", "", "", "", [], [], [], [], []), new Date(), new Date(), [], []);
 
-  constructor(private route: ActivatedRoute, private router: Router, private postService: PostService, private sanatizer: DomSanitizer, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private router: Router, private postService: PostService, private sanitizer: DomSanitizer, private authService: AuthService) {
     this.route.queryParams.subscribe(params => {
-    this.postService.getPostById(params['id']).toPromise().then(value => {
-      this.post = value!;
+      this.postService.getPostById(params['id']).toPromise().then(value => {
+        this.post = value!;
+      });
     });
-  });}
+  }
 
   ngOnInit(): void {
 
-  }
-
-  editPost() {
-    if (!this.canModify()) {
-      alert("You do not have permission to edit this post");
-      return;
-    }
-    this.router.navigate(['/post/edit'], {queryParams: {id: this.post.id}});
   }
 
   deletePost() {
@@ -49,21 +42,15 @@ export class ViewPostComponent implements OnInit {
   }
 
   getRelativeDate(date: Date) {
-    return moment(date).fromNow();
+    return DateUtil.getRelativeDate(date);
   }
 
   getFormattedDate(date: Date) {
-    return moment(date).format("MMM Do YYYY");
-  }
-
-  getCategoryNames() {
-    let names = "";
-    this.post.categories.forEach(value => names += value.name + ", ");
-    return names.substring(0, names.length - 2);
+    return DateUtil.getFormattedDate(date);
   }
 
   getPostContent() {
-    return this.sanatizer.bypassSecurityTrustHtml(this.post.content);
+    return this.sanitizer.bypassSecurityTrustHtml(this.post.content);
   }
 
   canModify() {

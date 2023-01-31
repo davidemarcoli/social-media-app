@@ -1,3 +1,37 @@
+.wrapper {
+  flex: 1;
+  overflow-x: hidden;
+}
+
+.content {
+  /*background-color: lime;*/
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.following-panel {
+  /*background-color: lightskyblue;*/
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 20%;
+}
+
+.feed-container {
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 50%;
+}
+
+.trending-panel {
+  /*background-color: yellow;*/
+  flex-direction: column;
+  flex-grow: 3;
+  flex-shrink: 0;
+  width: 20%;
+}
+
 .search {
   margin-top: 20px;
   flex: 1;
@@ -7,7 +41,7 @@
   text-align: center;
 }
 
-.post-container {
+.feed-container {
   margin: 2vh 5vw;
   display: flex;
   flex-direction: row;

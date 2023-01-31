@@ -1,25 +1,36 @@
-<div class="search">
-  <div appearance="fill" style="width: 50vw">
-    <label>Search</label>
-    <input (input)="searchPosts($event)" />
-  </div>
-</div>
+<div class="wrapper">
+  <!-- TODO: Uncomment and replace mat with native tags -->
+  <!-- <div class="search">
+    <mat-form-field appearance="fill" style="width: 50vw">
+      <mat-label>Search</mat-label>
+      <input (input)="searchPosts($event)" matInput>
+    </mat-form-field>
+  </div> -->
 
-<div class="post-container">
-  <!-- Card -->
-  <div
-    class="items"
-    (click)="navigateToPost(record.post.id)"
-    *ngFor="let record of searchedPosts.slice()"
-  >
-    <h2>{{ record.post.title | truncate : 20 }}</h2>
-    <div [innerHTML]="record.post.content | truncate : 100"></div>
-    <p>{{ getRelativeDate(record.post.createdAt) }}</p>
-    <div class="category-container">
-      <app-category-pill
-        *ngFor="let category of record.post.categories"
-        [category]="category"
-      ></app-category-pill>
+  <div class="content">
+    <div class="following-panel">
+      <ul *ngIf="user">
+        <li *ngFor="let followedUser of user.following || []">
+          <a
+            style="color: black; text-decoration: none"
+            routerLink="/@{{ followedUser.username }}"
+          >
+            @{{ followedUser.username }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="feed-container">
+      <dl-post-list></dl-post-list>
+    </div>
+
+    <div class="trending-panel">
+      <ul>
+        <li>#CatsEatingHumanFlesh</li>
+        <li>#CatsEatingHumanFlesh</li>
+        <li>#CatsEatingHumanFlesh</li>
+      </ul>
     </div>
   </div>
 </div>

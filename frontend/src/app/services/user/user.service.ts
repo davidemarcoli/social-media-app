@@ -15,4 +15,12 @@ export class UserService {
       environment.apiUrl + 'users/username/' + username,
     )
   }
+
+  public updateProfilePicture(user: User): Observable<User> {
+    return this.http.put<User>(environment.apiUrl + 'users/' + user.id, user)
+  }
+
+  public toggleFollow(user: User): Observable<User> {
+    return this.http.put<User>(environment.apiUrl + 'users/follow', user)
+  }
 }

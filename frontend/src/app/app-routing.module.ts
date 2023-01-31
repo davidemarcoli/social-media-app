@@ -3,11 +3,8 @@ import { RouterModule, Routes, UrlSegment } from '@angular/router'
 import { LoginComponent } from '@pages/auth/login/login.component'
 import { AuthGuardService } from '@services/auth-guard/auth-guard.service'
 import { SignupComponent } from '@pages/auth/signup/signup.component'
-// import {CreateCategoryComponent} from "@pages/category/create-category/create-category.component";
 import { CreatePostComponent } from '@pages/post/create-post/create-post.component'
 import { ListPostsComponent } from '@pages/post/list-posts/list-posts.component'
-// import {UpdateCategoryComponent} from "@pages/category/update-category/update-category.component";
-// import {DeleteCategoryComponent} from "@pages/category/delete-category/delete-category.component";
 import { ViewPostComponent } from '@pages/post/view-post/view-post.component'
 import { EditPostComponent } from '@pages/post/edit-post/edit-post.component'
 import { AdminAuthGuardService } from '@services/admin-auth-guard/admin-auth-guard.service'

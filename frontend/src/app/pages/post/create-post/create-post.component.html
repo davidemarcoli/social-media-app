@@ -1,28 +1,40 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="center">
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="center">
   <h1>Create New Post</h1>
 
-  <div>
-    <label>Title</label>
-    <input formControlName="title" />
+  <div class="container">
+    <ckeditor
+      [editor]="Editor"
+      formControlName="content"
+      style="min-height: 50vh; min-width: 80vw"
+      [config]="{
+        toolbar: [
+          'heading',
+          'bold',
+          'italic',
+          'underline',
+          'NumberedList',
+          'BulletedList',
+          'SpecialChar'
+        ]
+      }"
+    ></ckeditor>
+    <br />
+    <input
+      class="form-control"
+      type="file"
+      id="formFile"
+      formControlName="media"
+      (change)="onFileSelected($event)"
+    />
   </div>
-
-  <div>
-    <label>Categories</label>
-    <select formControlName="categories" multiple>
-      <option *ngFor="let category of categoryList" value="{{ category.id }}">
-        {{ category.name }}
-      </option>
-    </select>
-  </div>
-
-  <ckeditor
-    [editor]="Editor"
-    formControlName="content"
-    style="min-height: 50vh; min-width: 80vw"
-  ></ckeditor>
 
   <!--  submit-->
-  <button color="primary" type="submit" [disabled]="form.invalid">
+  <button
+    class="btn btn-primary"
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid"
+  >
     Submit
   </button>
 </form>

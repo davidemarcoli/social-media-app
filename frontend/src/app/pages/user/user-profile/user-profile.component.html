@@ -1,17 +1,31 @@
-<div class="profile-container" *ngIf="user; else loading">
-
+<div *ngIf="user; else loading" class="profile-container">
   <div class="image-container">
-    <img id="profile-picture" src="{{user.profilePictureURL}}" alt="profile image" />
+    <img alt="profile image" id="profile-picture" src="{{user.profilePictureURL}}"
+         (click)="changeProfilePicture(user.profilePictureURL)"/>
+    <p class="img__description">Edit</p>
   </div>
-
-  <h1>
-    <span class="username">@{{user.username}}</span>
-  </h1>
-
-  <!--  User posts here... -->
+  <h1 class="username">@{{user.username}}</h1>
+  <div *ngIf="!isOnOwnProfile()">
+    <button class="follow-button" (click)="onFollowClick()"
+            [ngClass]="{btn: true, 'btn-primary': !isFollowingUser(), 'btn-warning': isFollowingUser()}">
+      <span *ngIf="!isFollowingUser()">Follow</span>
+      <span *ngIf="isFollowingUser()">Unfollow</span>
+    </button>
+  </div>
 </div>
+<br>
 <ng-template #loading>
   <div class="loading">
     <h1>Loading...</h1>
   </div>
 </ng-template>
+
+<div class="profile-feed">
+  <dl-post-card *ngFor="let post of posts" [post]="post"></dl-post-card>
+</div>
+
+<div *ngIf="posts.length == 0">
+  <div class="no-posts">
+    <h1>No posts yet... 😿</h1>
+  </div>
+</div>

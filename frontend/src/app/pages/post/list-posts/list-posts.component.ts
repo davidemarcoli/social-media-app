@@ -5,6 +5,10 @@ import {Router} from "@angular/router";
 import * as moment from "moment";
 // @ts-ignore
 import FuzzySearch from 'fuzzy-search';
+import {AuthService} from "@services/auth/auth.service";
+import {lastValueFrom} from "rxjs";
+import {UserService} from "@services/user/user.service";
+import {User} from "@models/user";
 
 @Component({
   selector: 'app-list-posts',
@@ -14,9 +18,13 @@ import FuzzySearch from 'fuzzy-search';
 export class ListPostsComponent implements OnInit {
 
   allPosts: Post[] = [];
+  user: User | undefined;
   searchedPosts: { post: Post, importance: number }[] = [];
 
-  constructor(private postService: PostService, private router: Router) {
+  constructor(private postService: PostService, private router: Router, private authService: AuthService, private userService: UserService) {
+    lastValueFrom(this.userService.getUserByUsername(authService.getUsername())).then(user => {
+      this.user = user;
+    });
     this.postService.getPosts().toPromise().then(value => {
       this.allPosts = value || [];
       this.allPosts = this.allPosts.sort((a, b) => {
@@ -24,7 +32,9 @@ export class ListPostsComponent implements OnInit {
       });
       console.log("All Posts", this.allPosts)
       this.searchPosts()
-    })
+    }).catch(error => {
+      console.error(error)
+    });
   }
 
   navigateToPost(id: number) {
@@ -106,22 +116,10 @@ export class ListPostsComponent implements OnInit {
       newSearchedPosts.push(...this.handleSpecialExpression(searchTerm))
       console.log("Searched Posts after Special Expression", newSearchedPosts)
 
-      const titleSearchResult = this.filterPostsByTitle(searchTerm);
-      const categorySearchResult = this.filterPostsByCategory(searchTerm);
       const contentSearchResult = this.filterPostsByContent(searchTerm);
 
-      console.log("Title Search Result", titleSearchResult)
-      console.log("Category Search Result", categorySearchResult)
       console.log("Content Search Result", contentSearchResult)
 
-      titleSearchResult.forEach(value => {
-          if (!this.isAlreadySearched(value.post, newSearchedPosts)) newSearchedPosts.push(value)
-        }
-      )
-      categorySearchResult.forEach(value => {
-          if (!this.isAlreadySearched(value.post, newSearchedPosts)) newSearchedPosts.push(value)
-        }
-      )
       contentSearchResult.forEach(value => {
           if (!this.isAlreadySearched(value.post, newSearchedPosts)) newSearchedPosts.push(value)
         }
@@ -138,11 +136,7 @@ export class ListPostsComponent implements OnInit {
   }
 
   handleSpecialExpression(searchTerm: string) {
-    if (searchTerm.startsWith("title:".toUpperCase())) {
-      return this.filterPostsByTitle(searchTerm.replace("title:".toUpperCase(), ""))
-    } else if (searchTerm.startsWith("category:".toUpperCase())) {
-      return this.filterPostsByCategory(searchTerm.replace("category:".toUpperCase(), ""))
-    } else if (searchTerm.startsWith("content:".toUpperCase())) {
+   if (searchTerm.startsWith("content:".toUpperCase())) {
       return this.filterPostsByContent(searchTerm.replace("content:", ""))
     } else if (searchTerm.startsWith("author:".toUpperCase()) || searchTerm.startsWith("@")) {
       return this.filterPostsByAuthor(searchTerm.replace("author:".toUpperCase(), "").replace("@", ""))
@@ -153,28 +147,6 @@ export class ListPostsComponent implements OnInit {
 
   isAlreadySearched(post: Post, searchedPosts: { post: Post, importance: number }[]) {
     return searchedPosts.filter(searchedPost => searchedPost.post.id == post.id).length > 0
-  }
-
-  filterPostsByTitle(title: string) {
-    title = title.toUpperCase();
-
-    return this.allPosts.filter(post => {
-      return post.title.toUpperCase().includes(title)
-    }).map(value => {
-      return {post: value, importance: 3}
-    });
-  }
-
-  filterPostsByCategory(categoryName: string) {
-    categoryName = categoryName.toUpperCase();
-
-    return this.allPosts.filter(post => {
-      return post.categories.filter(category => {
-        return category.name.toUpperCase().includes(categoryName)
-      }).length > 0
-    }).map(value => {
-      return {post: value, importance: 3}
-    });
   }
 
   filterPostsByContent(content: string) {
