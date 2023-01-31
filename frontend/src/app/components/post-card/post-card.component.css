@@ -25,7 +25,12 @@
 
 .post-header {
   display: flex;
+  padding-bottom: 20px;
   /*background-color: magenta;*/
+}
+
+.post-footer {
+  font-size: 15pt;
 }
 
 .media {
