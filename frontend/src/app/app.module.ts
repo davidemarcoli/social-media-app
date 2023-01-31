@@ -34,6 +34,7 @@ import { EditPostComponent } from '@pages/post/edit-post/edit-post.component'
 import { TruncatePipe } from '~/app/helper/truncate.pipe'
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { CardComponent } from './components/card/card.component'
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     EditPostComponent,
     TruncatePipe,
     UserProfileComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<div class="flex justify-center">
+  <div class="max-w w-100 block rounded-lg bg-slate-700 py-8 px-12">
+    <div class="mb-2 flex flex-row justify-start">
+      <h5 class="bold">{{ title }}</h5>
+    </div>
+    <div *ngIf="subtitle" class="mb-2 flex flex-row justify-start">
+      <p>{{ subtitle }}</p>
+    </div>
+    <!-- Card Body -->
+    <div class="mb-2 flex flex-col justify-center">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
