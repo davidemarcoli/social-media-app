@@ -1,34 +1,58 @@
-<div class="centered" style="text-align: center">
-  <div (click)="backToLogin()" style="z-index: 1; cursor: pointer">
-    <mat-icon aria-hidden="false" aria-label="Back to Login"
-              style="position: absolute; top: 10px; left: 10px; font-size: 2em">arrow_back
-    </mat-icon>
+<div
+  class="h-100 align-items-center mx-auto flex w-full max-w-xs flex-col justify-center"
+>
+  <div>
+    <h1 class="mb-5 text-5xl font-bold">DailyLink</h1>
   </div>
+<!--  <div (click)="backToLogin()" style="z-index: 1; cursor: pointer">-->
+<!--    <span-->
+<!--      aria-hidden="false"-->
+<!--      aria-label="Back to Login"-->
+<!--      style="position: absolute; top: 10px; left: 10px; font-size: 2em"-->
+<!--      >arrow_back</span-->
+<!--    >-->
+<!--  </div>-->
   <form [formGroup]="form">
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput name="email" type="email">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Username</mat-label>
-      <input formControlName="username" matInput name="username">
-      <mat-hint>Minimum <strong>3</strong> characters</mat-hint>
-      <mat-hint>Maximum <strong>20</strong> characters</mat-hint>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" matInput name="password">
-      <button (click)="passwordVisible = !passwordVisible" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!passwordVisible" mat-icon-button
-              matSuffix
-              type="button">
-        <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <br />
+    <div>
+      <label>Email</label>
+      <input name="email" formControlName="email" type="email"           class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+      />
+    </div>
+    <br />
+    <div>
+      <label>Username</label>
+      <input name="username" formControlName="username"           class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+      />
+      <span>Minimum <strong>3</strong> characters</span><br>
+      <span>Maximum <strong>20</strong> characters</span>
+    </div>
+    <br />
+    <div>
+      <label>Password</label>
+      <input
+        name="password"
+        formControlName="password"
+        class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+        [type]="passwordVisible ? 'text' : 'password'"
+      />
+      <button
+        type="button"
+        (click)="passwordVisible = !passwordVisible"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="!passwordVisible"
+      >
       </button>
-      <mat-hint>Minimum <strong>8</strong> characters</mat-hint>
-    </mat-form-field>
-    <br>
-    <button (click)="signup()" mat-raised-button type="submit">Signup</button>
+      <span>Minimum <strong>8</strong> characters</span>
+    </div>
+    <br />
+    <div class="w-100 mt-5 mb-2">
+      <button class="btn" type="submit" (click)="signup()">Signup</button>
+    </div>
+    <div class="w-100">
+      <button class="btn btn-secondary" (click)="backToLogin()">
+        Back to Login
+      </button>
+    </div>
   </form>
 </div>

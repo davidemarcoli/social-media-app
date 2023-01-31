@@ -1,24 +1,32 @@
 <div *ngIf="post.id !== 0" id="container">
   <div id="details">
-
     <h2>Details</h2>
     <table class="metadata">
       <tr>
         <td>Author</td>
-        <td>{{post.author.username}}</td>
+        <td>{{ post.author.username }}</td>
       </tr>
       <tr>
         <td>Created At</td>
-        <td>{{getFormattedDate(post.createdAt)}} ({{getRelativeDate(post.createdAt)}})</td>
+        <td>
+          {{ getFormattedDate(post.createdAt) }} ({{
+            getRelativeDate(post.createdAt)
+          }})
+        </td>
       </tr>
       <tr>
         <td>Updated At</td>
-        <td>{{getFormattedDate(post.updatedAt)}} ({{getRelativeDate(post.updatedAt)}})</td>
+        <td>
+          {{ getFormattedDate(post.updatedAt) }} ({{
+            getRelativeDate(post.updatedAt)
+          }})
+        </td>
       </tr>
     </table>
 
-    <button (click)="deletePost()" *ngIf="canModify()" color="warn" mat-raised-button>Delete</button>
-
+    <button (click)="deletePost()" *ngIf="canModify()" color="warn">
+      Delete
+    </button>
   </div>
   <div id="content">
     <div [innerHTML]="getPostContent()"></div>

@@ -1,17 +1,22 @@
 <div class="wrapper">
-  <div class="search">
+  <!-- TODO: Uncomment and replace mat with native tags -->
+  <!-- <div class="search">
     <mat-form-field appearance="fill" style="width: 50vw">
       <mat-label>Search</mat-label>
       <input (input)="searchPosts($event)" matInput>
     </mat-form-field>
-  </div>
+  </div> -->
 
   <div class="content">
     <div class="following-panel">
+      <h4>Followed</h4>
       <ul *ngIf="user">
         <li *ngFor="let followedUser of user.following || []">
-          <a style="color: black; text-decoration: none" routerLink="/@{{followedUser.username}}">
-            @{{followedUser.username}}
+          <a
+            style="color: white; text-decoration: none"
+            routerLink="/@{{ followedUser.username }}"
+          >
+            @{{ followedUser.username }}
           </a>
         </li>
       </ul>
@@ -23,8 +28,10 @@
 
     <div class="trending-panel">
       <ul>
-        <li>#CatsEatingHumanFlesh</li>
-        <li>#CatsEatingHumanFlesh</li>
+<!--        <li>#CatsEatingHumanFlesh</li>-->
+<!--        <li>#CatsEatingHumanFlesh</li>-->
+        <li></li>
+        <li></li>
         <li>#CatsEatingHumanFlesh</li>
       </ul>
     </div>

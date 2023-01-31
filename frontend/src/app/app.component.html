@@ -1,15 +1,35 @@
-<mat-toolbar *ngIf="authService.isLoggedIn()">
-  <span routerLink="/" style="cursor: pointer">Daily Link</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button matTooltip="Create Post" routerLink="post/create" style="background-color: lightblue">
-    <mat-icon>add</mat-icon>
-  </button>
-  <div style="margin-left: 10px"></div>
-  <span class="example-spacer"></span>
-  <p style="margin: 0; cursor: pointer" routerLink="@{{authService.getUsername()}}">{{authService.getUsername()}}</p>
-  <button (click)="authService.logout()" mat-icon-button class="example-icon logout-icon" aria-label="button with logout icon">
-    <mat-icon>logout</mat-icon>
-  </button>
-</mat-toolbar>
-<br>
-<router-outlet></router-outlet>
+<div class="h-100 flex flex-col bg-slate-800">
+  <div class="mt-4 mb-lg-4">
+    <span routerLink="/" class="cursor-pointer">Daily Link</span>
+    <span *ngIf="authService.isLoggedIn" (click)="authService.logout()" class="cursor-pointer float-end">Logout</span>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <div
+    *ngIf="authService.isLoggedIn()"
+    class="mt-auto flex flex-row justify-evenly footer"
+  >
+    <button routerLink="/home">
+      <fa-icon size="2x" [icon]="faHome"></fa-icon>
+    </button>
+    <button routerLink="/post/create">
+      <fa-icon size="2x" [icon]="faAdd"></fa-icon>
+    </button>
+    <button routerLink="/@{{ authService.getUsername() }}">
+      <img
+        *ngIf="user"
+        class="rounded-circle h-12"
+        src="{{ user.profilePictureURL }}"
+      />
+    </button>
+    <!-- <p>{{ authService.getUsername() }}</p> -->
+    <!-- <button
+      (click)="authService.logout()"
+      class="example-icon logout-icon"
+      aria-label="button with lgout icon"
+    >
+      <span>icon logout</span>
+    </button> -->
+  </div>
+</div>

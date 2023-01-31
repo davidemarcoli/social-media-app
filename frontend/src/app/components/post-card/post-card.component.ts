@@ -7,7 +7,6 @@ import { DateUtil } from '@utils/date.util'
 import { PostService } from '@services/post/post.service'
 import { AuthService } from '@services/auth/auth.service'
 import { lastValueFrom } from 'rxjs'
-import { AlertService } from '@services/alert/alert.service'
 import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
@@ -24,8 +23,7 @@ export class PostCardComponent {
   constructor(
     private postService: PostService,
     private authService: AuthService,
-    private alertService: AlertService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {}
@@ -35,8 +33,8 @@ export class PostCardComponent {
   }
 
   getImage(post: Post) {
-    let objectURL = 'data:image/png;base64,' + post.media;
-    return this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    let objectURL = 'data:image/png;base64,' + post.media
+    return this.sanitizer.bypassSecurityTrustUrl(objectURL)
   }
 
   getHeartIcon(post: Post) {
@@ -49,11 +47,11 @@ export class PostCardComponent {
     lastValueFrom(this.postService.toggleLike(post))
       .then(updatedPost => {
         this.post = updatedPost
-        this.alertService.success('Post liked')
+        // this.alertService.success('Post liked')
       })
       .catch(error => {
         console.error(error)
-        this.alertService.error(error.error.message)
+        // this.alertService.error(error.error.message)
       })
   }
 

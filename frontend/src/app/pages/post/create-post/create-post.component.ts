@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { AlertService } from '@services/alert/alert.service'
+// import {AlertService} from "@services/alert/alert.service";
+import { Category } from '@models/category'
 import { PostService } from '@services/post/post.service'
 import { Post } from '@models/post'
 
@@ -27,15 +28,10 @@ export class CreatePostComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private alertService: AlertService,
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
   ) {}
-
-  get content() {
-    return this.form.get('content')
-  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -43,26 +39,30 @@ export class CreatePostComponent implements OnInit {
     })
   }
 
+  get content() {
+    return this.form.get('content')
+  }
+
   async onSubmit() {
-    let username = this.authService.getUsername();
+    let username = this.authService.getUsername()
 
     let post = {
       content: this.form.value.content,
       username: username,
-      media: this.mediaByteArray
+      media: this.mediaByteArray,
     }
 
     const post$ = this.postService.createPost(post)
     lastValueFrom(post$)
       .then(() => {
-        console.log("success")
-        this.alertService.success('Post created successfully')
+        console.log('success')
+        // this.alertService.success('Post created successfully')
         this.router.navigateByUrl('home')
       })
       .catch(reason => {
-        console.log("ERRÖR")
+        console.log('ERRÖR')
         console.log(reason)
-        this.alertService.error(reason.error.message)
+        // this.alertService.error(reason.error.message)
       })
   }
 
@@ -72,22 +72,24 @@ export class CreatePostComponent implements OnInit {
     const fileReader = new FileReader()
 
     fileReader.readAsDataURL(fileBlob)
-    fileReader.onload = (event) => {
-      this.mediaByteArray = this.convertDataURIToBinary(event.target!.result as string);
+    fileReader.onload = event => {
+      this.mediaByteArray = this.convertDataURIToBinary(
+        event.target!.result as string,
+      )
       console.log(this.mediaByteArray)
     }
   }
 
   private convertDataURIToBinary(dataURI: string) {
-    var base64Index = dataURI.indexOf(';base64,') + ';base64,'.length;
-    var base64 = dataURI.substring(base64Index);
-    var raw = window.atob(base64);
-    var rawLength = raw.length;
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
-  
-    for(let i = 0; i < rawLength; i++) {
-      array[i] = raw.charCodeAt(i);
+    var base64Index = dataURI.indexOf(';base64,') + ';base64,'.length
+    var base64 = dataURI.substring(base64Index)
+    var raw = window.atob(base64)
+    var rawLength = raw.length
+    var array = new Uint8Array(new ArrayBuffer(rawLength))
+
+    for (let i = 0; i < rawLength; i++) {
+      array[i] = raw.charCodeAt(i)
     }
-    return Array.from(array);
+    return Array.from(array)
   }
 }

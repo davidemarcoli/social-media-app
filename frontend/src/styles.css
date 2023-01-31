@@ -1,13 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  /* background-color: #1b2d2a; */
+  color: #fff;
+  /* margin: 0; */
+  font-family: 'Lexend Deca', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.btn {
+  border-radius: 40px;
+  background-color: #fff;
+  color: #000;
+  padding: 8px 16px;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #eee;
+  color: #111;
+}
+
+.btn.btn-secondary {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+}
+
+.bg-secondary {
+  /* background-color: rgba(0 0 0 / 0.2) !important; */
+}
+
+.btn.btn-secondary:hover {
+  /* background-color: #fff; */
+  /* color: #000; */
+}
 
 .centered {
   display: flex;
   justify-content: center;
   align-items: center;
-  top:0;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -54,4 +124,3 @@ form.center {
   align-items: center;
   justify-content: center;
 }
-
