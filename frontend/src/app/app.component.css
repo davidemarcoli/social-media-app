@@ -8,3 +8,12 @@ mat-toolbar {
   top: 0; /* Sets the sticky toolbar to be on top */
   z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
 }
+
+.footer {
+  background-color: #1e293b;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  padding: 10px;
+}
